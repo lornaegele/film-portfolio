@@ -6,6 +6,7 @@ import { NavItem } from "../lib/interfaces";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { headingFont } from "../lib/font";
 
 export const revalidate = 60;
 
@@ -24,9 +25,27 @@ const Navbar = () => {
           <div className="flex w-full items-center justify-between">
             <div className="flex w-full justify-start">
               <Link href="/">
-                <h1 className="capitalize flex items-center justify-center gap-2 md:text-lg text-md">
-                  lorenz naegele
-                </h1>
+                <div
+                  className={`capitalize flex flex-col items-center justify-center md:text-lg text-md ${headingFont.className}`}
+                >
+                  <div className="flex">
+                    <h1 className="-mb-2 rotate-[-10deg]">l</h1>
+                    <h1 className="-mb-2 rotate-[0deg]">o</h1>
+                    <h1 className="-mb-2 rotate-[-5deg]">r</h1>
+                    <h1 className="-mb-2 rotate-[5deg]">e</h1>
+                    <h1 className="-mb-2 rotate-[-10deg]">n</h1>
+                    <h1 className="-mb-2 rotate-[5deg]">z</h1>
+                  </div>
+                  <div className="flex">
+                    <h1 className="-mb-2 rotate-[-10deg]">n</h1>
+                    <h1 className="-mb-2 rotate-[0deg]">a</h1>
+                    <h1 className="-mb-2 rotate-[-5deg]">e</h1>
+                    <h1 className="-mb-2 rotate-[5deg]">g</h1>
+                    <h1 className="-mb-2 rotate-[-10deg]">e</h1>
+                    <h1 className="-mb-2 rotate-[5deg]">l</h1>
+                    <h1 className="-mb-2 rotate-[5deg]">e</h1>
+                  </div>
+                </div>
               </Link>
             </div>
 

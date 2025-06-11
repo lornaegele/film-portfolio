@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { Navbar, ScrollDisabler } from "./components";
-
-const inter = Montserrat({ weight: "400", subsets: ["latin"] });
+import { mainFont } from "./lib/font";
 
 export const metadata: Metadata = {
   title: "Lorenz Naegele",
@@ -19,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <ScrollDisabler />
 
-      <body className={`${inter.className} h-svh w-svw `}>
+      <body className={`${mainFont.className} h-svh w-svw `}>
         <Navbar />
         <main className="">{children}</main>
       </body>

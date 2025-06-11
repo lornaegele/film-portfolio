@@ -4,6 +4,7 @@ import Image from "next/image";
 import { portraitImage } from "../lib/constants/imagePaths";
 import Link from "next/link";
 import { useState } from "react";
+import { Footer } from "../components";
 
 export default function page() {
   return (
@@ -20,9 +21,6 @@ export default function page() {
           February 2024
         </p>
       </div>
-      <button className="border-1 p-4 border-black bg-black text-white">
-        hallo
-      </button>
       <div className="flex flex-col gap-4">
         <p>Hello there! I'm Lorenz Naegele from Germany, welcome to my page!</p>
         <div className="flex flex-col gap-2">
@@ -52,6 +50,7 @@ export default function page() {
           </Link>
         </p>
       </div>
+      <Footer />
     </div>
   );
 }
