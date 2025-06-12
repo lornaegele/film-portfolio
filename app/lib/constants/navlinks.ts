@@ -1,6 +1,12 @@
 import { NavItem } from "../interfaces";
 
-export const navItems: NavItem[] = [
+export const emptyStateNavItems: NavItem[] = [
+  {
+    name: "",
+    link: "",
+  },
+];
+export const visNavItems: NavItem[] = [
   {
     name: "video",
     link: "/video-projects",
@@ -9,12 +15,26 @@ export const navItems: NavItem[] = [
     name: "photo",
     link: "/photo-gallery",
   },
-  // {
-  //   name: "web dev",
-  //   link: "/web-dev",
-  // },
   {
     name: "about",
     link: "/about",
+  },
+  {
+    name: "contact",
+    link: "/contact",
+  },
+];
+export const devNavItems: NavItem[] = [
+  {
+    name: "projects",
+    link: "/video-projects",
+  },
+  {
+    name: "about",
+    link: "/about",
+  },
+  {
+    name: "contact",
+    link: "/contact",
   },
 ];

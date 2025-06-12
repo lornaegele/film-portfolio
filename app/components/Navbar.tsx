@@ -1,19 +1,55 @@
 "use client";
 
 import Link from "next/link";
-import { navItems } from "../lib/constants";
 import { NavItem } from "../lib/interfaces";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { headingFont } from "../lib/font";
 import { FaHamburger } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
+import {
+  devNavItems,
+  emptyStateNavItems,
+  visNavItems,
+} from "../lib/constants/navlinks";
 
 export const revalidate = 60;
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+
+  // Mouse repel effect state and refs
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const letterRefs = useRef<HTMLHeadingElement[][]>([[], []]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (window.innerWidth < 768) return;
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  const getTransformStyle = (row: number, col: number, rotation: number) => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      return {};
+    }
+    const el = letterRefs.current[row]?.[col];
+    if (!el) return {};
+    const rect = el.getBoundingClientRect();
+    const dx = rect.x + rect.width / 2 - mousePos.x;
+    const dy = rect.y + rect.height / 2 - mousePos.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist > 100) return {};
+    const offset = 15 * (1 - dist / 100);
+    return {
+      transform: `translate(${(dx / dist) * offset}px, ${
+        (dy / dist) * offset
+      }px) rotate(${rotation}deg)`,
+    };
+  };
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -31,29 +67,61 @@ const Navbar = () => {
             >
               <Link href="/">
                 <div
-                  className={`capitalize flex flex-col items-center justify-center md:text-lg text-md ${
+                  className={`capitalize flex flex-col items-center justify-center ${
                     pathname == "/"
                       ? " md:text-3xl text-xl"
                       : " md:text-lg text-md"
                   } ${headingFont.className}`}
                 >
-                  <div className="flex">
-                    <h1 className="-mb-2 rotate-[-10deg]">l</h1>
-                    <h1 className="-mb-2 rotate-[0deg]">o</h1>
-                    <h1 className="-mb-2 rotate-[-5deg]">r</h1>
-                    <h1 className="-mb-2 rotate-[5deg]">e</h1>
-                    <h1 className="-mb-2 rotate-[-10deg]">n</h1>
-                    <h1 className="-mb-2 rotate-[5deg]">z</h1>
-                  </div>
-                  <div className="flex">
-                    <h1 className="-mb-2 rotate-[-10deg]">n</h1>
-                    <h1 className="-mb-2 rotate-[0deg]">a</h1>
-                    <h1 className="-mb-2 rotate-[-5deg]">e</h1>
-                    <h1 className="-mb-2 rotate-[5deg]">g</h1>
-                    <h1 className="-mb-2 rotate-[-10deg]">e</h1>
-                    <h1 className="-mb-2 rotate-[5deg]">l</h1>
-                    <h1 className="-mb-2 rotate-[5deg]">e</h1>
-                  </div>
+                  {(() => {
+                    const nameRows: [string, number][][] = [
+                      [
+                        ["l", -10],
+                        ["o", 0],
+                        ["r", -5],
+                        ["e", 5],
+                        ["n", -10],
+                        ["z", 5],
+                      ],
+                      [
+                        ["n", -10],
+                        ["a", 0],
+                        ["e", -5],
+                        ["g", 5],
+                        ["e", -10],
+                        ["l", 5],
+                        ["e", 5],
+                      ],
+                    ];
+                    return nameRows.map((row, rowIndex) => (
+                      <div className="flex" key={rowIndex}>
+                        {row.map(([char, rotation], charIndex) => (
+                          <h1
+                            key={charIndex}
+                            ref={(el) => {
+                              if (el) {
+                                if (!letterRefs.current[rowIndex])
+                                  letterRefs.current[rowIndex] = [];
+                                letterRefs.current[rowIndex][charIndex] = el;
+                              }
+                            }}
+                            className="-mb-2 hover-rotate"
+                            style={{
+                              transition: "transform 0.5s ease",
+                              transform: `rotate(${rotation}deg)`,
+                              ...getTransformStyle(
+                                rowIndex,
+                                charIndex,
+                                rotation
+                              ),
+                            }}
+                          >
+                            {char}
+                          </h1>
+                        ))}
+                      </div>
+                    ));
+                  })()}
                 </div>
               </Link>
             </div>
@@ -106,6 +174,19 @@ export const NavItems = ({
   menuOpen: boolean;
 }) => {
   const pathname = usePathname();
+  const [navItems, setNavItems] = useState(emptyStateNavItems);
+
+  const initSetNavItems = () => {
+    (pathname !== "/about" &&
+      pathname !== "/contact" &&
+      pathname.includes("dev") &&
+      setNavItems(devNavItems)) ||
+      (pathname.includes("visual") && setNavItems(visNavItems));
+  };
+
+  useEffect(() => {
+    initSetNavItems();
+  }, []);
 
   return (
     <div className="flex flex-col justify-end gap-10 p-6 pl-14 pt-16 text-xl md:flex-row md:p-0 font-bold md:text-lg">

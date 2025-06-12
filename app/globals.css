@@ -26,3 +26,13 @@
     gap: 1.5rem; /* Adjust gap as needed */
   }
 }
+
+.hover-rotate {
+  transition: transform 0.5s ease;
+}
+
+@media (min-width: 768px) {
+  .hover-rotate:hover {
+    transform: rotate(10deg) !important;
+  }
+}
