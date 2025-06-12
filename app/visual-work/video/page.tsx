@@ -1,5 +1,5 @@
-import VideoTeaser from "../components/VideoTeaser";
-import { videoThumbnails } from "../lib/constants/imagePaths";
+import VideoTeaser from "../../components/VideoTeaser";
+import { videoThumbnails } from "../../lib/constants/imagePaths";
 
 export default function page() {
   return (

@@ -22,26 +22,17 @@ const findImageByAlt = (path: string): CustomImage | undefined => {
 // Create the teaserImages array
 const teaserImages: ImageTeaser[] = [
   {
-    ...findImageByAlt("san-petro-valley_2")!,
-    link: "photo-gallery",
-    displayName: "photo gallery",
+    path: "/fotos/person-coding.WEBP",
+    alt: "peron-coding",
+    link: "dev",
+    displayName: "Code & Development",
   },
   {
-    ...findImageByAlt("lobitos-surfer")!,
-    link: "video-projects",
-    displayName: "video projects",
+    path: "/fotos/san-pedro-valley_2.WEBP",
+    alt: "forrest",
+    link: "visual-work",
+    displayName: "Visual work",
   },
-  // {
-  //   ...findImageByAlt("uyuni-guide")!,
-  //   link: "web-development",
-  //   displayName: "web development",
-  // },
-  // {
-  //   path: portraitImage.path,
-  //   alt: portraitImage.title,
-  //   link: "about",
-  //   displayName: "about",
-  // },
 ];
 
 export default teaserImages;

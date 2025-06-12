@@ -1,5 +1,5 @@
-import PhotoTeaser from "../components/PhotoTeaser";
-import { images } from "../lib/constants/images";
+import PhotoTeaser from "../../components/PhotoTeaser";
+import { images } from "../../lib/constants/images";
 
 export default function page() {
   return (
