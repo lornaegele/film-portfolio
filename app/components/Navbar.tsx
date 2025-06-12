@@ -1,8 +1,8 @@
 "use client";
 
+import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { NavItem } from "../lib/interfaces";
-import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { headingFont } from "../lib/font";
 import { FaHamburger } from "react-icons/fa";
@@ -176,6 +176,19 @@ export const NavItems = ({
   const pathname = usePathname();
   const [navItems, setNavItems] = useState(emptyStateNavItems);
 
+  const navItemRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const spanRefs = useRef<Array<Array<HTMLSpanElement | null>>>([]);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (window.innerWidth < 768) return;
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   const initSetNavItems = () => {
     (pathname !== "/about" &&
       pathname !== "/contact" &&
@@ -188,25 +201,59 @@ export const NavItems = ({
     initSetNavItems();
   }, []);
 
+  const getCharTransform = (navIndex: number, charIndex: number) => {
+    const el = spanRefs.current[navIndex]?.[charIndex];
+    if (!el || typeof window === "undefined" || window.innerWidth < 768)
+      return {};
+    const rect = el.getBoundingClientRect();
+    const dx = rect.x + rect.width / 2 - mousePos.x;
+    const dy = rect.y + rect.height / 2 - mousePos.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist > 100) return {};
+    const offset = 5 * (1 - dist / 100);
+    return {
+      transform: `translate(${(dx / dist) * offset}px, ${
+        (dy / dist) * offset
+      }px)`,
+    };
+  };
+
   return (
-    <div className="flex flex-col justify-end gap-10 p-6 pl-14 pt-16 text-xl md:flex-row md:p-0 font-bold md:text-lg">
-      {navItems.map((navItem: NavItem) => {
+    <div className="flex flex-col justify-end gap-5 p-6 pl-14 pt-16 text-xl md:flex-row md:p-0 font-bold md:text-xl">
+      {navItems.map((navItem: NavItem, index: number) => {
         const isActive = pathname === navItem.link;
         return (
-          <div key={navItem.name}>
+          <div key={navItem.name} className="overflow-hidden">
             <Link
               href={navItem.link}
-              onClick={closeMenu} // Close the menu when a link is clicked
+              onClick={closeMenu}
               className={`
           ${isActive ? "after:w-full" : "after:w-0 hover:after:w-full"} ${
                 pathname === "/" && !menuOpen
                   ? "after:bg-black"
                   : "after:bg-black"
-              }  capitalize relative whitespace-nowrap after:absolute after:bottom-0 after:left-0 after:h-[1.5px]  font-bold  after:transition-all after:duration-300
+              } capitalize relative whitespace-nowrap p-2
         `}
               prefetch
             >
-              {navItem.name}
+              {[...navItem.name].map((char, charIndex) => {
+                if (!spanRefs.current[index]) spanRefs.current[index] = [];
+                return (
+                  <span
+                    key={charIndex}
+                    ref={(el: HTMLSpanElement | null) => {
+                      spanRefs.current[index][charIndex] = el;
+                    }}
+                    style={{
+                      display: "inline-block",
+                      transition: "transform 0.3s ease",
+                      ...getCharTransform(index, charIndex),
+                    }}
+                  >
+                    {char}
+                  </span>
+                );
+              })}
             </Link>
           </div>
         );

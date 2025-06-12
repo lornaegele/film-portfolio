@@ -9,11 +9,11 @@ export const emptyStateNavItems: NavItem[] = [
 export const visNavItems: NavItem[] = [
   {
     name: "video",
-    link: "/video-projects",
+    link: "/visual-work/video",
   },
   {
     name: "photo",
-    link: "/photo-gallery",
+    link: "/visual-work/photo",
   },
   {
     name: "about",
@@ -27,7 +27,7 @@ export const visNavItems: NavItem[] = [
 export const devNavItems: NavItem[] = [
   {
     name: "projects",
-    link: "/video-projects",
+    link: "dev/projects",
   },
   {
     name: "about",
