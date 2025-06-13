@@ -1,5 +1,12 @@
+import { Footer } from "../components";
+
 const page = () => {
-  return <div>page</div>;
+  return (
+    <div>
+      <div>page</div>
+      <Footer />
+    </div>
+  );
 };
 
 export default page;

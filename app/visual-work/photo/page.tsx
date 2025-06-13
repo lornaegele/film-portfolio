@@ -5,7 +5,7 @@ import { images } from "../../lib/constants/images";
 export default function page() {
   return (
     <div>
-      <div className="p-4 pt-0 flex flex-wrap justify-center gap-4 max-w-[1500px] mx-auto sm:flex-col sm:items-center">
+      <div className="p-6 pt-0 flex flex-wrap flex-row justify-center md:gap-12 gap-6 max-w-[1500px] mx-auto md:items-center">
         {images.map((image) => (
           <PhotoTeaser key={image.link} image={image} />
         ))}

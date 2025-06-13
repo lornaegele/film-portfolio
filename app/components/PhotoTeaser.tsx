@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { CustomImage } from "../lib/interfaces";
+import { CustomImage, VideoThumbnail } from "../lib/interfaces";
 import Link from "next/link";
 
 interface PhotoTeaserProps {
-  image: CustomImage;
+  image: CustomImage | VideoThumbnail;
 }
 
 const PhotoTeaser = ({ image }: PhotoTeaserProps) => {

@@ -6,21 +6,6 @@ export const portraitImage: ImagesWithDesc = {
   title: "Self Portrait",
 };
 
-export const videoThumbnails: VideoThumbnail[] = [
-  {
-    path: "/fotos/echoes_of_the_ocean.webp",
-    ytLink: "https://youtu.be/_DdfPlqmqqk",
-    alt: "Echoes of the ocean",
-    dateTaken: "August 2024",
-  },
-  // {
-  //   path: "/fotos/waves_of_wisdom.webp",
-  //   ytLink: "/",
-  //   alt: "Waves of wisdom",
-  //   dateTaken: "August 2024",
-  // },
-];
-
 // Updated images array
 export const imagesWithDesc: ImagesWithDesc[] = [
   {

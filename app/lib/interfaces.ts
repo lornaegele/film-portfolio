@@ -16,6 +16,7 @@ export interface CustomImage {
   description: string;
   link: string;
 }
+
 export interface ImageTeaser {
   path: string;
   alt: string;
@@ -29,7 +30,7 @@ export interface Title {
 
 export interface VideoThumbnail {
   path: string;
-  ytLink: string;
+  link: string;
   dateTaken: string;
   alt: string;
 }

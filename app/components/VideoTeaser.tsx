@@ -11,7 +11,7 @@ const VideoTeaser = ({ video }: VideoTeaserProps) => {
   return (
     <Link
       target="_blank"
-      href={video.ytLink}
+      href={video.link}
       className="relative overflow-hidden group"
     >
       <Image

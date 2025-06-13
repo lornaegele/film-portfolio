@@ -5,7 +5,7 @@ import { headingFont } from "../lib/font";
 const Footer = () => {
   return (
     <div
-      className={`flex justify-center items-center ${headingFont.className}`}
+      className={`flex justify-center items-center ${headingFont.className} pb-6 pt-4`}
     >
       <div className="w-[140px]">
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
