@@ -178,6 +178,14 @@ export const NavItems = ({
   const spanRefs = useRef<Array<Array<HTMLSpanElement | null>>>([]);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsMobile(window.innerWidth < 768);
+    }
+  }, []);
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (window.innerWidth < 768) return;
@@ -187,14 +195,16 @@ export const NavItems = ({
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  const initSetNavItems = () => {
-    (pathname !== "/about" &&
-      pathname !== "/contact" &&
-      pathname.includes("dev") &&
-      setNavItems(devNavItems)) ||
-    pathname.includes("visual")
-      ? setNavItems(visNavItems)
-      : setNavItems(defaultNavItems);
+  const initSetNavItems = (path?: string) => {
+    const currentPath = path || pathname;
+
+    if (currentPath.includes("dev")) {
+      setNavItems(devNavItems);
+    } else if (currentPath.includes("visual")) {
+      setNavItems(visNavItems);
+    } else {
+      setNavItems(defaultNavItems);
+    }
   };
 
   useEffect(() => {
@@ -221,23 +231,32 @@ export const NavItems = ({
   return (
     <div
       className={`flex flex-col justify-end gap-5 p-6 pl-14 pt-16 text-4xl md:flex-row md:p-0 font-bold md:text-xl ${
-        window.innerWidth < 768 && subHeadingFont.className
+        isMobile ? subHeadingFont.className : ""
       }`}
     >
       {Array.isArray(navItems) &&
         navItems.map((navItem: NavItem, index: number) => {
-          const isActive = pathname === navItem.link;
+          const isActive =
+            pathname === navItem.link ||
+            pathname === `/${navItem.link}` ||
+            `/${navItem.link}` === pathname;
           return (
             <div key={navItem.name} className="overflow-hidden">
               <Link
                 href={navItem.link}
-                onClick={closeMenu}
+                onClick={() => {
+                  closeMenu?.();
+                  if (
+                    !navItem.link.includes("contact") &&
+                    !navItem.link.includes("about")
+                  ) {
+                    initSetNavItems(navItem.link);
+                  }
+                }}
                 className={`
-          ${isActive && "text-red"} ${
-                  pathname === "/" && !menuOpen
-                    ? "after:bg-black"
-                    : "after:bg-black"
-                } capitalize relative whitespace-nowrap p-2
+          ${
+            pathname === "/" && !menuOpen ? "after:bg-black" : "after:bg-black"
+          } capitalize relative whitespace-nowrap p-2
         `}
                 prefetch
               >
