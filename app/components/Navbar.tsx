@@ -4,12 +4,12 @@ import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { NavItem } from "../lib/interfaces";
 import { usePathname } from "next/navigation";
-import { headingFont } from "../lib/font";
+import { headingFont, subHeadingFont } from "../lib/font";
 import { FaHamburger } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import {
   devNavItems,
-  emptyStateNavItems,
+  defaultNavItems,
   visNavItems,
 } from "../lib/constants/navlinks";
 
@@ -133,7 +133,7 @@ const Navbar = () => {
                 {/*  MOBILE */}
                 {/* Burger Menu Button */}
                 <div
-                  className="text-black  delay-300 absolute right-2 top-4 z-40 block cursor-pointer md:hidden"
+                  className="text-black  delay-300 absolute right-2 top-6 z-40 block cursor-pointer md:hidden"
                   onClick={toggleMenu}
                 >
                   {menuOpen ? (
@@ -174,9 +174,7 @@ export const NavItems = ({
   menuOpen: boolean;
 }) => {
   const pathname = usePathname();
-  const [navItems, setNavItems] = useState(emptyStateNavItems);
-
-  const navItemRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const [navItems, setNavItems] = useState(defaultNavItems);
   const spanRefs = useRef<Array<Array<HTMLSpanElement | null>>>([]);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -194,7 +192,9 @@ export const NavItems = ({
       pathname !== "/contact" &&
       pathname.includes("dev") &&
       setNavItems(devNavItems)) ||
-      (pathname.includes("visual") && setNavItems(visNavItems));
+    pathname.includes("visual")
+      ? setNavItems(visNavItems)
+      : setNavItems(defaultNavItems);
   };
 
   useEffect(() => {
@@ -219,45 +219,50 @@ export const NavItems = ({
   };
 
   return (
-    <div className="flex flex-col justify-end gap-5 p-6 pl-14 pt-16 text-xl md:flex-row md:p-0 font-bold md:text-xl">
-      {navItems.map((navItem: NavItem, index: number) => {
-        const isActive = pathname === navItem.link;
-        return (
-          <div key={navItem.name} className="overflow-hidden">
-            <Link
-              href={navItem.link}
-              onClick={closeMenu}
-              className={`
-          ${isActive ? "after:w-full" : "after:w-0 hover:after:w-full"} ${
-                pathname === "/" && !menuOpen
-                  ? "after:bg-black"
-                  : "after:bg-black"
-              } capitalize relative whitespace-nowrap p-2
+    <div
+      className={`flex flex-col justify-end gap-5 p-6 pl-14 pt-16 text-4xl md:flex-row md:p-0 font-bold md:text-xl ${
+        window.innerWidth < 768 && subHeadingFont.className
+      }`}
+    >
+      {Array.isArray(navItems) &&
+        navItems.map((navItem: NavItem, index: number) => {
+          const isActive = pathname === navItem.link;
+          return (
+            <div key={navItem.name} className="overflow-hidden">
+              <Link
+                href={navItem.link}
+                onClick={closeMenu}
+                className={`
+          ${isActive && "text-red"} ${
+                  pathname === "/" && !menuOpen
+                    ? "after:bg-black"
+                    : "after:bg-black"
+                } capitalize relative whitespace-nowrap p-2
         `}
-              prefetch
-            >
-              {[...navItem.name].map((char, charIndex) => {
-                if (!spanRefs.current[index]) spanRefs.current[index] = [];
-                return (
-                  <span
-                    key={charIndex}
-                    ref={(el: HTMLSpanElement | null) => {
-                      spanRefs.current[index][charIndex] = el;
-                    }}
-                    style={{
-                      display: "inline-block",
-                      transition: "transform 0.3s ease",
-                      ...getCharTransform(index, charIndex),
-                    }}
-                  >
-                    {char}
-                  </span>
-                );
-              })}
-            </Link>
-          </div>
-        );
-      })}
+                prefetch
+              >
+                {[...navItem.name].map((char, charIndex) => {
+                  if (!spanRefs.current[index]) spanRefs.current[index] = [];
+                  return (
+                    <span
+                      key={charIndex}
+                      ref={(el: HTMLSpanElement | null) => {
+                        spanRefs.current[index][charIndex] = el;
+                      }}
+                      style={{
+                        display: "inline-block",
+                        transition: "transform 0.3s ease",
+                        ...getCharTransform(index, charIndex),
+                      }}
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </span>
+                  );
+                })}
+              </Link>
+            </div>
+          );
+        })}
     </div>
   );
 };

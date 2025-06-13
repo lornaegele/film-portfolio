@@ -1,9 +1,13 @@
 import { NavItem } from "../interfaces";
 
-export const emptyStateNavItems: NavItem[] = [
+export const defaultNavItems: NavItem[] = [
   {
-    name: "",
-    link: "",
+    name: "visual work",
+    link: "/visual-work",
+  },
+  {
+    name: "code & Dev",
+    link: "dev",
   },
 ];
 export const visNavItems: NavItem[] = [
@@ -27,7 +31,7 @@ export const visNavItems: NavItem[] = [
 export const devNavItems: NavItem[] = [
   {
     name: "projects",
-    link: "dev/projects",
+    link: "dev",
   },
   {
     name: "about",

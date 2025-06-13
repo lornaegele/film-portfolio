@@ -7,7 +7,7 @@ interface PhotoTeaserProps {
 }
 
 const PhotoTeaser = ({ image }: PhotoTeaserProps) => {
-  const link = "photo-gallery/" + image.link;
+  const link = "photo/" + image.link;
 
   return (
     <Link href={link} className="relative overflow-hidden group">

@@ -129,7 +129,7 @@ export const imagesWithDesc: ImagesWithDesc[] = [
     title: "San Pedro Valley",
   },
   {
-    path: "/fotos/san-petro-valley_2.WEBP",
+    path: "/fotos/san-pedro-valley_2.WEBP",
     description: "Another shot of San Pedro Valley.",
     title: "San Pedro Valley 2",
   },
