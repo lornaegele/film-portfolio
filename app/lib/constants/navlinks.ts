@@ -20,16 +20,12 @@ export const visNavItems: NavItem[] = [
     link: "/visual-work/photo",
   },
   {
-    name: "instagram",
-    link: "https://www.instagram.com/lorenznaegele",
-  },
-  {
     name: "about",
     link: "/about",
   },
   {
-    name: "contact",
-    link: "/contact",
+    name: "instagram",
+    link: "https://www.instagram.com/lorenznaegele",
   },
 ];
 export const devNavItems: NavItem[] = [

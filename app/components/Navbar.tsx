@@ -237,11 +237,14 @@ export const NavItems = ({
       {Array.isArray(navItems) &&
         navItems.map((navItem: NavItem, index: number) => {
           const isActive =
-            pathname === navItem.link ||
+            pathname.includes(navItem.link) ||
             pathname === `/${navItem.link}` ||
             `/${navItem.link}` === pathname;
           return (
-            <div key={navItem.name} className="overflow-hidden">
+            <div
+              key={navItem.name}
+              className={`overflow-hidden ${isActive ? "-mt-[2px] " : ""}`}
+            >
               <Link
                 href={navItem.link}
                 onClick={() => {
@@ -256,7 +259,9 @@ export const NavItems = ({
                 className={`
           ${
             pathname === "/" && !menuOpen ? "after:bg-black" : "after:bg-black"
-          } capitalize relative whitespace-nowrap p-2
+          } capitalize relative whitespace-nowrap p-2 ${
+                  isActive ? ` ${headingFont.className}` : ""
+                }
         `}
                 prefetch
               >
