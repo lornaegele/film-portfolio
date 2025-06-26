@@ -1,5 +1,6 @@
 import { CustomImage, ImageTeaser, VideoThumbnail } from "../interfaces";
 import { imagesWithDesc } from "./imagePaths";
+import { videos } from "./videos";
 
 export const images: CustomImage[] = imagesWithDesc
   .filter((path) => !path.path.includes("self-portrait"))
@@ -11,23 +12,9 @@ export const images: CustomImage[] = imagesWithDesc
       alt: path.title,
       description: path.description,
       link: link || "",
+      type: "photo",
     };
   });
-
-export const videos: VideoThumbnail[] = [
-  {
-    path: "/fotos/echoes_of_the_ocean.webp",
-    link: "https://youtu.be/_DdfPlqmqqk",
-    alt: "Echoes of the ocean",
-    dateTaken: "August 2024",
-  },
-  {
-    path: "/fotos/waves_of_wisdom.webp",
-    link: "/",
-    alt: "Waves of wisdom",
-    dateTaken: "August 2024",
-  },
-];
 
 type MediaItem = CustomImage | VideoThumbnail;
 

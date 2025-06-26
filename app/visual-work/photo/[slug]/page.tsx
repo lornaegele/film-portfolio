@@ -13,6 +13,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   return (
     <div>
       <h1>{image.title}</h1>
+      <p>{image.path}</p>
       <Image
         src={image.path}
         alt={image.alt}

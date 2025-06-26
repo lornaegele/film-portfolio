@@ -2,12 +2,12 @@ import Image from "next/image";
 import { CustomImage, VideoThumbnail } from "../lib/interfaces";
 import Link from "next/link";
 
-interface PhotoTeaserProps {
+interface MixedMediaTeaserProps {
   image: CustomImage | VideoThumbnail;
 }
 
-const PhotoTeaser = ({ image }: PhotoTeaserProps) => {
-  const link = image.type + "/" + image.link;
+const MixedMediaTeaser = ({ image }: MixedMediaTeaserProps) => {
+  const link = "visual-work/" + image.type + "/" + image.link;
   return (
     <Link href={link} className="relative overflow-hidden group">
       <Image
@@ -24,4 +24,4 @@ const PhotoTeaser = ({ image }: PhotoTeaserProps) => {
   );
 };
 
-export default PhotoTeaser;
+export default MixedMediaTeaser;

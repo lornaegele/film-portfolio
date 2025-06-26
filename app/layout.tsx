@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <ScrollDisabler />
 
-      <body className={`${mainFont.className} h-svh w-svw `}>
+      <body className={`${mainFont.className} h-svh w-svw overflow-x-hidden`}>
         <Navbar />
         <main className="">{children}</main>
       </body>
