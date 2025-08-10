@@ -243,7 +243,7 @@ export const NavItems = ({
           return (
             <div
               key={navItem.name}
-              className={`overflow-hidden ${isActive ? "-mt-[2px] " : ""}`}
+              className={`overflow-hidden ${isActive ? "md:-mt-[2px] " : ""}`}
             >
               <Link
                 href={navItem.link}
@@ -260,7 +260,12 @@ export const NavItems = ({
           ${
             pathname === "/" && !menuOpen ? "after:bg-black" : "after:bg-black"
           } capitalize relative whitespace-nowrap p-2 ${
-                  isActive ? ` ${headingFont.className}` : ""
+                  isActive
+                    ? ` 
+                  ${
+                    !isMobile && headingFont.className
+                  }  text-[#6e4f73] md:text-black`
+                    : ""
                 }
         `}
                 prefetch

@@ -7,7 +7,7 @@ export default function page() {
     <div>
       <div className="p-4 pt-0 flex flex-col md:gap-4 gap-2 max-w-5xl mx-auto ">
         {videos.map((video) => (
-          <VideoTeaser key={video.path} video={video} />
+          <VideoTeaser key={video.thumbnail.path} video={video} />
         ))}
       </div>
       <Footer />

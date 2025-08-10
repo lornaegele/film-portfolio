@@ -29,8 +29,15 @@ export interface Title {
   name: string;
 }
 
+export interface VideoThumbnailImage {
+  path?: string;
+  description?: string;
+}
+
 export interface VideoThumbnail {
-  path: string;
+  images: VideoThumbnailImage[];
+  thumbnail: VideoThumbnailImage;
+  description: string;
   link: string;
   ytLink: string;
   dateTaken: string;

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 const ScrollDisabler: React.FC = () => {
   const pathname = usePathname();
 
-  const pages = ["/"]; // List of pages where scrolling should be disabled
+  const pages = ["/", ""]; // List of pages where scrolling should be disabled
 
   useEffect(() => {
     if (pages.includes(pathname)) {

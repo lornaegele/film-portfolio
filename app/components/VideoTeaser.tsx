@@ -15,7 +15,7 @@ const VideoTeaser = ({ video }: VideoTeaserProps) => {
     >
       <Image
         className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-70"
-        src={video.path} // Make sure 'link' contains the valid image path
+        src={video.thumbnail.path!} // Make sure 'link' contains the valid image path
         width={1024}
         height={1000}
         alt={video.alt}

@@ -1,5 +1,8 @@
+import { Footer } from "@/app/components";
 import { videos } from "@/app/lib/constants/videos";
 import Image from "next/image";
+import Link from "next/link";
+import { FaYoutube } from "react-icons/fa";
 
 export default function Page({ params }: { params: { slug: string } }) {
   // Find the image with the matching link
@@ -11,16 +14,54 @@ export default function Page({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div>
-      <h1>{video.link}</h1>
-      <p>{video.path}</p>
-      <Image
-        src={video.path}
-        alt={video.alt}
-        width={500} // Specify the width you want
-        height={300} // Specify the height you want
-      />
-      <p>{video.link}</p>
+    <div className="max-w-4xl mx-auto p-4 text-center flex flex-col gap-2">
+      <div>
+        <Link
+          href={video.ytLink}
+          target="_blank"
+          className="relative overflow-hidden group"
+        >
+          <Image
+            className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-70"
+            src={video.thumbnail.path!} // Make sure 'link' contains the valid image path
+            width={500}
+            height={1000}
+            alt={video.alt}
+          />
+          <div className="absolute inset-0 m-auto flex text-white text-5xl md:text-7xl justify-center items-center opacity-70 -left-full">
+            <FaYoutube />
+          </div>
+        </Link>
+        <div className="text-right">{video.dateTaken}</div>
+      </div>
+      <h1 className="text-3xl font-bold text-left">{video.alt}</h1>
+      <p className="text-left">{video.description}</p>
+      <p className="text-gray-600 mb-2">{video.thumbnail.description}</p>
+      {video.images.map((img, index) => (
+        <div
+          key={index}
+          className={`flex flex-col md:flex-row ${
+            index % 2 === 1 ? "md:flex-row-reverse" : ""
+          } items-center mb-4 gap-6`}
+        >
+          <div className="w-full md:w-1/2">
+            <p className="text-gray-60 text-left">{img.description}</p>
+          </div>
+          {img.path && (
+            <div className="w-full md:w-1/2">
+              <Image
+                src={img.path}
+                alt={video.alt}
+                width={0}
+                height={0}
+                sizes="100vw"
+                className="w-full h-auto"
+              />
+            </div>
+          )}
+        </div>
+      ))}
+      <Footer />
     </div>
   );
 }

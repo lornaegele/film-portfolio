@@ -3,7 +3,7 @@ import { CustomImage, VideoThumbnail } from "../lib/interfaces";
 import Link from "next/link";
 
 interface PhotoTeaserProps {
-  image: CustomImage | VideoThumbnail;
+  image: CustomImage;
 }
 
 const PhotoTeaser = ({ image }: PhotoTeaserProps) => {
@@ -17,9 +17,6 @@ const PhotoTeaser = ({ image }: PhotoTeaserProps) => {
         height={1000}
         alt={image.alt}
       />
-      <p className="absolute -mt-7 ml-3 text-white opacity-80 text-sm uppercase">
-        {image.path}
-      </p>
     </Link>
   );
 };
