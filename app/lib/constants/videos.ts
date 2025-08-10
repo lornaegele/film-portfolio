@@ -19,13 +19,35 @@ export const videos: VideoThumbnail[] = [
           "Across both days, the project became more than just filming a climb — it turned into a valuable learning experience for me as well. Handling the camera gear while hanging on the rope taught me a lot about working in challenging conditions, and gave me confidence for future shoots. The whole process, from figuring out technical setups to working alongside Manu and witnessing Mattia’s determination, made for a memorable journey. Being out on the rock, surrounded by nature, added to the sense of adventure that defined the shoot.",
       },
     ],
-    thumbnail: { path: "/fotos/sport_climbing_mattia.webp" },
+    thumbnail: { path: "/fotos/Finding-Flow.webp" },
     description:
       "Follow Mattia, an Italian boulderer, as he embarks on a new chapter of his climbing life in Germany. After moving just a year ago, Mattia discovers his passion for outdoor sport climbing — embracing the challenges, the fear, and the beauty of finding flow on the rock and simply being outdoors. This short climbing documentary explores the transition from indoor bouldering to outdoor sport climbing, as well as the mental and physical challenges of pushing limits on real rock. ",
     link: "sport_climbing_mattia",
     ytLink: "https://youtu.be/U_7M_xfELcg",
     alt: "Climbing with Mattia",
     dateTaken: "June 2025",
+    type: "video",
+  },
+  {
+    images: [
+      {
+        path: "/fotos/echoes_of_the_ocean_2.webp",
+        description:
+          "What struck me most was his connection to the ocean. It’s not just about riding waves for him — it’s about understanding the rhythms of the water, protecting its beauty, and living in harmony with it. In our interview, his stories carried a mix of humility and experience that could only come from a lifetime spent in the surf.",
+      },
+      {
+        path: "/fotos/echoes_of_the_ocean_1.webp",
+        description:
+          "I also had the chance to join him for a full day on the water. Watching him move in sync with the waves was both humbling and inspiring, a reminder of the timeless bond between surfer and sea. It was an unforgettable experience, and I’m grateful to Harald for sharing not only his time, but also his philosophy of life on and off the board.",
+      },
+    ],
+    thumbnail: { path: "/fotos/echoes_of_the_ocean.webp" },
+    description:
+      "This documentary was filmed in June during my trip to South America, over two days in the surf town of Lobitos, Peru. It tells the story of Harald Koechlin — a true local legend whose life has been shaped by the waves. Known in the community for his skill, wisdom, and deep respect for the sea, Harald has spent decades surfing these waters and sharing his passion with others.",
+    link: "echoes_of_the_ocean",
+    ytLink: "https://youtu.be/ylcjgyRzztY?si=v0O5HdJ5NsIhK6Vl",
+    alt: "Echoes of the ocean",
+    dateTaken: "August 2024",
     type: "video",
   },
   {
@@ -58,12 +80,19 @@ export const videos: VideoThumbnail[] = [
   {
     images: [
       {
-        path: "/fotos/waves_of_wisdom.webp",
-        description: "Waves crashing at dawn.",
+        path: "/fotos/waves_of_wisdom_3.webp",
+        description:
+          "I first met Matias in Lobitos, a small surf town on the northern coast of Peru known for its long, peeling waves. He’s originally from Argentina, but Peru has been his home for years — a place where his connection to the ocean runs deep. At the time, a longboard competition had brought surfers from all over to this quiet stretch of coast, and Matias was one of the standout names on the roster. His reputation preceded him; in the longboarding world, he’s already well known, admired for his smooth style and competitive edge.",
       },
       {
-        path: "/fotos/waves_of_wisdom.webp",
-        description: "Calm sea under a golden sky.",
+        path: "/fotos/waves_of_wisdom_2.webp",
+        description:
+          "We got talking between heats, and he told me about his ambitions to one day compete in the Olympics. It was clear that his passion for the sport goes far beyond the competitions — it’s a way of life, a discipline he’s constantly refining. That mix of humble determination and raw talent made me want to capture his story in a more lasting way. So I followed him through the event, filming his rides, his preparation, and those quiet moments that happen away from the crowd, where his focus and connection to the waves are almost tangible.",
+      },
+      {
+        path: "/fotos/waves_of_wisdom_1.webp",
+        description:
+          "Over the days we spent together, the project became more than just documenting a competition. It turned into an exploration of who Matias is as an athlete and as a person — someone deeply rooted in surf culture, but also pushing forward with big dreams and the skill to match. Watching him ride and hearing his perspective on the sport was inspiring, and the experience left me with not just great footage, but a deeper respect for longboarding and the people who dedicate their lives to it.",
       },
     ],
     thumbnail: { path: "/fotos/waves_of_wisdom.webp" },
@@ -72,26 +101,6 @@ export const videos: VideoThumbnail[] = [
     link: "waves_of_wisdom",
     ytLink: "https://youtu.be/gIQJPZYc59I",
     alt: "Waves of wisdom",
-    dateTaken: "August 2024",
-    type: "video",
-  },
-  {
-    images: [
-      {
-        path: "/fotos/echoes_of_the_ocean.webp",
-        description: "Ocean’s vast horizon.",
-      },
-      {
-        path: "/fotos/echoes_of_the_ocean.webp",
-        description: "Rippling waves reflecting light.",
-      },
-    ],
-    thumbnail: { path: "/fotos/echoes_of_the_ocean.webp" },
-    description:
-      "This documentary was filmed in June during my trip to South America, captured over two days of shooting. Special thanks to Harold Koechlin for the interview and the incredible surf day trip!",
-    link: "echoes_of_the_ocean",
-    ytLink: "https://youtu.be/ylcjgyRzztY?si=v0O5HdJ5NsIhK6Vl",
-    alt: "Echoes of the ocean",
     dateTaken: "August 2024",
     type: "video",
   },

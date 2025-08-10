@@ -42,16 +42,18 @@ export default function page() {
           </p>
         </div>
         <div className="flex flex-col gap-2 px-4">
-          <h2 className="text-xl font-bold text-gray-900">My Visual Work</h2>
+          <h2 className="text-xl font-bold text-gray-900">
+            My Filmmaking and Photography
+          </h2>
           <p>
-            I am passionate about capturing beauty, emotion, and the subtle
-            details that tell a story. My videography focuses on creating short
-            documentaries about interesting people, because I believe everyone
-            has a story worth telling. Whether through photography or film, I
-            aim to create moments that inspire awareness, evoke feelings, and
-            invite viewers to see the world through my perspective. I strive to
-            preserve the essence of each subject and share experiences that feel
-            both personal and relatable.
+            My filmmaking is mostly focused on outdoor documentaries, telling
+            authentic stories set in nature and the world of adventure sports.
+            I’m passionate about capturing beauty, emotion, and the small
+            details that reveal the heart of a story. Whether following a surfer
+            chasing a perfect wave or a mountaineer reaching a summit, I strive
+            to preserve the essence of each person and place. Through film and
+            photography, I aim to inspire awareness, evoke emotion, and invite
+            viewers to experience the world through my lens.
           </p>
         </div>
         <div className="flex flex-col gap-1 bg-gray-100 p-4 rounded-md shadow-sm">

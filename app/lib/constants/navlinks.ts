@@ -2,11 +2,11 @@ import { NavItem } from "../interfaces";
 
 export const defaultNavItems: NavItem[] = [
   {
-    name: "visual work",
-    link: "/visual-work",
+    name: "Photo & Video",
+    link: "/visual-work/video",
   },
   {
-    name: "code & Dev",
+    name: "Web Development",
     link: "dev",
   },
 ];
@@ -30,15 +30,11 @@ export const visNavItems: NavItem[] = [
 ];
 export const devNavItems: NavItem[] = [
   {
-    name: "projects",
+    name: "Portfolio",
     link: "dev",
   },
   {
     name: "about",
     link: "/about",
-  },
-  {
-    name: "contact",
-    link: "/contact",
   },
 ];

@@ -64,7 +64,7 @@ const teaserImages: ImageTeaser[] = [
   {
     path: "/fotos/san-pedro-valley_2.WEBP",
     alt: "forrest",
-    link: "visual-work",
+    link: "visual-work/video",
     displayName: "Visual work",
   },
 ];

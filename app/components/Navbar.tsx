@@ -264,7 +264,7 @@ export const NavItems = ({
                     ? ` 
                   ${
                     !isMobile && headingFont.className
-                  }  text-[#6e4f73] md:text-black`
+                  }  text-[#ffda09] md:text-black`
                     : ""
                 }
         `}
