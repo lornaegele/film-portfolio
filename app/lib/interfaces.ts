@@ -29,14 +29,14 @@ export interface Title {
   name: string;
 }
 
-export interface Image {
+export interface VideoThumbnailImage {
   path?: string;
   description?: string;
 }
 
-export interface Thumbnail {
-  images: Image[];
-  thumbnail: Image;
+export interface VideoThumbnail {
+  images: VideoThumbnailImage[];
+  thumbnail: VideoThumbnailImage;
   description: string;
   link: string;
   ytLink: string;
@@ -45,8 +45,8 @@ export interface Thumbnail {
   type: "video";
 }
 export interface DevProject {
-  images: Image[];
-  thumbnail: Image;
+  images: VideoThumbnailImage[];
+  thumbnail: VideoThumbnailImage;
   description: string;
   link: string;
   ytLink: string;

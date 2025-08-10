@@ -7,11 +7,7 @@ import { usePathname } from "next/navigation";
 import { headingFont, subHeadingFont } from "../lib/font";
 import { FaHamburger } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
-import {
-  devNavItems,
-  defaultNavItems,
-  visNavItems,
-} from "../lib/constants/navlinks";
+import { navItems } from "../lib/constants/navlinks";
 
 export const revalidate = 60;
 
@@ -60,37 +56,29 @@ const Navbar = () => {
       <div className="mx-auto px-4  md:max-w-5xl">
         <div className="relative flex h-20 md:h-24 justify-between">
           <div className="flex w-full items-center justify-between">
-            <div
-              className={`flex w-full  ${
-                pathname == "/" ? "justify-center" : "justify-start"
-              } `}
-            >
+            <div className="flex w-full justify-start">
               <Link href="/">
                 <div
-                  className={`capitalize flex flex-col items-center justify-center ${
-                    pathname == "/"
-                      ? " md:text-3xl text-xl"
-                      : " md:text-lg text-md"
-                  } ${headingFont.className}`}
+                  className={`capitalize flex flex-col items-center justify-center
+                      md:text-2xl text-lg
+                ${headingFont.className}`}
                 >
                   {(() => {
                     const nameRows: [string, number][][] = [
                       [
-                        ["l", -10],
+                        ["L", -5],
                         ["o", 0],
-                        ["r", -5],
-                        ["e", 5],
-                        ["n", -10],
-                        ["z", 5],
+                        ["r", 3],
+                        ["e", -2],
+                        ["n", 3],
+                        ["z", -3],
                       ],
                       [
-                        ["n", -10],
-                        ["a", 0],
-                        ["e", -5],
-                        ["g", 5],
-                        ["e", -10],
-                        ["l", 5],
-                        ["e", 5],
+                        ["F", 4],
+                        ["i", -1],
+                        ["l", 2],
+                        ["m", 4],
+                        ["s", 1],
                       ],
                     ];
                     return nameRows.map((row, rowIndex) => (
@@ -125,40 +113,38 @@ const Navbar = () => {
                 </div>
               </Link>
             </div>
-            {pathname !== "/" && (
-              <div>
-                <div className="hidden md:block">
-                  <NavItems menuOpen={menuOpen} />
-                </div>
-                {/*  MOBILE */}
-                {/* Burger Menu Button */}
-                <div
-                  className="text-black  delay-300 absolute right-2 top-6 z-40 block cursor-pointer md:hidden"
-                  onClick={toggleMenu}
-                >
-                  {menuOpen ? (
-                    <IoClose size="36px" className="-mr-1" />
-                  ) : (
-                    <FaHamburger size="26px" className="mt-1" />
-                  )}
-                </div>
-                {/* Animated Menu */}
-                <div
-                  className={` fixed right-0 top-0 z-30 !h-screen w-screen bg-white text-black shadow-md transition-transform duration-500 md:hidden ${
-                    menuOpen ? "translate-x-0" : "translate-x-full"
-                  }`}
-                  style={{
-                    transformOrigin: "right",
-                    transform: menuOpen ? "translateX(0)" : "translateX(100%)",
-                  }}
-                >
-                  <NavItems
-                    closeMenu={() => setMenuOpen(false)}
-                    menuOpen={menuOpen}
-                  />
-                </div>{" "}
+            <div>
+              <div className="hidden md:block">
+                <NavItems menuOpen={menuOpen} />
               </div>
-            )}
+              {/*  MOBILE */}
+              {/* Burger Menu Button */}
+              <div
+                className="text-black  delay-300 absolute right-2 top-6 z-40 block cursor-pointer md:hidden"
+                onClick={toggleMenu}
+              >
+                {menuOpen ? (
+                  <IoClose size="36px" className="-mr-1" />
+                ) : (
+                  <FaHamburger size="26px" className="mt-1" />
+                )}
+              </div>
+              {/* Animated Menu */}
+              <div
+                className={` fixed right-0 top-0 z-30 !h-screen w-screen bg-white text-black shadow-md transition-transform duration-500 md:hidden ${
+                  menuOpen ? "translate-x-0" : "translate-x-full"
+                }`}
+                style={{
+                  transformOrigin: "right",
+                  transform: menuOpen ? "translateX(0)" : "translateX(100%)",
+                }}
+              >
+                <NavItems
+                  closeMenu={() => setMenuOpen(false)}
+                  menuOpen={menuOpen}
+                />
+              </div>{" "}
+            </div>
           </div>
         </div>
       </div>
@@ -174,7 +160,6 @@ export const NavItems = ({
   menuOpen: boolean;
 }) => {
   const pathname = usePathname();
-  const [navItems, setNavItems] = useState(defaultNavItems);
   const spanRefs = useRef<Array<Array<HTMLSpanElement | null>>>([]);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -193,22 +178,6 @@ export const NavItems = ({
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
-  const initSetNavItems = (path?: string) => {
-    const currentPath = path || pathname;
-
-    if (currentPath.includes("dev")) {
-      setNavItems(devNavItems);
-    } else if (currentPath.includes("visual")) {
-      setNavItems(visNavItems);
-    } else {
-      setNavItems(defaultNavItems);
-    }
-  };
-
-  useEffect(() => {
-    initSetNavItems();
   }, []);
 
   const getCharTransform = (navIndex: number, charIndex: number) => {
@@ -247,26 +216,15 @@ export const NavItems = ({
             >
               <Link
                 href={navItem.link}
-                onClick={() => {
-                  closeMenu?.();
-                  if (
-                    !navItem.link.includes("contact") &&
-                    !navItem.link.includes("about")
-                  ) {
-                    initSetNavItems(navItem.link);
-                  }
-                }}
                 className={`
-          ${
-            pathname === "/" && !menuOpen ? "after:bg-black" : "after:bg-black"
-          } capitalize relative whitespace-nowrap p-2 ${
-                  isActive
-                    ? ` 
+          after:bg-black capitalize relative whitespace-nowrap p-2 ${
+            isActive
+              ? ` 
                   ${
                     !isMobile && headingFont.className
                   }  text-[#ffda09] md:text-black`
-                    : ""
-                }
+              : ""
+          }
         `}
                 prefetch
               >

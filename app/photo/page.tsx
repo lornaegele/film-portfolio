@@ -1,6 +1,6 @@
 import { Footer } from "@/app/components";
-import PhotoTeaser from "../../components/PhotoTeaser";
-import { images } from "../../lib/constants/images";
+import PhotoTeaser from "@/app/components/PhotoTeaser";
+import { images } from "@/app/lib/constants/images";
 
 export default function page() {
   return (

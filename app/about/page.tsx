@@ -22,30 +22,17 @@ export default function page() {
         </p>
       </div>
       <div className="flex flex-col gap-4">
-        <p className="text-lg font-medium text-gray-800 px-4">
-          Hello there! I&apos;m Lorenz Naegele from Germany, welcome to my page!
-        </p>
         <div className="flex flex-col gap-2 bg-gray-100 p-4 rounded-md shadow-sm">
-          <h2 className="text-xl font-bold text-gray-900">
-            Freelance Web & App Development
-          </h2>
-          <p className="text-gray-700">
-            As a freelance web developer, I offer professional web and app
-            development services tailored to your needs. I specialize in finding
-            custom solutions that help bring your ideas to life. Whether you
-            need a modern website, a mobile app, or a complex web application, I
-            can deliver clean, efficient, and scalable results.
-          </p>
-          <p className="text-gray-700">
-            My skills include: JavaScript, TypeScript, React, React Native,
-            Next.js, Angular, Tailwind CSS, OpenAI API, REST API and more.
+          <p className="text-gray-700 text-lg">
+            Hello there! I&apos;m Lorenz Naegele from Germany, welcome to my
+            page!
           </p>
         </div>
         <div className="flex flex-col gap-2 px-4">
           <h2 className="text-xl font-bold text-gray-900">
             My Filmmaking and Photography
           </h2>
-          <p>
+          <p className="text-lg text-gray-500">
             My filmmaking is mostly focused on outdoor documentaries, telling
             authentic stories set in nature and the world of adventure sports.
             I’m passionate about capturing beauty, emotion, and the small

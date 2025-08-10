@@ -1,23 +1,12 @@
 import { NavItem } from "../interfaces";
-
-export const defaultNavItems: NavItem[] = [
-  {
-    name: "Photo & Video",
-    link: "/visual-work/video",
-  },
-  {
-    name: "Web Development",
-    link: "dev",
-  },
-];
-export const visNavItems: NavItem[] = [
+export const navItems: NavItem[] = [
   {
     name: "video",
-    link: "/visual-work/video",
+    link: "/video",
   },
   {
     name: "photo",
-    link: "/visual-work/photo",
+    link: "/photo",
   },
   {
     name: "about",
@@ -26,15 +15,5 @@ export const visNavItems: NavItem[] = [
   {
     name: "instagram",
     link: "https://www.instagram.com/lorenznaegele",
-  },
-];
-export const devNavItems: NavItem[] = [
-  {
-    name: "Portfolio",
-    link: "dev",
-  },
-  {
-    name: "about",
-    link: "/about",
   },
 ];

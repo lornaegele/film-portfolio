@@ -1,5 +1,5 @@
 import { videos } from "@/app/lib/constants/videos";
-import VideoTeaser from "../../components/VideoTeaser";
+import VideoTeaser from "@/app/components/VideoTeaser";
 import { Footer } from "@/app/components";
 
 export default function page() {

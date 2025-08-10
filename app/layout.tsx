@@ -20,9 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ScrollDisabler />
-
-      <body className={`${mainFont.className} h-svh w-svw overflow-x-hidden`}>
+      <body className={`${mainFont.className} h-svh w-svw`}>
         <Navbar />
         <main className="">{children}</main>
       </body>
