@@ -24,7 +24,7 @@ export const videos: VideoThumbnail[] = [
       "Follow Mattia, an Italian boulderer, as he embarks on a new chapter of his climbing life in Germany. After moving just a year ago, Mattia discovers his passion for outdoor sport climbing — embracing the challenges, the fear, and the beauty of finding flow on the rock and simply being outdoors. This short climbing documentary explores the transition from indoor bouldering to outdoor sport climbing, as well as the mental and physical challenges of pushing limits on real rock. ",
     link: "sport_climbing_mattia",
     ytLink: "https://youtu.be/U_7M_xfELcg",
-    alt: "Climbing with Mattia",
+    alt: "Finding flow in the Fight",
     dateTaken: "June 2025",
     type: "video",
   },

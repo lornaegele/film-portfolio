@@ -52,21 +52,3 @@ export const mediaMixed: (CustomImage | VideoThumbnail)[] = structuredMix(
   images,
   videos
 );
-
-// Create the teaserImages array
-const teaserImages: ImageTeaser[] = [
-  {
-    path: "/fotos/person-coding.WEBP",
-    alt: "peron-coding",
-    link: "dev",
-    displayName: "Code & Development",
-  },
-  {
-    path: "/fotos/san-pedro-valley_2.WEBP",
-    alt: "forrest",
-    link: "visual-work/video",
-    displayName: "Visual work",
-  },
-];
-
-export default teaserImages;

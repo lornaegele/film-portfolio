@@ -8,7 +8,7 @@ interface MixedMediaTeaserProps {
 }
 
 const MixedMediaTeaser = ({ image }: MixedMediaTeaserProps) => {
-  const link = "visual-work/" + image.type + "/" + image.link;
+  const link = image.type + "/" + image.link;
   return (
     <Link href={link} className="relative overflow-hidden group">
       <Image
