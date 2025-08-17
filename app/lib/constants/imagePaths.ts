@@ -1,7 +1,7 @@
-import { ImagesWithDesc, VideoThumbnail } from "../interfaces";
+import { ImagesWithDesc } from "../interfaces";
 
 export const portraitImage: ImagesWithDesc = {
-  path: "/fotos/self-portrait.WEBP",
+  path: "/fotos/portrait_double.WEBP",
   description: "A self-portrait of the photographer.",
   title: "Self Portrait",
 };
