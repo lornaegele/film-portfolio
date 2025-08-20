@@ -1,7 +1,7 @@
 import { ImagesWithDesc } from "../interfaces";
 
 export const portraitImage: ImagesWithDesc = {
-  path: "/fotos/portrait_double.WEBP",
+  path: "/fotos/portrait_double.webp",
   description: "A self-portrait of the photographer.",
   title: "Self Portrait",
 };

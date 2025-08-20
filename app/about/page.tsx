@@ -1,9 +1,6 @@
-"use client";
-
 import Image from "next/image";
 import { portraitImage } from "../lib/constants/imagePaths";
 import Link from "next/link";
-import { useState } from "react";
 import { Footer } from "../components";
 
 export default function page() {
