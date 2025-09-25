@@ -229,6 +229,9 @@ export const NavItems = ({
           }
         `}
                 prefetch
+                onClick={() => {
+                  if (isMobile && closeMenu) closeMenu(); // ✅ close menu on mobile
+                }}
               >
                 {[...navItem.name].map((char, charIndex) => {
                   if (!spanRefs.current[index]) spanRefs.current[index] = [];

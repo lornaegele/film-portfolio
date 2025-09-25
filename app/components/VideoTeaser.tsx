@@ -20,10 +20,9 @@ const VideoTeaser = ({ video }: VideoTeaserProps) => {
         height={1000}
         alt={video.alt}
       />
-      <p className="uppercase text-black text-right md:pt-1">
+      <p className="uppercase text-gray-500 text-right md:pt-1 md:text-base text-sm">
         {video.dateTaken}
       </p>
-      {/* <FaYoutube className="absolute inset-0 m-auto hidden text-white text-6xl group-hover:flex justify-center items-center opacity-60" /> */}
     </Link>
   );
 };

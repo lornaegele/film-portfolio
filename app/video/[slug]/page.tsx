@@ -19,8 +19,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         {video.ytLink ? (
           <Link
             href={video.ytLink}
-            target="_blank"
-            className="relative overflow-hidden group"
+            className="relative overflow-hidden group block"
           >
             <Image
               className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-70"
@@ -29,8 +28,9 @@ export default function Page({ params }: { params: { slug: string } }) {
               height={1000}
               alt={video.alt}
             />
-            <div className="absolute inset-0 m-auto flex text-white text-5xl md:text-7xl justify-center items-center opacity-70">
-              <FaYoutube />
+
+            <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+              <FaYoutube className="text-white text-5xl opacity-80 drop-shadow-lg" />
             </div>
           </Link>
         ) : (
