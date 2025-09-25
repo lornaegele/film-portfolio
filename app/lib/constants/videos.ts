@@ -4,6 +4,37 @@ export const videos: VideoThumbnail[] = [
   {
     images: [
       {
+        path: "/fotos/shape_the_future_2.webp",
+        description:
+          "Surfing has always been more than just a sport for me; it’s a way to connect with the ocean, to feel its power and beauty firsthand. Over time, my love for surfing merged with my growing interest in sustainability, and I began to wonder: are there people out there creating surfboards in a more environmentally conscious way? That curiosity led me to Martin, a craftsman making wooden surfboards. After discovering him online, I reached out, and he welcomed me into his world, allowing me to capture not just his work, but the story behind it.",
+      },
+      {
+        path: "/fotos/shape_the_future_1.webp",
+        description:
+          "Martin’s journey is fascinating. Originally a climate scientist, he spent years studying environmental challenges and feeling the weight of the problems humanity faces. Eventually, he realized that he wanted to take action in a more tangible way, transforming his understanding of climate issues into a practical, creative solution. That solution is crafting surfboards from sustainably sourced wood, each one shaped with incredible care and attention to detail. His story is one of passion, innovation, and a dedication to protecting the planet, showing how one person’s choices can ripple outwards.",
+      },
+      {
+        path: "/fotos/shape_the_future_4.webp",
+        description:
+          "I spent a week in Kiel, filming Martin in his workshop, witnessing firsthand the artistry and precision involved in shaping a single board. Every cut, every curve, and every sanding step demands patience and skill, and it became clear just how much time and effort go into crafting something that many of us take for granted. The process is a reminder that sustainability isn’t just about materials; it’s about thoughtfulness, intention, and a commitment to doing things differently, even when it is harder.",
+      },
+      {
+        path: "/fotos/shape_the_future_3.webp",
+        description:
+          "Beyond the craft, the documentary is a call to action. It’s about understanding why protecting our oceans matters, and why the choices we make, both as consumers and as global citizens, can have a lasting impact. Through Martin’s story, I hope viewers are inspired to consider their own relationship with nature and the ways they can contribute to a healthier planet. Small actions, when done with care and awareness, can make a difference, and sometimes the most meaningful solutions come from unexpected places.",
+      },
+    ],
+    thumbnail: { path: "/fotos/thumbnail_shape_the_future.webp" },
+    description:
+      "From the craft of wooden surfboards to the fight against plastic pollution, this film tells the story of how a passion for the ocean transforms into a vision for a sustainable future. It invites us to reflect on our connection with the sea and shows that each of us can make a difference in protecting it.",
+    link: "shape_the_future",
+    alt: "Shape the future",
+    dateTaken: "September 2025",
+    type: "video",
+  },
+  {
+    images: [
+      {
         path: "/fotos/sport_climbing_mattia-1.webp",
         description:
           "The first day of filming took place near Immenstadt, in the Allgäu region of Germany, at a crag called Jesuswandl — a striking cliff known for its collection of hard sport climbing routes. This is where Mattia set out to test his limits by attempting the hardest grade he had ever tried on a sport climb: 8a/+. We started by checking out the crack and planning our angles, followed by capturing wide drone shots and plenty of B-roll — everything from the impressive surroundings to Mattia’s preparations before the climb. Manu, a friend of mine, who’s also a videographer, helped with filming during the day, which was a huge help. One of the most exciting and challenging parts of the day was my first time ascending the rope to film close-up shots of the holds on the route. It was an intense experience — a mix of adrenaline and moments where I felt a little uneasy hanging up there — but the gear I chose worked perfectly, and I was able to focus on getting the shots we wanted. The two-camera interview we filmed that day became an important part of the edit later. Although Mattia made several strong attempts, he didn’t manage to complete the route on this first day, so we planned to return.",

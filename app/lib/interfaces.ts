@@ -39,7 +39,7 @@ export interface VideoThumbnail {
   thumbnail: VideoThumbnailImage;
   description: string;
   link: string;
-  ytLink: string;
+  ytLink?: string;
   dateTaken: string;
   alt: string;
   type: "video";

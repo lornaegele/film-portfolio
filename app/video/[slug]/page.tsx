@@ -8,7 +8,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   // Find the image with the matching link
   const video = videos.find((img) => img.link === params.slug);
 
-  // If no image is found, you might want to handle that case
+  // If no image is found, handle that case
   if (!video) {
     return <div>No video found.</div>;
   }
@@ -16,27 +16,39 @@ export default function Page({ params }: { params: { slug: string } }) {
   return (
     <div className="max-w-4xl mx-auto p-4 text-center flex flex-col gap-2">
       <div>
-        <Link
-          href={video.ytLink}
-          target="_blank"
-          className="relative overflow-hidden group"
-        >
+        {video.ytLink ? (
+          <Link
+            href={video.ytLink}
+            target="_blank"
+            className="relative overflow-hidden group"
+          >
+            <Image
+              className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-70"
+              src={video.thumbnail.path!}
+              width={500}
+              height={1000}
+              alt={video.alt}
+            />
+            <div className="absolute inset-0 m-auto flex text-white text-5xl md:text-7xl justify-center items-center opacity-70">
+              <FaYoutube />
+            </div>
+          </Link>
+        ) : (
           <Image
-            className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-70"
-            src={video.thumbnail.path!} // Make sure 'link' contains the valid image path
+            className="h-full w-full object-cover"
+            src={video.thumbnail.path!}
             width={500}
             height={1000}
             alt={video.alt}
           />
-          <div className="absolute inset-0 m-auto flex text-white text-5xl md:text-7xl justify-center items-center opacity-70 -left-full">
-            <FaYoutube />
-          </div>
-        </Link>
+        )}
         <div className="text-right">{video.dateTaken}</div>
       </div>
+
       <h1 className="text-3xl font-bold text-left">{video.alt}</h1>
       <p className="text-left">{video.description}</p>
       <p className="text-gray-600 mb-2">{video.thumbnail.description}</p>
+
       {video.images.map((img, index) => (
         <div
           key={index}
@@ -45,7 +57,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           } items-center mb-4 gap-6`}
         >
           <div className="w-full md:w-1/2">
-            <p className="text-gray-60 text-left">{img.description}</p>
+            <p className="text-gray-600 text-left">{img.description}</p>
           </div>
           {img.path && (
             <div className="w-full md:w-1/2">
@@ -61,6 +73,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           )}
         </div>
       ))}
+
       <Footer />
     </div>
   );
