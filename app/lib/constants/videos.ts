@@ -50,7 +50,7 @@ export const videos: VideoThumbnail[] = [
           "Across both days, the project became more than just filming a climb — it turned into a valuable learning experience for me as well. Handling the camera gear while hanging on the rope taught me a lot about working in challenging conditions, and gave me confidence for future shoots. The whole process, from figuring out technical setups to working alongside Manu and witnessing Mattia’s determination, made for a memorable journey. Being out on the rock, surrounded by nature, added to the sense of adventure that defined the shoot.",
       },
     ],
-    thumbnail: { path: "/fotos/Finding-Flow.webp" },
+    thumbnail: { path: "/fotos/sport_climbing_mattia.webp" },
     description:
       "Follow Mattia, an Italian boulderer, as he embarks on a new chapter of his climbing life in Germany. After moving just a year ago, Mattia discovers his passion for outdoor sport climbing — embracing the challenges, the fear, and the beauty of finding flow on the rock and simply being outdoors. This short climbing documentary explores the transition from indoor bouldering to outdoor sport climbing, as well as the mental and physical challenges of pushing limits on real rock. ",
     link: "sport_climbing_mattia",
