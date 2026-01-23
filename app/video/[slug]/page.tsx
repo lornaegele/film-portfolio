@@ -4,6 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaYoutube } from "react-icons/fa";
 
+export async function generateStaticParams() {
+  return videos.map((video) => ({
+    slug: video.link,
+  }));
+}
+
 export default function Page({ params }: { params: { slug: string } }) {
   // Find the image with the matching link
   const video = videos.find((img) => img.link === params.slug);

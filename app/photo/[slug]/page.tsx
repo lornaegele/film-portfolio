@@ -2,6 +2,12 @@ import { Footer } from "@/app/components";
 import { images } from "@/app/lib/constants/images";
 import Image from "next/image";
 
+export async function generateStaticParams() {
+  return images.map((img) => ({
+    slug: img.link,
+  }));
+}
+
 export default function Page({ params }: { params: { slug: string } }) {
   // Find the image with the matching link
   const image = images.find((img) => img.link === params.slug);
