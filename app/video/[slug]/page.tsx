@@ -5,12 +5,6 @@ import Link from "next/link";
 import { FaYoutube } from "react-icons/fa";
 import type { Metadata } from "next";
 
-export async function generateStaticParams() {
-  return videos.map((video) => ({
-    slug: video.link,
-  }));
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -46,6 +40,12 @@ export async function generateMetadata({
       images: [video.thumbnail.path!],
     },
   };
+}
+
+export async function generateStaticParams() {
+  return videos.map((video) => ({
+    slug: video.link,
+  }));
 }
 
 export default function Page({ params }: { params: { slug: string } }) {
