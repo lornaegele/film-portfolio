@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description:
     "A collection of climbing, surfing and outdoor films exploring movement, nature, and personal progression on real rock.",
   alternates: {
-    canonical: "https://lorenzvisuals.com/videos",
+    canonical: "https://lorenzvisuals.com/video",
   },
   openGraph: {
     title: "Climbing & Outdoor Films | Lorenz Naegele",
     description:
       "Short climbing or Surfing documentaries and outdoor films focused on flow, fear, and progression.",
-    url: "https://lorenzvisuals.com/videos",
+    url: "https://lorenzvisuals.com/video",
     type: "website",
   },
 };

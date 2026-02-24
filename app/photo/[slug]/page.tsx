@@ -20,7 +20,7 @@ export async function generateMetadata({
     title: `${image.title} | Photography | Lorenz Naegele `,
     description: image.description,
     alternates: {
-      canonical: `https://lorenzvisuals.com/images/${image.link}`,
+      canonical: `https://lorenzvisuals.com/photo/${image.link}`,
     },
     openGraph: {
       title: image.title,
