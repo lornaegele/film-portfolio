@@ -25,6 +25,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         {video.ytLink ? (
           <Link
             href={video.ytLink}
+            target="_blank"
             className="relative overflow-hidden group block"
           >
             <Image
