@@ -8,13 +8,13 @@ export const metadata: Metadata = {
   description:
     "A curated collection of nature and outdoor photography capturing landscapes, light, and movement in the wild.",
   alternates: {
-    canonical: "https://yourdomain.com/images",
+    canonical: "https://lorenzvisuals.com/images",
   },
   openGraph: {
     title: "Nature Photography | Your Name",
     description:
       "Outdoor and nature photography focused on atmosphere, landscape, and storytelling.",
-    url: "https://yourdomain.com/images",
+    url: "https://lorenzvisuals.com/images",
     type: "website",
   },
 };
