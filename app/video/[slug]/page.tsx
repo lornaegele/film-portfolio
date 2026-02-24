@@ -69,8 +69,9 @@ export default function Page({ params }: { params: { slug: string } }) {
             <Image
               className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-70"
               src={video.thumbnail.path!}
-              width={500}
-              height={1000}
+              width={0}
+              height={0}
+              sizes="100vw"
               alt={video.alt}
             />
 
@@ -82,8 +83,9 @@ export default function Page({ params }: { params: { slug: string } }) {
           <Image
             className="h-full w-full object-cover"
             src={video.thumbnail.path!}
-            width={500}
-            height={1000}
+            width={0}
+            height={0}
+            sizes="100vw"
             alt={video.alt}
           />
         )}
