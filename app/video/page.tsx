@@ -2,6 +2,24 @@ import { videos } from "@/app/lib/constants/videos";
 import VideoTeaser from "@/app/components/VideoTeaser";
 import { Footer } from "@/app/components";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Climbing, Surfing & Outdoor Documentary Films | Lorenz Naegele",
+  description:
+    "A collection of climbing, surfing and outdoor films exploring movement, nature, and personal progression on real rock.",
+  alternates: {
+    canonical: "https://yourdomain.com/videos",
+  },
+  openGraph: {
+    title: "Climbing & Outdoor Films | Lorenz Naegele",
+    description:
+      "Short climbing or Surfing documentaries and outdoor films focused on flow, fear, and progression.",
+    url: "https://yourdomain.com/videos",
+    type: "website",
+  },
+};
+
 export default function page() {
   return (
     <div>

@@ -1,6 +1,41 @@
 import { Footer } from "@/app/components";
 import { images } from "@/app/lib/constants/images";
+import { Metadata } from "next";
 import Image from "next/image";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const image = images.find((img) => img.link === params.slug);
+
+  if (!image) {
+    return {
+      title: "Image not found",
+    };
+  }
+
+  return {
+    title: `${image.title} | Photography | Lorenz Naegele `,
+    description: image.description,
+    alternates: {
+      canonical: `https://yourdomain.com/images/${image.link}`,
+    },
+    openGraph: {
+      title: image.title,
+      description: image.description,
+      images: [
+        {
+          url: image.path,
+          width: 1200,
+          height: 800,
+        },
+      ],
+      type: "article",
+    },
+  };
+}
 
 export async function generateStaticParams() {
   return images.map((img) => ({

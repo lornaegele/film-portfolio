@@ -1,6 +1,24 @@
 import { Footer } from "@/app/components";
 import MixedMediaTeaser from "@/app/components/MixedMediaTeaser";
 import { mediaMixed } from "@/app/lib/constants/images";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Photo & Film Portfolio | Lorenz Naegele",
+  description:
+    "A curated collection of outdoor photography and climbing films exploring nature, movement, and storytelling.",
+  alternates: {
+    canonical: "https://yourdomain.com/",
+  },
+  openGraph: {
+    title: "Photo & Film Portfolio | Your Name",
+    description:
+      "Outdoor photography and climbing films focused on nature, movement, and visual storytelling.",
+    url: "https://yourdomain.com/",
+    siteName: "Your Name",
+    type: "website",
+  },
+};
 
 export default function page() {
   return (
