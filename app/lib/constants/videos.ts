@@ -24,10 +24,11 @@ export const videos: VideoThumbnail[] = [
           "Beyond the craft, the documentary is a call to action. It’s about understanding why protecting our oceans matters, and why the choices we make, both as consumers and as global citizens, can have a lasting impact. Through Martin’s story, I hope viewers are inspired to consider their own relationship with nature and the ways they can contribute to a healthier planet. Small actions, when done with care and awareness, can make a difference, and sometimes the most meaningful solutions come from unexpected places.",
       },
     ],
-    thumbnail: { path: "/fotos/thumbnail_shape_the_future.webp" },
+    thumbnail: { path: "/fotos/3.webp" },
     description:
       "From the craft of wooden surfboards to the fight against plastic pollution, this film tells the story of how a passion for the ocean transforms into a vision for a sustainable future. It invites us to reflect on our connection with the sea and shows that each of us can make a difference in protecting it.",
     link: "shape_the_future",
+    ytLink: "https://youtu.be/9M3NdP7OgFI?si=RGyxkMyekaiRBm3D",
     alt: "Shape the future",
     dateTaken: "September 2025",
     type: "video",
@@ -50,35 +51,13 @@ export const videos: VideoThumbnail[] = [
           "Across both days, the project became more than just filming a climb — it turned into a valuable learning experience for me as well. Handling the camera gear while hanging on the rope taught me a lot about working in challenging conditions, and gave me confidence for future shoots. The whole process, from figuring out technical setups to working alongside Manu and witnessing Mattia’s determination, made for a memorable journey. Being out on the rock, surrounded by nature, added to the sense of adventure that defined the shoot.",
       },
     ],
-    thumbnail: { path: "/fotos/sport_climbing_mattia.webp" },
+    thumbnail: { path: "/fotos/1.webp" },
     description:
       "Follow Mattia, an Italian boulderer, as he embarks on a new chapter of his climbing life in Germany. After moving just a year ago, Mattia discovers his passion for outdoor sport climbing — embracing the challenges, the fear, and the beauty of finding flow on the rock and simply being outdoors. This short climbing documentary explores the transition from indoor bouldering to outdoor sport climbing, as well as the mental and physical challenges of pushing limits on real rock. ",
     link: "sport_climbing_mattia",
     ytLink: "https://youtu.be/U_7M_xfELcg",
     alt: "Finding flow in the Fight",
     dateTaken: "June 2025",
-    type: "video",
-  },
-  {
-    images: [
-      {
-        path: "/fotos/echoes_of_the_ocean_2.webp",
-        description:
-          "What struck me most was his connection to the ocean. It’s not just about riding waves for him — it’s about understanding the rhythms of the water, protecting its beauty, and living in harmony with it. In our interview, his stories carried a mix of humility and experience that could only come from a lifetime spent in the surf.",
-      },
-      {
-        path: "/fotos/echoes_of_the_ocean_1.webp",
-        description:
-          "I also had the chance to join him for a full day on the water. Watching him move in sync with the waves was both humbling and inspiring, a reminder of the timeless bond between surfer and sea. It was an unforgettable experience, and I’m grateful to Harald for sharing not only his time, but also his philosophy of life on and off the board.",
-      },
-    ],
-    thumbnail: { path: "/fotos/echoes_of_the_ocean.webp" },
-    description:
-      "This documentary was filmed in June during my trip to South America, over two days in the surf town of Lobitos, Peru. It tells the story of Harald Koechlin — a true local legend whose life has been shaped by the waves. Known in the community for his skill, wisdom, and deep respect for the sea, Harald has spent decades surfing these waters and sharing his passion with others.",
-    link: "echoes_of_the_ocean",
-    ytLink: "https://youtu.be/ylcjgyRzztY?si=v0O5HdJ5NsIhK6Vl",
-    alt: "Echoes of the ocean",
-    dateTaken: "August 2024",
     type: "video",
   },
   {
@@ -126,12 +105,34 @@ export const videos: VideoThumbnail[] = [
           "Over the days we spent together, the project became more than just documenting a competition. It turned into an exploration of who Matias is as an athlete and as a person — someone deeply rooted in surf culture, but also pushing forward with big dreams and the skill to match. Watching him ride and hearing his perspective on the sport was inspiring, and the experience left me with not just great footage, but a deeper respect for longboarding and the people who dedicate their lives to it.",
       },
     ],
-    thumbnail: { path: "/fotos/waves_of_wisdom.webp" },
+    thumbnail: { path: "/fotos/4.webp" },
     description:
       "This documentary was filmed in June during my trip to South America over several days of shooting, primarily at the WSL (World Surf League) competition held from June 12th to 15th. Special thanks to Matias and his father, Leandro Maturano, for the interview and the incredible days we shared! ",
     link: "waves_of_wisdom",
     ytLink: "https://youtu.be/gIQJPZYc59I",
     alt: "Waves of wisdom",
+    dateTaken: "August 2024",
+    type: "video",
+  },
+  {
+    images: [
+      {
+        path: "/fotos/echoes_of_the_ocean_2.webp",
+        description:
+          "What struck me most was his connection to the ocean. It’s not just about riding waves for him — it’s about understanding the rhythms of the water, protecting its beauty, and living in harmony with it. In our interview, his stories carried a mix of humility and experience that could only come from a lifetime spent in the surf.",
+      },
+      {
+        path: "/fotos/echoes_of_the_ocean_1.webp",
+        description:
+          "I also had the chance to join him for a full day on the water. Watching him move in sync with the waves was both humbling and inspiring, a reminder of the timeless bond between surfer and sea. It was an unforgettable experience, and I’m grateful to Harald for sharing not only his time, but also his philosophy of life on and off the board.",
+      },
+    ],
+    thumbnail: { path: "/fotos/2.webp" },
+    description:
+      "This documentary was filmed in June during my trip to South America, over two days in the surf town of Lobitos, Peru. It tells the story of Harald Koechlin — a true local legend whose life has been shaped by the waves. Known in the community for his skill, wisdom, and deep respect for the sea, Harald has spent decades surfing these waters and sharing his passion with others.",
+    link: "echoes_of_the_ocean",
+    ytLink: "https://youtu.be/ylcjgyRzztY?si=v0O5HdJ5NsIhK6Vl",
+    alt: "Echoes of the ocean",
     dateTaken: "August 2024",
     type: "video",
   },

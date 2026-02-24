@@ -1,6 +1,6 @@
 import { Footer } from "@/app/components";
 import MixedMediaTeaser from "@/app/components/MixedMediaTeaser";
-import { images, mediaMixed } from "@/app/lib/constants/images";
+import { mediaMixed } from "@/app/lib/constants/images";
 
 export default function page() {
   return (
@@ -11,10 +11,10 @@ export default function page() {
             index % 4 === 0
               ? "w-full md:w-1/2"
               : index % 4 === 1
-              ? "w-4/5 md:w-2/5"
-              : index % 4 === 2
-              ? "w-[90%] md:w-[40%]"
-              : "w-5/6 md:w-1/3";
+                ? "w-4/5 md:w-2/5"
+                : index % 4 === 2
+                  ? "w-[90%] md:w-[40%]"
+                  : "w-5/6 md:w-1/3";
           return (
             <div key={media.link} className={`${sizeClass} `}>
               <MixedMediaTeaser image={media} />

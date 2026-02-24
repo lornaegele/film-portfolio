@@ -20,12 +20,13 @@ type MediaItem = CustomImage | VideoThumbnail;
 
 function structuredMix(
   images: CustomImage[],
-  videos: VideoThumbnail[]
+  videos: VideoThumbnail[],
 ): MediaItem[] {
   const mixed: MediaItem[] = [];
   const imageQueue = [...images];
   const videoQueue = [...videos];
-  const pattern = [0, 2, 0, 2, 0, 2, 0, 3, 0, 1]; // 0: video, number: images
+
+  const pattern = [0, 0, 2, 2, 0, 2, 0, 3, 0, 1]; // 0: video, number: images
   let patternIndex = 0;
 
   while (imageQueue.length || videoQueue.length) {
@@ -50,5 +51,5 @@ function structuredMix(
 
 export const mediaMixed: (CustomImage | VideoThumbnail)[] = structuredMix(
   images,
-  videos
+  videos,
 );
