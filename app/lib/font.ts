@@ -1,9 +1,28 @@
-// fonts.ts
-import { DynaPuff, Luckiest_Guy, NTR } from "next/font/google";
+import {
+  DynaPuff,
+  Playfair_Display,
+  DM_Sans,
+  Space_Grotesk,
+} from "next/font/google";
 
-export const mainFont = NTR({ weight: "400", subsets: ["latin"] });
-export const headingFont = DynaPuff({ weight: "400", subsets: ["latin"] });
-export const subHeadingFont = Luckiest_Guy({
-  weight: "400",
+export const logoFont = DynaPuff({ weight: "400", subsets: ["latin"] });
+
+export const headingFont = Playfair_Display({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
+
+export const bodyFont = DM_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+});
+
+export const uiFont = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+// Keep old exports for backward compatibility during migration
+export const mainFont = bodyFont;
+export const subHeadingFont = logoFont;

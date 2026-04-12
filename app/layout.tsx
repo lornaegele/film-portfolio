@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Navbar, ScrollDisabler } from "./components";
-import { mainFont } from "./lib/font";
+import { Navbar } from "./components";
+import Footer from "./components/Footer";
+import { bodyFont } from "./lib/font";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
-  title: "Lorenz Naegele | Filmmaker & Photographer",
-  description: `Filmmaker offering innovative digital solutions and compelling visual content. Explore projects, services, and creative work..`,
+  title: "Lorenz Naegele | Documentary Filmmaker",
+  description:
+    "Documentary filmmaker crafting authentic stories about people, nature, and adventure. Evoking emotions through cinematic storytelling.",
   icons: {
     icon: ["/favicon.svg"],
     apple: ["/favicon.svg"],
@@ -21,9 +23,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${mainFont.className} h-svh w-svw`}>
+      <body className={`${bodyFont.className} bg-cinema-black text-cinema-cream`}>
         <Navbar />
-        <main className="">{children}</main>
+        <main>{children}</main>
+        <Footer />
         <Analytics />
       </body>
     </html>

@@ -25,6 +25,8 @@ export const videos: VideoThumbnail[] = [
       },
     ],
     thumbnail: { path: "/fotos/3.webp" },
+    posterPath: "/fotos/shape_the_future_poster.jpg",
+    duration: "15 min",
     description:
       "From the craft of wooden surfboards to the fight against plastic pollution, this film tells the story of how a passion for the ocean transforms into a vision for a sustainable future. It invites us to reflect on our connection with the sea and shows that each of us can make a difference in protecting it.",
     link: "shape_the_future",
@@ -52,6 +54,8 @@ export const videos: VideoThumbnail[] = [
       },
     ],
     thumbnail: { path: "/fotos/1.webp" },
+    posterPath: "/fotos/finding_flow_in_the_fight_poster.jpg",
+    duration: "15 min",
     description:
       "Follow Mattia, an Italian boulderer, as he embarks on a new chapter of his climbing life in Germany. After moving just a year ago, Mattia discovers his passion for outdoor sport climbing — embracing the challenges, the fear, and the beauty of finding flow on the rock and simply being outdoors. This short climbing documentary explores the transition from indoor bouldering to outdoor sport climbing, as well as the mental and physical challenges of pushing limits on real rock. ",
     link: "sport_climbing_mattia",
@@ -79,6 +83,8 @@ export const videos: VideoThumbnail[] = [
       },
     ],
     thumbnail: { path: "/fotos/no_service.webp" },
+    posterPath: "/fotos/unser_erster_song_poster.jpg",
+    duration: "15 min",
     description:
       "This documentary was filmed in German. It tells the story of five friends who decided to start a band. It shows how their first song, “Bears My Name,” came to be and how they performed it live for the first time — a brief journey through the beginnings of their music.",
     link: "no_service",
@@ -106,6 +112,8 @@ export const videos: VideoThumbnail[] = [
       },
     ],
     thumbnail: { path: "/fotos/4.webp" },
+    posterPath: "/fotos/waves_of_wisdom_poster.jpg",
+    duration: "10 min",
     description:
       "This documentary was filmed in June during my trip to South America over several days of shooting, primarily at the WSL (World Surf League) competition held from June 12th to 15th. Special thanks to Matias and his father, Leandro Maturano, for the interview and the incredible days we shared! ",
     link: "waves_of_wisdom",
@@ -128,6 +136,8 @@ export const videos: VideoThumbnail[] = [
       },
     ],
     thumbnail: { path: "/fotos/2.webp" },
+    posterPath: "/fotos/echoes_of_the_ocean_poster.jpg",
+    duration: "4 min",
     description:
       "This documentary was filmed in June during my trip to South America, over two days in the surf town of Lobitos, Peru. It tells the story of Harald Koechlin — a true local legend whose life has been shaped by the waves. Known in the community for his skill, wisdom, and deep respect for the sea, Harald has spent decades surfing these waters and sharing his passion with others.",
     link: "echoes_of_the_ocean",

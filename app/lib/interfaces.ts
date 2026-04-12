@@ -1,6 +1,7 @@
 export interface NavItem {
   name: string;
   link: string;
+  external?: boolean;
 }
 
 export interface ImagesWithDesc {
@@ -37,6 +38,8 @@ export interface VideoThumbnailImage {
 export interface VideoThumbnail {
   images: VideoThumbnailImage[];
   thumbnail: VideoThumbnailImage;
+  posterPath?: string;
+  duration?: string;
   description: string;
   link: string;
   ytLink?: string;
@@ -44,6 +47,7 @@ export interface VideoThumbnail {
   alt: string;
   type: "video";
 }
+
 export interface DevProject {
   images: VideoThumbnailImage[];
   thumbnail: VideoThumbnailImage;

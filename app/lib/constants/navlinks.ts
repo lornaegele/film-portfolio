@@ -1,7 +1,8 @@
 import { NavItem } from "../interfaces";
+
 export const navItems: NavItem[] = [
   {
-    name: "video",
+    name: "films",
     link: "/video",
   },
   {
@@ -13,7 +14,12 @@ export const navItems: NavItem[] = [
     link: "/about",
   },
   {
+    name: "contact",
+    link: "/contact",
+  },
+  {
     name: "instagram",
     link: "https://www.instagram.com/lorenznaegele",
+    external: true,
   },
 ];
