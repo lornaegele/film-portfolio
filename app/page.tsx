@@ -53,7 +53,7 @@ export default function Home() {
             </div>
           </AnimatedSection>
 
-          <div className="flex flex-col gap-8 md:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
             {featuredFilms.map((film, index) => (
               <FilmCard key={film.link} film={film} index={index} />
             ))}

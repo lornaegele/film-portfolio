@@ -2,6 +2,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import { headingFont, uiFont } from "../lib/font";
 import Link from "next/link";
 import { FaInstagram } from "react-icons/fa";
+import PhoneReveal from "../components/PhoneReveal";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -35,12 +36,7 @@ export default function ContactPage() {
             >
               lorenznaegele@mail.de
             </Link>
-            <Link
-              href="tel:+4915208536210"
-              className="text-cinema-silver hover:text-cinema-cream transition-colors duration-300 tracking-wide text-lg"
-            >
-              +49 1520 8536 210
-            </Link>
+            <PhoneReveal className="text-cinema-silver hover:text-cinema-cream text-lg" />
             <a
               href="https://www.instagram.com/lorenznaegele"
               target="_blank"

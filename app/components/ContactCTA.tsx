@@ -4,10 +4,11 @@ import { headingFont, uiFont } from "../lib/font";
 import AnimatedSection from "./AnimatedSection";
 import { FaInstagram } from "react-icons/fa";
 import Link from "next/link";
+import PhoneReveal from "./PhoneReveal";
 
 const ContactCTA = () => {
   return (
-    <section className="py-24 md:py-32 px-6 md:px-10 bg-cinema-dark">
+    <section className="py-24 md:py-32 px-6 md:px-10 bg-cinema-black">
       <div className="max-w-3xl mx-auto text-center">
         <AnimatedSection>
           <h2
@@ -31,12 +32,7 @@ const ContactCTA = () => {
             >
               lorenznaegele@mail.de
             </Link>
-            <Link
-              href="tel:+4915208536210"
-              className="text-cinema-smoke hover:text-cinema-cream transition-colors duration-300 tracking-wide"
-            >
-              +49 1520 8536 210
-            </Link>
+            <PhoneReveal className="text-cinema-smoke hover:text-cinema-cream" />
             <a
               href="https://www.instagram.com/lorenznaegele"
               target="_blank"
