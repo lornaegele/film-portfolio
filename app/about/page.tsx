@@ -7,7 +7,7 @@ import { FaInstagram } from "react-icons/fa";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About | Lorenz Naegele — Documentary Filmmaker",
+  title: "About | Lorenz Naegele Documentary Filmmaker",
   description:
     "Lorenz Naegele is a documentary filmmaker from Germany, focused on outdoor documentaries and authentic storytelling.",
 };
@@ -38,6 +38,12 @@ export default function AboutPage() {
             >
               About
             </h1>
+            <p className="text-cinema-silver text-lg leading-relaxed mb-4">
+              I tell stories about people who live with passion and purpose:
+              surfers chasing waves across South America, climbers pushing
+              through fear on the rock, craftsmen shaping a more sustainable
+              future.
+            </p>
             <p className="text-cinema-silver text-lg leading-relaxed">
               I&apos;m Lorenz Naegele, a documentary filmmaker from Germany with
               a deep love for the outdoors and the stories that unfold within it.
@@ -50,13 +56,6 @@ export default function AboutPage() {
             >
               My Filmmaking
             </h2>
-            <p className="text-cinema-silver text-lg leading-relaxed mb-4">
-              I tell stories about people who live with passion and purpose —
-              surfers chasing waves across South America, climbers pushing
-              through fear on the rock, craftsmen shaping a more sustainable
-              future. My work is driven by curiosity and a deep respect for the
-              people I film.
-            </p>
             <p className="text-cinema-silver text-lg leading-relaxed">
               I believe every person carries a story worth telling. Whether
               following a local surf legend through the coast of Peru or

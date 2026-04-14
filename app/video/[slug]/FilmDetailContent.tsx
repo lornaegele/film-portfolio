@@ -21,7 +21,7 @@ export default function FilmDetailContent({
 }: FilmDetailContentProps) {
   return (
     <div>
-      {/* Hero Section — typographic */}
+      {/* Hero Section typographic */}
       <section className="relative px-6 md:px-10 pt-8 md:pt-16 pb-16 md:pb-24 overflow-hidden">
         {/* Decorative large background text */}
         <motion.div
@@ -45,8 +45,8 @@ export default function FilmDetailContent({
           >
             <div className="w-12 h-px bg-cinema-gold" />
             <p className={`${uiFont.className} text-cinema-gold uppercase tracking-[0.25em] text-xs md:text-sm`}>
-              Short Documentary — {video.dateTaken}
-              {video.duration && ` — ${video.duration}`}
+              Short Documentary · {video.dateTaken}
+              {video.duration && ` · ${video.duration}`}
             </p>
           </motion.div>
 
@@ -91,7 +91,7 @@ export default function FilmDetailContent({
               <AnimatedSection className="w-full md:w-2/5 shrink-0" direction="left">
                 <Image
                   src={video.posterPath}
-                  alt={`${video.alt} — Poster`}
+                  alt={`${video.alt} Poster`}
                   width={600}
                   height={849}
                   className="w-full h-auto rounded-sm"

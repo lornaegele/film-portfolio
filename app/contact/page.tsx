@@ -6,7 +6,7 @@ import PhoneReveal from "../components/PhoneReveal";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact | Lorenz Naegele — Documentary Filmmaker",
+  title: "Contact | Lorenz Naegele Documentary Filmmaker",
   description: "Get in touch with documentary filmmaker Lorenz Naegele.",
 };
 

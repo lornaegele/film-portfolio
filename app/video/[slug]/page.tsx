@@ -17,7 +17,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${video.alt} | Lorenz Naegele — Documentary Filmmaker`,
+    title: `${video.alt} | Lorenz Naegele Documentary Filmmaker`,
     description: video.description,
     openGraph: {
       title: video.alt,

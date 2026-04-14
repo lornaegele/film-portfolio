@@ -15,7 +15,7 @@ const AboutPreview = () => {
             <div className="overflow-hidden rounded-sm">
               <Image
                 src="/fotos/portrait_double.webp"
-                alt="Lorenz Naegele — Documentary Filmmaker"
+                alt="Lorenz Naegele Documentary Filmmaker"
                 width={500}
                 height={600}
                 className="w-full h-auto object-cover"
@@ -33,7 +33,7 @@ const AboutPreview = () => {
             </h2>
             <p className="text-cinema-silver text-lg leading-relaxed mb-4">
               I&apos;m Lorenz Naegele, a documentary filmmaker from Germany. I
-              tell stories about people who live with passion and purpose —
+              tell stories about people who live with passion and purpose:
               surfers chasing waves across Peru, climbers pushing through fear on
               the rock, craftsmen shaping a more sustainable future.
             </p>

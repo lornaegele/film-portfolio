@@ -69,9 +69,7 @@ const Navbar = () => {
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-cinema-black/80 backdrop-blur-md"
-            : "bg-transparent"
+          scrolled ? "bg-cinema-black/80 backdrop-blur-md" : "bg-transparent"
         }`}
       >
         <div className="mx-auto px-6 md:px-10 max-w-7xl">
@@ -119,11 +117,7 @@ const Navbar = () => {
                           style={{
                             transition: "transform 0.5s ease",
                             transform: `rotate(${rotation}deg)`,
-                            ...getTransformStyle(
-                              rowIndex,
-                              charIndex,
-                              rotation
-                            ),
+                            ...getTransformStyle(rowIndex, charIndex, rotation),
                           }}
                         >
                           {char}
@@ -136,11 +130,12 @@ const Navbar = () => {
             </Link>
 
             {/* Desktop Nav */}
-            <div className={`hidden md:flex items-center gap-8 ${uiFont.className}`}>
+            <div
+              className={`hidden md:flex items-center gap-8 ${uiFont.className}`}
+            >
               {navItems.map((navItem: NavItem) => {
                 const isActive =
-                  pathname.includes(navItem.link) ||
-                  pathname === navItem.link;
+                  pathname.includes(navItem.link) || pathname === navItem.link;
 
                 if (navItem.external) {
                   return (
@@ -149,7 +144,7 @@ const Navbar = () => {
                       href={navItem.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-cinema-silver hover:text-white transition-colors duration-300"
+                      className="text-cinema-cream/60 hover:text-white transition-colors duration-300"
                     >
                       <FaInstagram size={20} />
                     </a>
@@ -163,7 +158,7 @@ const Navbar = () => {
                     className={`relative uppercase text-sm tracking-[0.2em] font-medium transition-colors duration-300 ${
                       isActive
                         ? "text-white"
-                        : "text-cinema-silver hover:text-white"
+                        : "text-cinema-cream/60 hover:text-white"
                     }`}
                   >
                     {navItem.name}
@@ -208,11 +203,12 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40 bg-cinema-black/98 backdrop-blur-lg md:hidden flex items-center justify-center"
           >
-            <nav className={`flex flex-col items-center gap-8 ${headingFont.className}`}>
+            <nav
+              className={`flex flex-col items-center gap-8 ${headingFont.className}`}
+            >
               {navItems.map((navItem: NavItem, index: number) => {
                 const isActive =
-                  pathname.includes(navItem.link) ||
-                  pathname === navItem.link;
+                  pathname.includes(navItem.link) || pathname === navItem.link;
 
                 if (navItem.external) {
                   return (

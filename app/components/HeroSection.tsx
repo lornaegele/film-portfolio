@@ -11,7 +11,7 @@ const HeroSection = () => {
       {/* Background Still Image */}
       <Image
         src="/fotos/lobitos-surfer.WEBP"
-        alt="Lorenz Visuals — Documentary Filmmaker"
+        alt="Lorenz Visuals Documentary Filmmaker"
         fill
         className="object-cover"
         sizes="100vw"

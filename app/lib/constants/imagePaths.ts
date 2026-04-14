@@ -33,7 +33,7 @@ export const imagesWithDesc: ImagesWithDesc[] = [
   {
     path: "/fotos/llamas-rain.WEBP",
     description:
-      "It had been a tough day — miles of walking in rough weather — yet at over 4,000 meters we stumbled upon these beautiful llamas. The sight was both breathtaking and deeply calming.",
+      "It had been a tough day miles of walking in rough weather yet at over 4,000 meters we stumbled upon these beautiful llamas. The sight was both breathtaking and deeply calming.",
     title: "Llamas in Rain",
   },
   {
@@ -50,7 +50,7 @@ export const imagesWithDesc: ImagesWithDesc[] = [
   {
     path: "/fotos/paracas.WEBP",
     description:
-      "A place where golden desert meets the deep blue Pacific — the Paracas National Reserve is a haven of raw beauty, teeming with wildlife and endless horizons.",
+      "A place where golden desert meets the deep blue Pacific the Paracas National Reserve is a haven of raw beauty, teeming with wildlife and endless horizons.",
     title: "Paracas",
   },
   {

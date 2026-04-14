@@ -24,22 +24,14 @@
   }
 }
 
-/* Custom scrollbar */
+/* Hide scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: #0a0a0a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #2a2a2a;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #d4a853;
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 /* Film grain texture overlay */

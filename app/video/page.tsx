@@ -5,7 +5,7 @@ import { headingFont } from "@/app/lib/font";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Films | Lorenz Naegele — Documentary Filmmaker",
+  title: "Films | Lorenz Naegele Documentary Filmmaker",
   description:
     "A collection of climbing, surfing and outdoor documentary films exploring movement, nature, and personal stories.",
   alternates: {
@@ -33,7 +33,7 @@ export default function FilmsPage() {
           </h1>
         </AnimatedSection>
 
-        {/* Film Grid — 2 columns on desktop */}
+        {/* Film Grid 2 columns on desktop */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
           {videos.map((video, index) => (
             <FilmPosterCard key={video.link} film={video} index={index} />
