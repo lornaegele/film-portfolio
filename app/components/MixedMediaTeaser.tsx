@@ -12,7 +12,7 @@ const MixedMediaTeaser = ({ image }: MixedMediaTeaserProps) => {
   return (
     <Link href={link} className="relative overflow-hidden group block">
       <Image
-        className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-70"
+        className="h-full w-full object-cover transition-all duration-500 ease-out group-hover:scale-105 group-hover:brightness-110"
         src={image.type === "video" ? image.thumbnail.path! : image.path}
         width={500}
         height={1000}
@@ -21,7 +21,7 @@ const MixedMediaTeaser = ({ image }: MixedMediaTeaserProps) => {
 
       {image.type === "video" && (
         <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-          <FaYoutube className="text-white text-5xl opacity-80 drop-shadow-lg" />
+          <FaYoutube className="text-white text-5xl opacity-80 drop-shadow-lg video-pulse" />
         </div>
       )}
     </Link>

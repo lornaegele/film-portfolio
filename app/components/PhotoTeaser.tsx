@@ -11,7 +11,7 @@ const PhotoTeaser = ({ image }: PhotoTeaserProps) => {
   return (
     <Link href={link} className="relative overflow-hidden group">
       <Image
-        className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-70"
+        className="h-full w-full object-cover transition-all duration-500 ease-out group-hover:scale-105 group-hover:brightness-110"
         src={image.path} // Make sure 'link' contains the valid image path
         width={0}
         height={0}

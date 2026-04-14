@@ -1,4 +1,4 @@
-import { Footer } from "@/app/components";
+import { Footer, FadeInOnScroll } from "@/app/components";
 import PhotoTeaser from "@/app/components/PhotoTeaser";
 import { images } from "@/app/lib/constants/images";
 import { Metadata } from "next";
@@ -33,9 +33,9 @@ export default function page() {
                   ? "w-[90%] md:w-[40%]"
                   : "w-5/6 md:w-1/3";
           return (
-            <div key={image.link} className={`${sizeClass}`}>
+            <FadeInOnScroll key={image.link} delay={Math.min(index * 100, 400)} className={sizeClass}>
               <PhotoTeaser image={image} />
-            </div>
+            </FadeInOnScroll>
           );
         })}
       </div>

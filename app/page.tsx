@@ -1,4 +1,4 @@
-import { Footer } from "@/app/components";
+import { Footer, FadeInOnScroll } from "@/app/components";
 import MixedMediaTeaser from "@/app/components/MixedMediaTeaser";
 import { mediaMixed } from "@/app/lib/constants/images";
 import type { Metadata } from "next";
@@ -34,9 +34,9 @@ export default function page() {
                   ? "w-[90%] md:w-[40%]"
                   : "w-5/6 md:w-1/3";
           return (
-            <div key={media.link} className={`${sizeClass} `}>
+            <FadeInOnScroll key={media.link} delay={Math.min(index * 100, 400)} className={sizeClass}>
               <MixedMediaTeaser image={media} />
-            </div>
+            </FadeInOnScroll>
           );
         })}
       </div>

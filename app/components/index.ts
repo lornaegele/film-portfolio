@@ -3,5 +3,6 @@ import Teaser from "./Teaser";
 import PhotoTeaser from "./PhotoTeaser";
 import ScrollDisabler from "./ScrollDisabler";
 import Footer from "./Footer";
+import FadeInOnScroll from "./FadeInOnScroll";
 
-export { Navbar, Teaser, PhotoTeaser, ScrollDisabler, Footer };
+export { Navbar, Teaser, PhotoTeaser, ScrollDisabler, Footer, FadeInOnScroll };

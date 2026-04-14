@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaYoutube } from "react-icons/fa";
 import type { Metadata } from "next";
+import { headingFont } from "@/app/lib/font";
 
 export async function generateMetadata({
   params,
@@ -67,7 +68,7 @@ export default function Page({ params }: { params: { slug: string } }) {
             className="relative overflow-hidden group block"
           >
             <Image
-              className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-70"
+              className="h-full w-full object-cover transition-all duration-500 ease-out group-hover:scale-105 group-hover:brightness-110"
               src={video.thumbnail.path!}
               width={0}
               height={0}
@@ -76,7 +77,7 @@ export default function Page({ params }: { params: { slug: string } }) {
             />
 
             <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-              <FaYoutube className="text-white text-5xl opacity-80 drop-shadow-lg" />
+              <FaYoutube className="text-white text-5xl opacity-80 drop-shadow-lg video-pulse" />
             </div>
           </Link>
         ) : (
@@ -92,7 +93,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         <div className="text-right">{video.dateTaken}</div>
       </div>
 
-      <h1 className="text-3xl font-bold text-left">{video.alt}</h1>
+      <h1 className={`text-3xl text-left ${headingFont.className}`} style={{ transform: "rotate(-1deg)" }}>{video.alt}</h1>
       <p className="text-left">{video.description}</p>
       <p className="text-gray-600 mb-2">{video.thumbnail.description}</p>
 

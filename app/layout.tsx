@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body className={`${mainFont.className} h-svh w-svw`}>
         <Navbar />
         <main className="">{children}</main>

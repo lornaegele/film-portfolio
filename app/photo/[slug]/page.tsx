@@ -2,6 +2,7 @@ import { Footer } from "@/app/components";
 import { images } from "@/app/lib/constants/images";
 import { Metadata } from "next";
 import Image from "next/image";
+import { headingFont } from "@/app/lib/font";
 
 export async function generateMetadata({
   params,
@@ -62,7 +63,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         sizes="100vw"
         className="w-full h-auto"
       />
-      <h1 className="mt-4 text-2xl font-bold">{image.title}</h1>
+      <h1 className={`mt-4 text-2xl ${headingFont.className}`} style={{ transform: "rotate(-1deg)" }}>{image.title}</h1>
       <p className="  text-gray-600">{image.description}</p>
       <Footer />
     </div>
