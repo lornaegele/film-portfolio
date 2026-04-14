@@ -23,6 +23,9 @@ export const metadata: Metadata = {
 export default function page() {
   return (
     <div>
+      <p className="px-4 pt-8 pb-6 max-w-3xl mx-auto text-2xl md:text-3xl font-light leading-snug text-center">
+        I tell stories about people who live with passion and purpose, surfers chasing waves across Peru, climbers pushing through fear on the rock, craftsmen shaping a more sustainable future.
+      </p>
       <div className="p-4 pt-0 flex flex-wrap flex-row justify-center md:gap-12 gap-6 max-w-[1500px] mx-auto md:items-center">
         {mediaMixed.map((media, index) => {
           const sizeClass =
