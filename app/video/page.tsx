@@ -1,36 +1,45 @@
 import { videos } from "@/app/lib/constants/videos";
-import VideoTeaser from "@/app/components/VideoTeaser";
-import { Footer, FadeInOnScroll } from "@/app/components";
-
+import FilmPosterCard from "@/app/components/FilmPosterCard";
+import AnimatedSection from "@/app/components/AnimatedSection";
+import { headingFont } from "@/app/lib/font";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Climbing, Surfing & Outdoor Documentary Films | Lorenz Naegele",
+  title: "Films | Lorenz Naegele — Documentary Filmmaker",
   description:
-    "A collection of climbing, surfing and outdoor films exploring movement, nature, and personal progression on real rock.",
+    "A collection of climbing, surfing and outdoor documentary films exploring movement, nature, and personal stories.",
   alternates: {
     canonical: "https://lorenzvisuals.com/video",
   },
   openGraph: {
-    title: "Climbing & Outdoor Films | Lorenz Naegele",
+    title: "Films | Lorenz Naegele",
     description:
-      "Short climbing or Surfing documentaries and outdoor films focused on flow, fear, and progression.",
+      "Documentary films focused on surfing, climbing, music, and authentic human stories.",
     url: "https://lorenzvisuals.com/video",
     type: "website",
   },
 };
 
-export default function page() {
+export default function FilmsPage() {
   return (
-    <div>
-      <div className="p-4 pt-0 flex flex-col md:gap-4 gap-2 max-w-5xl mx-auto ">
-        {videos.map((video, index) => (
-          <FadeInOnScroll key={video.thumbnail.path} delay={index * 100}>
-            <VideoTeaser video={video} />
-          </FadeInOnScroll>
-        ))}
+    <div className="px-6 md:px-10 pb-16">
+      <div className="max-w-6xl mx-auto">
+        {/* Page Header */}
+        <AnimatedSection className="pt-8 md:pt-12 mb-12 md:mb-16">
+          <h1
+            className={`${headingFont.className} text-display text-cinema-cream`}
+          >
+            Films
+          </h1>
+        </AnimatedSection>
+
+        {/* Film Grid — 2 columns on desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+          {videos.map((video, index) => (
+            <FilmPosterCard key={video.link} film={video} index={index} />
+          ))}
+        </div>
       </div>
-      <Footer />
     </div>
   );
 }

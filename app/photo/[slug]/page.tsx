@@ -1,7 +1,7 @@
-import { Footer } from "@/app/components";
 import { images } from "@/app/lib/constants/images";
 import { Metadata } from "next";
 import Image from "next/image";
+import AnimatedSection from "@/app/components/AnimatedSection";
 import { headingFont } from "@/app/lib/font";
 
 export async function generateMetadata({
@@ -12,13 +12,11 @@ export async function generateMetadata({
   const image = images.find((img) => img.link === params.slug);
 
   if (!image) {
-    return {
-      title: "Image not found",
-    };
+    return { title: "Image not found" };
   }
 
   return {
-    title: `${image.title} | Photography | Lorenz Naegele `,
+    title: `${image.title} | Photography | Lorenz Naegele`,
     description: image.description,
     alternates: {
       canonical: `https://lorenzvisuals.com/photo/${image.link}`,
@@ -44,28 +42,42 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function Page({ params }: { params: { slug: string } }) {
-  // Find the image with the matching link
+export default function PhotoDetailPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const image = images.find((img) => img.link === params.slug);
 
-  // If no image is found, you might want to handle that case
   if (!image) {
-    return <div>No image found.</div>;
+    return (
+      <div className="min-h-[50vh] flex items-center justify-center text-cinema-smoke">
+        Photo not found.
+      </div>
+    );
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-4">
-      <Image
-        src={image.path}
-        alt={image.alt}
-        width={0}
-        height={0}
-        sizes="100vw"
-        className="w-full h-auto"
-      />
-      <h1 className={`mt-4 text-2xl ${headingFont.className}`} style={{ transform: "rotate(-1deg)" }}>{image.title}</h1>
-      <p className="  text-gray-600">{image.description}</p>
-      <Footer />
+    <div className="max-w-4xl mx-auto px-6 md:px-10 py-8">
+      <AnimatedSection>
+        <Image
+          src={image.path}
+          alt={image.alt}
+          width={1200}
+          height={800}
+          sizes="(max-width: 768px) 100vw, 900px"
+          className="w-full h-auto rounded-sm"
+          priority
+        />
+      </AnimatedSection>
+      <AnimatedSection delay={0.15} className="mt-6">
+        <h1
+          className={`${headingFont.className} text-2xl md:text-3xl text-cinema-cream mb-3`}
+        >
+          {image.title}
+        </h1>
+        <p className="text-cinema-silver leading-relaxed">{image.description}</p>
+      </AnimatedSection>
     </div>
   );
 }

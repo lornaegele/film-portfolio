@@ -1,11 +1,11 @@
 "use client";
 
-import { headingFont } from "../lib/font";
+import { logoFont } from "../lib/font";
 
 const Footer = () => {
   return (
     <div
-      className={`flex justify-center items-center ${headingFont.className} pb-6 pt-4`}
+      className={`flex justify-center items-center ${logoFont.className} pb-8 pt-12`}
     >
       <div className="w-[140px]">
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +30,7 @@ const Footer = () => {
               dur="10s"
               repeatCount="indefinite"
             />
-            <text fontSize="11.5" fill="black">
+            <text fontSize="11.5" fill="#F5F0E8">
               <textPath href="#circlePath">
                 © 2025 made by Lorenz Naegele
               </textPath>
