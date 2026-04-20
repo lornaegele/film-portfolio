@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { VideoThumbnail } from "../lib/interfaces";
 import { headingFont, uiFont } from "../lib/font";
-import { HiOutlineCalendar, HiOutlineClock } from "react-icons/hi2";
+import { HiOutlineCalendar } from "react-icons/hi2";
 
 interface FilmPosterCardProps {
   film: VideoThumbnail;
@@ -37,18 +37,12 @@ const FilmPosterCard = ({ film, index }: FilmPosterCardProps) => {
           />
         </div>
 
-        {/* Date & Duration */}
+        {/* Date */}
         <div className={`${uiFont.className} flex items-center gap-4 mt-3`}>
           <span className="flex items-center gap-1.5 text-cinema-smoke text-xs uppercase tracking-[0.15em]">
             <HiOutlineCalendar className="w-3.5 h-3.5" />
             {film.dateTaken}
           </span>
-          {film.duration && (
-            <span className="flex items-center gap-1.5 text-cinema-smoke text-xs uppercase tracking-[0.15em]">
-              <HiOutlineClock className="w-3.5 h-3.5" />
-              {film.duration}
-            </span>
-          )}
         </div>
       </Link>
     </motion.div>

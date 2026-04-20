@@ -29,7 +29,20 @@ const config: Config = {
           "clamp(2rem, 5vw, 4rem)",
           { lineHeight: "1.1", letterSpacing: "-0.01em" },
         ],
+        "display-sm": [
+          "clamp(1.5rem, 3vw, 2.25rem)",
+          { lineHeight: "1.15", letterSpacing: "-0.01em" },
+        ],
         subtitle: ["clamp(1.125rem, 2vw, 1.5rem)", { lineHeight: "1.5" }],
+        "body-lg": ["1.125rem", { lineHeight: "1.7" }],
+        eyebrow: [
+          "0.75rem",
+          { lineHeight: "1.2", letterSpacing: "0.25em" },
+        ],
+        caption: [
+          "0.6875rem",
+          { lineHeight: "1.2", letterSpacing: "0.2em" },
+        ],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

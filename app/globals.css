@@ -16,6 +16,17 @@
     background-color: rgba(212, 168, 83, 0.3);
     color: #f5f0e8;
   }
+
+  /* Keyboard focus ring — gold outline with offset */
+  :focus-visible {
+    outline: 2px solid #d4a853;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  /* Don't show ring on mouse click, only keyboard */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
 }
 
 @layer utilities {
@@ -52,12 +63,12 @@ html {
 
 /* Hover rotate for logo letters */
 .hover-rotate {
-  transition: transform 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.25, 0.4, 0.25, 1);
 }
 
 @media (min-width: 768px) {
   .hover-rotate:hover {
-    transform: rotate(10deg) !important;
+    transform: rotate(5deg) !important;
   }
 }
 
@@ -79,5 +90,70 @@ html {
   stroke-dasharray: 200;
   stroke-dashoffset: 200;
   animation: draw-underline 1.2s ease-out 0.3s forwards;
+}
+
+/* Cinematic cursor-following vignette */
+.cursor-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 30;
+  mix-blend-mode: multiply;
+  background: radial-gradient(
+    circle 40vw at var(--cursor-x, 50%) var(--cursor-y, 50%),
+    transparent 0%,
+    rgba(0, 0, 0, 0.35) 100%
+  );
+  transition: opacity 0.3s ease;
+}
+
+/* Custom cursor for desktop */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #d4a853;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s ease, height 0.25s ease, background-color 0.25s ease;
+  mix-blend-mode: difference;
+}
+.custom-cursor.is-hover {
+  width: 48px;
+  height: 48px;
+  background-color: rgba(212, 168, 83, 0.1);
+}
+@media (max-width: 767px) {
+  .custom-cursor { display: none; }
+}
+
+/* Hide default cursor on desktop only when custom one is active */
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
+@media (max-width: 767px) {
+  .custom-cursor-active,
+  .custom-cursor-active * {
+    cursor: auto !important;
+  }
+}
+
+/* Reduced motion: disable animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .custom-cursor,
+  .cursor-vignette { display: none !important; }
 }
 

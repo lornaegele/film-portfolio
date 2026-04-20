@@ -3,7 +3,7 @@
 import { headingFont, uiFont } from "../lib/font";
 import AnimatedSection from "./AnimatedSection";
 import { FaInstagram } from "react-icons/fa";
-import Link from "next/link";
+import { Button } from "./Button";
 import PhoneReveal from "./PhoneReveal";
 
 const ContactCTA = () => {
@@ -25,22 +25,24 @@ const ContactCTA = () => {
         </AnimatedSection>
 
         <AnimatedSection delay={0.3}>
-          <div className={`${uiFont.className} flex flex-col items-center gap-4`}>
-            <Link
-              href="mailto:lorenznaegele@mail.de"
-              className="text-cinema-gold hover:text-cinema-cream transition-colors duration-300 text-lg tracking-wide"
+          <div className="flex flex-col items-center gap-5">
+            <Button href="mailto:lorenznaegele@mail.de" variant="primary" size="lg">
+              Get in Touch
+            </Button>
+            <div
+              className={`${uiFont.className} flex flex-col items-center gap-3 mt-2`}
             >
-              lorenznaegele@mail.de
-            </Link>
-            <PhoneReveal className="text-cinema-smoke hover:text-cinema-cream" />
-            <a
-              href="https://www.instagram.com/lorenznaegele"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-cinema-smoke hover:text-cinema-gold transition-colors duration-300 mt-2"
-            >
-              <FaInstagram size={24} />
-            </a>
+              <PhoneReveal className="text-cinema-smoke hover:text-cinema-cream" />
+              <a
+                href="https://www.instagram.com/lorenznaegele"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="text-cinema-smoke hover:text-cinema-gold transition-colors duration-300 mt-1"
+              >
+                <FaInstagram size={22} />
+              </a>
+            </div>
           </div>
         </AnimatedSection>
       </div>

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { VideoThumbnail } from "../lib/interfaces";
-import { headingFont, uiFont } from "../lib/font";
+import { uiFont } from "../lib/font";
 import { HiOutlineCalendar } from "react-icons/hi2";
 
 interface FilmCardProps {

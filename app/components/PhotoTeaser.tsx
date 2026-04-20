@@ -1,22 +1,25 @@
 import Image from "next/image";
-import { CustomImage, VideoThumbnail } from "../lib/interfaces";
 import Link from "next/link";
+import { CustomImage } from "../lib/interfaces";
 
 interface PhotoTeaserProps {
   image: CustomImage;
 }
 
 const PhotoTeaser = ({ image }: PhotoTeaserProps) => {
-  const link = image.type + "/" + image.link;
   return (
-    <Link href={link} className="relative overflow-hidden group">
+    <Link
+      href={`/${image.type}/${image.link}`}
+      className="relative overflow-hidden rounded-sm group block"
+    >
       <Image
-        className="h-full w-full object-cover transition-all duration-500 ease-out group-hover:scale-105 group-hover:brightness-110"
-        src={image.path} // Make sure 'link' contains the valid image path
-        width={0}
+        className="h-full w-full object-cover transition-all duration-[700ms] ease-out group-hover:scale-[1.03] group-hover:brightness-[1.08]"
+        src={image.path}
+        width={1200}
         height={0}
-        sizes="100vw"
+        sizes="(max-width: 768px) 100vw, 50vw"
         alt={image.alt}
+        style={{ height: "auto" }}
       />
     </Link>
   );

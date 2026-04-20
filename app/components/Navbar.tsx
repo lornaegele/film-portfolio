@@ -56,8 +56,11 @@ const Navbar = () => {
     const dx = rect.x + rect.width / 2 - mousePos.x;
     const dy = rect.y + rect.height / 2 - mousePos.y;
     const dist = Math.sqrt(dx * dx + dy * dy);
-    if (dist > 100) return {};
-    const offset = 15 * (1 - dist / 100);
+    // Wider falloff zone, softer curve, smaller max offset
+    const radius = 140;
+    if (dist > radius) return {};
+    const eased = Math.pow(1 - dist / radius, 1.6);
+    const offset = 10 * eased;
     return {
       transform: `translate(${(dx / dist) * offset}px, ${
         (dy / dist) * offset
@@ -115,7 +118,7 @@ const Navbar = () => {
                           }}
                           className="-mb-2 hover-rotate"
                           style={{
-                            transition: "transform 0.5s ease",
+                            transition: "transform 0.6s cubic-bezier(0.25, 0.4, 0.25, 1)",
                             transform: `rotate(${rotation}deg)`,
                             ...getTransformStyle(rowIndex, charIndex, rotation),
                           }}

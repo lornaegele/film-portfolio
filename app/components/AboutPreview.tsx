@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { headingFont, uiFont } from "../lib/font";
+import { headingFont } from "../lib/font";
 import AnimatedSection from "./AnimatedSection";
+import TextLink from "./TextLink";
 
 const AboutPreview = () => {
   return (
@@ -42,12 +42,9 @@ const AboutPreview = () => {
               film. I believe every person carries a story worth telling, and
               through cinema, we can make those stories felt.
             </p>
-            <Link
-              href="/about"
-              className={`${uiFont.className} text-cinema-gold hover:text-cinema-cream uppercase text-xs tracking-[0.2em] transition-colors duration-300`}
-            >
+            <TextLink href="/about" tone="gold">
               More About Me
-            </Link>
+            </TextLink>
           </AnimatedSection>
         </div>
       </div>

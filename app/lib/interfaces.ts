@@ -19,20 +19,16 @@ export interface CustomImage {
   type: "photo";
 }
 
-export interface ImageTeaser {
-  path: string;
-  alt: string;
-  link: string;
-  displayName: string;
-}
-
-export interface Title {
-  name: string;
-}
-
 export interface VideoThumbnailImage {
   path?: string;
   description?: string;
+}
+
+export type FestivalAward = "Official Selection" | "Honorable Mention" | "Finalist" | "Nominee";
+
+export interface Festival {
+  name: string;
+  award: FestivalAward;
 }
 
 export interface VideoThumbnail {
@@ -46,15 +42,6 @@ export interface VideoThumbnail {
   dateTaken: string;
   alt: string;
   type: "video";
+  festivals?: Festival[];
 }
 
-export interface DevProject {
-  images: VideoThumbnailImage[];
-  thumbnail: VideoThumbnailImage;
-  description: string;
-  link: string;
-  ytLink: string;
-  dateTaken: string;
-  alt: string;
-  type: "video";
-}

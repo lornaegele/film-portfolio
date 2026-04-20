@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { portraitImage } from "../lib/constants/imagePaths";
-import Link from "next/link";
 import AnimatedSection from "../components/AnimatedSection";
+import TextLink from "../components/TextLink";
 import { headingFont, uiFont } from "../lib/font";
 import { FaInstagram } from "react-icons/fa";
 import type { Metadata } from "next";
@@ -33,18 +33,23 @@ export default function AboutPage() {
         {/* Bio Content */}
         <div className="w-full md:w-3/5 flex flex-col gap-10">
           <AnimatedSection delay={0.1}>
-            <h1
-              className={`${headingFont.className} text-display text-cinema-cream mb-4`}
+            <span
+              className={`${uiFont.className} text-cinema-gold text-caption uppercase block mb-4`}
             >
               About
+            </span>
+            <h1
+              className={`${headingFont.className} text-display text-cinema-cream mb-6`}
+            >
+              The films I make are the ones I wish existed.
             </h1>
-            <p className="text-cinema-silver text-lg leading-relaxed mb-4">
+            <p className="text-cinema-silver text-body-lg leading-relaxed mb-4">
               I tell stories about people who live with passion and purpose:
               surfers chasing waves across South America, climbers pushing
               through fear on the rock, craftsmen shaping a more sustainable
               future.
             </p>
-            <p className="text-cinema-silver text-lg leading-relaxed">
+            <p className="text-cinema-silver text-body-lg leading-relaxed">
               I&apos;m Lorenz Naegele, a documentary filmmaker from Germany with
               a deep love for the outdoors and the stories that unfold within it.
             </p>
@@ -52,11 +57,11 @@ export default function AboutPage() {
 
           <AnimatedSection delay={0.2}>
             <h2
-              className={`${headingFont.className} text-2xl text-cinema-cream mb-4`}
+              className={`${headingFont.className} text-display-sm text-cinema-cream mb-4`}
             >
               My Filmmaking
             </h2>
-            <p className="text-cinema-silver text-lg leading-relaxed">
+            <p className="text-cinema-silver text-body-lg leading-relaxed">
               I believe every person carries a story worth telling. Whether
               following a local surf legend through the coast of Peru or
               documenting a band&apos;s very first song, I strive to capture the
@@ -69,7 +74,7 @@ export default function AboutPage() {
           <AnimatedSection delay={0.3}>
             <div className="border-l-2 border-cinema-gold/40 pl-6">
               <p
-                className={`${headingFont.className} italic text-xl text-cinema-cream leading-relaxed`}
+                className={`${headingFont.className} italic text-display-sm text-cinema-cream leading-relaxed`}
               >
                 &ldquo;I believe in giving a voice to those who don&apos;t have
                 one, and evoking emotions that connect us all.&rdquo;
@@ -79,27 +84,26 @@ export default function AboutPage() {
 
           <AnimatedSection delay={0.4}>
             <h3
-              className={`${uiFont.className} uppercase tracking-[0.2em] text-sm text-cinema-gold mb-4`}
+              className={`${uiFont.className} text-cinema-gold text-eyebrow uppercase mb-4`}
             >
               Contact
             </h3>
-            <div className={`${uiFont.className} flex flex-col gap-2`}>
-              <Link
-                className="text-cinema-cream hover:text-cinema-gold transition-colors duration-300"
+            <div className={`${uiFont.className} flex flex-col gap-3 items-start`}>
+              <TextLink
                 href="mailto:lorenznaegele@mail.de"
+                tone="cream"
+                uppercase={false}
               >
                 lorenznaegele@mail.de
-              </Link>
-              <Link
-                className="text-cinema-silver hover:text-cinema-cream transition-colors duration-300"
-                href="tel:+4915208536210"
-              >
+              </TextLink>
+              <TextLink href="tel:+4915208536210" tone="smoke" uppercase={false}>
                 +49 1520 8536 210
-              </Link>
+              </TextLink>
               <a
                 href="https://www.instagram.com/lorenznaegele"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Instagram"
                 className="text-cinema-smoke hover:text-cinema-gold transition-colors duration-300 mt-2 inline-block"
               >
                 <FaInstagram size={22} />

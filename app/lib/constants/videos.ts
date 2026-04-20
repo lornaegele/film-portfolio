@@ -1,4 +1,6 @@
-import { VideoThumbnail } from "../interfaces";
+import { VideoThumbnail, Festival } from "../interfaces";
+
+const SCHWAB: Festival = { name: "Schwäbisches Jugend- und Filmfestival", award: "Official Selection" };
 
 export const videos: VideoThumbnail[] = [
   {
@@ -34,6 +36,17 @@ export const videos: VideoThumbnail[] = [
     alt: "Shape the future",
     dateTaken: "September 2025",
     type: "video",
+    festivals: [
+      { name: "Im Kasten Film Festival", award: "Honorable Mention" },
+      { name: "Independent Danes International Film Fest", award: "Official Selection" },
+      { name: "Paradise Film Festival", award: "Official Selection" },
+      { name: "Brest Surf Film Festival", award: "Official Selection" },
+      { name: "Independent International Film Festival", award: "Official Selection" },
+      { name: "Bilbao Surf Film Festival", award: "Official Selection" },
+      { name: "Jung und Abgedreht Kurzfilm Festival", award: "Official Selection" },
+      { name: "Cinemare Ocean Film Festival", award: "Official Selection" },
+      SCHWAB,
+    ],
   },
   {
     images: [
@@ -63,6 +76,14 @@ export const videos: VideoThumbnail[] = [
     alt: "Finding flow in the Fight",
     dateTaken: "June 2025",
     type: "video",
+    festivals: [
+      { name: "Hi5 Film Festival", award: "Official Selection" },
+      { name: "Paradise Film Festival", award: "Official Selection" },
+      { name: "Independent International Film Festival", award: "Nominee" },
+      { name: "Corto Montagna Premio", award: "Finalist" },
+      SCHWAB,
+      { name: "Climbing Film Tour", award: "Honorable Mention" },
+    ],
   },
   {
     images: [
@@ -92,6 +113,10 @@ export const videos: VideoThumbnail[] = [
     alt: "Waves of wisdom",
     dateTaken: "August 2024",
     type: "video",
+    festivals: [
+      { name: "Bilbao Surf Film Festival", award: "Official Selection" },
+      SCHWAB,
+    ],
   },
   {
     images: [

@@ -4,9 +4,12 @@ import ArtistStatement from "./components/ArtistStatement";
 import AboutPreview from "./components/AboutPreview";
 import ContactCTA from "./components/ContactCTA";
 import AnimatedSection from "./components/AnimatedSection";
+import TextLink from "./components/TextLink";
+import PressStrip from "./components/PressStrip";
+import Testimonial from "./components/Testimonial";
+import ProcessSection from "./components/ProcessSection";
 import { videos } from "./lib/constants/videos";
-import { headingFont, uiFont } from "./lib/font";
-import Link from "next/link";
+import { headingFont } from "./lib/font";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -34,6 +37,9 @@ export default function Home() {
       {/* Hero Section */}
       <HeroSection />
 
+      {/* Press / festivals strip */}
+      <PressStrip />
+
       {/* Featured Films */}
       <section className="py-24 md:py-32 px-6 md:px-10">
         <div className="max-w-6xl mx-auto">
@@ -44,12 +50,11 @@ export default function Home() {
               >
                 Selected Work
               </h2>
-              <Link
-                href="/video"
-                className={`${uiFont.className} text-cinema-smoke hover:text-cinema-gold uppercase text-xs tracking-[0.2em] transition-colors duration-300 hidden md:block`}
-              >
-                View All Films
-              </Link>
+              <div className="hidden md:block">
+                <TextLink href="/video" tone="smoke">
+                  View All Films
+                </TextLink>
+              </div>
             </div>
           </AnimatedSection>
 
@@ -60,18 +65,21 @@ export default function Home() {
           </div>
 
           <AnimatedSection className="mt-10 text-center md:hidden">
-            <Link
-              href="/video"
-              className={`${uiFont.className} text-cinema-smoke hover:text-cinema-gold uppercase text-xs tracking-[0.2em] transition-colors duration-300`}
-            >
+            <TextLink href="/video" tone="smoke">
               View All Films
-            </Link>
+            </TextLink>
           </AnimatedSection>
         </div>
       </section>
 
       {/* Artist Statement */}
       <ArtistStatement />
+
+      {/* Process / Behind the Lens */}
+      <ProcessSection />
+
+      {/* Testimonial pull-quote */}
+      <Testimonial />
 
       {/* About Preview */}
       <AboutPreview />

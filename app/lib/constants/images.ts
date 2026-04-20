@@ -1,4 +1,4 @@
-import { CustomImage, ImageTeaser, VideoThumbnail } from "../interfaces";
+import { CustomImage, VideoThumbnail } from "../interfaces";
 import { imagesWithDesc } from "./imagePaths";
 import { videos } from "./videos";
 

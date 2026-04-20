@@ -19,7 +19,7 @@ const ArtistStatement = () => {
 
         <AnimatedSection delay={0.1}>
           <blockquote
-            className={`${headingFont.className} italic text-display text-cinema-cream mb-8 leading-tight`}
+            className={`${headingFont.className} italic text-subtitle md:text-display-sm text-cinema-cream mb-8 leading-tight`}
           >
             &ldquo;I believe in giving a voice to those who don&apos;t have one,
             and evoking emotions that connect us all.&rdquo;

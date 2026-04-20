@@ -22,7 +22,3 @@ export const uiFont = Space_Grotesk({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
 });
-
-// Keep old exports for backward compatibility during migration
-export const mainFont = bodyFont;
-export const subHeadingFont = logoFont;

@@ -2,7 +2,8 @@ import { images } from "@/app/lib/constants/images";
 import { Metadata } from "next";
 import Image from "next/image";
 import AnimatedSection from "@/app/components/AnimatedSection";
-import { headingFont } from "@/app/lib/font";
+import TextLink from "@/app/components/TextLink";
+import { headingFont, uiFont } from "@/app/lib/font";
 
 export async function generateMetadata({
   params,
@@ -33,6 +34,12 @@ export async function generateMetadata({
       ],
       type: "article",
     },
+    twitter: {
+      card: "summary_large_image",
+      title: image.title,
+      description: image.description,
+      images: [image.path],
+    },
   };
 }
 
@@ -58,8 +65,16 @@ export default function PhotoDetailPage({
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-6 md:px-10 py-8">
+    <div className="max-w-4xl mx-auto px-6 md:px-10 py-8 md:py-12">
       <AnimatedSection>
+        <div className="mb-6">
+          <TextLink href="/photo" tone="smoke">
+            ← All Photography
+          </TextLink>
+        </div>
+      </AnimatedSection>
+
+      <AnimatedSection delay={0.05}>
         <Image
           src={image.path}
           alt={image.alt}
@@ -70,13 +85,21 @@ export default function PhotoDetailPage({
           priority
         />
       </AnimatedSection>
-      <AnimatedSection delay={0.15} className="mt-6">
+
+      <AnimatedSection delay={0.15} className="mt-8">
+        <span
+          className={`${uiFont.className} text-cinema-gold text-caption uppercase block mb-3`}
+        >
+          Still
+        </span>
         <h1
-          className={`${headingFont.className} text-2xl md:text-3xl text-cinema-cream mb-3`}
+          className={`${headingFont.className} text-display-sm text-cinema-cream mb-4`}
         >
           {image.title}
         </h1>
-        <p className="text-cinema-silver leading-relaxed">{image.description}</p>
+        <p className="text-cinema-silver text-body-lg leading-relaxed">
+          {image.description}
+        </p>
       </AnimatedSection>
     </div>
   );
