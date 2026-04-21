@@ -9,18 +9,17 @@ import { uiFont } from "../lib/font";
  * when you have brand assets).
  */
 const credits: string[] = [
-  "Im Kasten Film Festival",
-  "Independent Danes International Film Fest",
-  "Paradise Film Festival",
-  "Brest Surf Film Festival",
-  "Independent International Film Festival",
-  "Bilbao Surf Film Festival",
-  "Jung und Abgedreht Kurzfilm Festival",
   "Cinemare Ocean Film Festival",
-  "Schwäbisches Jugend- und Filmfestival",
-  "Hi5 Film Festival",
-  "Corto Montagna Premio",
   "Climbing Film Tour",
+  "Brest Surf Film Festival",
+  "Im Kasten Film Festival",
+  "Independent Days International Film Fest",
+  "Paradise Film Festival",
+  "Bilbao Surf Film Festival",
+  "Jung&Abgedreht Kurzfilm Festival",
+  "Schwäbisches Jugend Filmfestival",
+  "HighFive Film Festival",
+  "Corto Montagna Premio",
 ];
 
 export default function PressStrip() {
@@ -39,17 +38,20 @@ export default function PressStrip() {
           <div className="relative flex-1 overflow-hidden">
             <motion.div
               className={`${uiFont.className} flex items-center gap-10 md:gap-14 whitespace-nowrap text-cinema-smoke/70 text-xs md:text-sm uppercase tracking-[0.2em]`}
-              initial={{ x: 0 }}
-              animate={{ x: "-50%" }}
+              style={{ width: "max-content" }}
+              animate={{ x: ["0%", "-50%"] }}
               transition={{
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 30,
+                duration: 60,
                 ease: "linear",
               }}
             >
               {[...credits, ...credits].map((c, i) => (
-                <span key={i} className="inline-flex items-center gap-10 md:gap-14">
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-10 md:gap-14"
+                >
                   <span className="hover:text-cinema-gold transition-colors duration-300">
                     {c}
                   </span>

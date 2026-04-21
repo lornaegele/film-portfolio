@@ -1,6 +1,4 @@
-import { VideoThumbnail, Festival } from "../interfaces";
-
-const SCHWAB: Festival = { name: "Schwäbisches Jugend- und Filmfestival", award: "Official Selection" };
+import { VideoThumbnail } from "../interfaces";
 
 export const videos: VideoThumbnail[] = [
   {
@@ -38,14 +36,23 @@ export const videos: VideoThumbnail[] = [
     type: "video",
     festivals: [
       { name: "Im Kasten Film Festival", award: "Honorable Mention" },
-      { name: "Independent Danes International Film Fest", award: "Official Selection" },
+      {
+        name: "Independent Days International Film Fest",
+        award: "Official Selection",
+      },
       { name: "Paradise Film Festival", award: "Official Selection" },
       { name: "Brest Surf Film Festival", award: "Official Selection" },
-      { name: "Independent International Film Festival", award: "Official Selection" },
+      {
+        name: "Best Independents International Film Festival",
+        award: "Official Selection",
+      },
       { name: "Bilbao Surf Film Festival", award: "Official Selection" },
-      { name: "Jung und Abgedreht Kurzfilm Festival", award: "Official Selection" },
+      { name: "Jung&Abgedreht Kurzfilm Festival", award: "Official Selection" },
       { name: "Cinemare Ocean Film Festival", award: "Official Selection" },
-      SCHWAB,
+      {
+        name: "Schwäbisches Jugend Filmfestival",
+        award: "Official Selection",
+      },
     ],
   },
   {
@@ -77,11 +84,14 @@ export const videos: VideoThumbnail[] = [
     dateTaken: "June 2025",
     type: "video",
     festivals: [
-      { name: "Hi5 Film Festival", award: "Official Selection" },
+      { name: "HighFive Film Festival", award: "Official Selection" },
       { name: "Paradise Film Festival", award: "Official Selection" },
       { name: "Independent International Film Festival", award: "Nominee" },
       { name: "Corto Montagna Premio", award: "Finalist" },
-      SCHWAB,
+      {
+        name: "Schwäbisches Jugend Filmfestival",
+        award: "Official Selection",
+      },
       { name: "Climbing Film Tour", award: "Honorable Mention" },
     ],
   },
@@ -115,7 +125,10 @@ export const videos: VideoThumbnail[] = [
     type: "video",
     festivals: [
       { name: "Bilbao Surf Film Festival", award: "Official Selection" },
-      SCHWAB,
+      {
+        name: "Schwäbisches Jugend Filmfestival",
+        award: "Official Selection",
+      },
     ],
   },
   {
@@ -140,7 +153,7 @@ export const videos: VideoThumbnail[] = [
     posterPath: "/fotos/unser_erster_song_poster.jpg",
     duration: "15 min",
     description:
-      "This documentary was filmed in German. It tells the story of five friends who decided to start a band. It shows how their first song, \"Bears My Name,\" came to be and how they performed it live for the first time a brief journey through the beginnings of their music.",
+      'This documentary was filmed in German. It tells the story of five friends who decided to start a band. It shows how their first song, "Bears My Name," came to be and how they performed it live for the first time a brief journey through the beginnings of their music.',
     link: "no_service",
     ytLink: "https://youtu.be/xNAVrHXtoSs",
     alt: "Our first Song - No Service",
