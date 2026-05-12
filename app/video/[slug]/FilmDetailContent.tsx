@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { FaYoutube } from "react-icons/fa";
+import { FaYoutube, FaExternalLinkAlt } from "react-icons/fa";
 import { VideoThumbnail, FestivalAward } from "@/app/lib/interfaces";
 import { headingFont, uiFont } from "@/app/lib/font";
 import AnimatedSection from "@/app/components/AnimatedSection";
@@ -116,16 +116,30 @@ export default function FilmDetailContent({
           </motion.dl>
 
           {/* Watch button */}
-          {video.ytLink && (
+          {(video.ytLink || video.externalLink) && (
             <motion.div
+              className="flex flex-wrap gap-3"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.45 }}
             >
-              <Button href={video.ytLink} variant="ghost" size="lg" external>
-                <FaYoutube size={20} />
-                Watch Film
-              </Button>
+              {video.ytLink && (
+                <Button href={video.ytLink} variant="ghost" size="lg" external>
+                  <FaYoutube size={20} />
+                  Watch Film
+                </Button>
+              )}
+              {video.externalLink && (
+                <Button
+                  href={video.externalLink.url}
+                  variant="ghost"
+                  size="lg"
+                  external
+                >
+                  <FaExternalLinkAlt size={14} />
+                  {video.externalLink.label}
+                </Button>
+              )}
             </motion.div>
           )}
         </div>

@@ -43,5 +43,9 @@ export interface VideoThumbnail {
   alt: string;
   type: "video";
   festivals?: Festival[];
+  externalLink?: {
+    url: string;
+    label: string;
+  };
 }
 
