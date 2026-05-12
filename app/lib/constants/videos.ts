@@ -34,6 +34,10 @@ export const videos: VideoThumbnail[] = [
     alt: "Shape the future",
     dateTaken: "September 2025",
     type: "video",
+    externalLink: {
+      url: "https://scharffenbergsurfboards.com/",
+      label: "Scharffenberg Surfboards",
+    },
     festivals: [
       { name: "Im Kasten Film Festival", award: "Honorable Mention" },
       {
