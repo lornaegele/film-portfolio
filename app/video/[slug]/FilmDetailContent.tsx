@@ -16,6 +16,8 @@ interface FilmDetailContentProps {
 }
 
 function awardStyle(award: FestivalAward): string {
+  if (award === "Winner")
+    return "border-cinema-gold text-cinema-gold bg-cinema-gold/10";
   if (award === "Honorable Mention")
     return "border-cinema-gold text-cinema-gold/80";
   if (award === "Finalist")

@@ -24,7 +24,12 @@ export interface VideoThumbnailImage {
   description?: string;
 }
 
-export type FestivalAward = "Official Selection" | "Honorable Mention" | "Finalist" | "Nominee";
+export type FestivalAward =
+  | "Official Selection"
+  | "Honorable Mention"
+  | "Finalist"
+  | "Nominee"
+  | "Winner";
 
 export interface Festival {
   name: string;

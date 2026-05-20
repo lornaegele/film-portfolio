@@ -6,6 +6,7 @@ import ContactCTA from "./components/ContactCTA";
 import AnimatedSection from "./components/AnimatedSection";
 import TextLink from "./components/TextLink";
 import PressStrip from "./components/PressStrip";
+import AwardHighlight from "./components/AwardHighlight";
 import Testimonial from "./components/Testimonial";
 import ProcessSection from "./components/ProcessSection";
 import { videos } from "./lib/constants/videos";
@@ -39,6 +40,9 @@ export default function Home() {
 
       {/* Press / festivals strip */}
       <PressStrip />
+
+      {/* Subtle highlight: DOK.fest München win */}
+      <AwardHighlight />
 
       {/* Featured Films */}
       <section className="py-24 md:py-32 px-6 md:px-10">

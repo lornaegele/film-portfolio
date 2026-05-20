@@ -24,7 +24,7 @@ export const videos: VideoThumbnail[] = [
           "Beyond the craft, the documentary is a call to action. It’s about understanding why protecting our oceans matters, and why the choices we make, both as consumers and as global citizens, can have a lasting impact. Through Martin’s story, I hope viewers are inspired to consider their own relationship with nature and the ways they can contribute to a healthier planet. Small actions, when done with care and awareness, can make a difference, and sometimes the most meaningful solutions come from unexpected places.",
       },
     ],
-    thumbnail: { path: "/fotos/3.webp" },
+    thumbnail: { path: "/fotos/shape_the_future_thumbnail.jpg" },
     posterPath: "/fotos/shape_the_future_poster.jpg",
     duration: "15 min",
     description:
@@ -77,7 +77,7 @@ export const videos: VideoThumbnail[] = [
           "Across both days, the project became more than just filming a climb it turned into a valuable learning experience for me as well. Handling the camera gear while hanging on the rope taught me a lot about working in challenging conditions, and gave me confidence for future shoots. The whole process, from figuring out technical setups to working alongside Manu and witnessing Mattia’s determination, made for a memorable journey. Being out on the rock, surrounded by nature, added to the sense of adventure that defined the shoot.",
       },
     ],
-    thumbnail: { path: "/fotos/1.webp" },
+    thumbnail: { path: "/fotos/finding_flow_in_the_fight_thumbnail.jpg" },
     posterPath: "/fotos/finding_flow_in_the_fight_poster.jpg",
     duration: "15 min",
     description:
@@ -88,6 +88,10 @@ export const videos: VideoThumbnail[] = [
     dateTaken: "June 2025",
     type: "video",
     festivals: [
+      {
+        name: "DOK.fest München — DOK.education Dokumentarfilmpreis",
+        award: "Winner",
+      },
       { name: "HighFive Film Festival", award: "Official Selection" },
       { name: "Paradise Film Festival", award: "Official Selection" },
       { name: "Independent International Film Festival", award: "Nominee" },
