@@ -35,7 +35,6 @@ export default function FilmsPage() {
               href={`/video/${v.link}`}
               title={v.alt}
               genre={v.genre}
-              date={v.dateTaken}
               // the film's still leads (the YouTube thumbnail is on the film page), in its own aspect ratio
               frames={[v.cover, ...v.images.map((img) => img.path!).filter((p) => p !== v.cover)]}
               size={imageSize(v.cover)}

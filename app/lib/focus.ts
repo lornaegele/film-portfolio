@@ -10,3 +10,12 @@ export function scrollFocus(k: number, delta: number, full: number): number {
 export function pickSlide(count: number, random: () => number = Math.random): number {
   return Math.min(count - 1, Math.floor(random() * count));
 }
+
+/**
+ * One animation frame of the focus drifting back to sharp. Nothing happens while a finger is still down
+ * (`holding`) or within 220ms of the last scroll; then it eases back and snaps to 0 when nearly sharp.
+ */
+export function driftFocus(k: number, msSinceInput: number, holding: boolean): number {
+  if (holding || msSinceInput <= 220) return k;
+  return k < 0.002 ? 0 : k * 0.93;
+}

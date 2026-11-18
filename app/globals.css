@@ -197,7 +197,8 @@ body {
 .scale .tape span { font-size: 10px; letter-spacing: 0.06em; color: var(--paper); opacity: 0.8; }
 .scale::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 1px; height: 9px; background: var(--sun); }
 /* one photo per visit (Hero.tsx), no zoom: it just fades in */
-.hero { cursor: pointer; }
+/* the home screen is a control surface: dragging on it must not select text or open the iOS callout */
+.hero { cursor: pointer; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
 .hero .slide { position: absolute; inset: 0; animation: slide-in 0.8s ease both; }
 .hero .slide img { object-fit: cover; filter: saturate(0.85) contrast(1.05); }
 @keyframes slide-in { from { opacity: 0; } }
