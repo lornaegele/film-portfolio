@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FaInstagram } from "react-icons/fa";
 import { navItems } from "../lib/constants/navlinks";
 
 export default function Navbar() {
@@ -27,8 +28,9 @@ export default function Navbar() {
           {navItems.map((item) =>
             item.external ? (
               <li key={item.link} className="ig">
-                <a className="l" href={item.link} target="_blank" rel="noopener noreferrer">
-                  {item.name}
+                <a className="l" href={item.link} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                  <span className="ig-txt">{item.name}</span>
+                  <FaInstagram className="ig-ico" aria-hidden="true" />
                 </a>
               </li>
             ) : (

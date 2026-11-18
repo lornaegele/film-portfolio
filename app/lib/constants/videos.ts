@@ -177,7 +177,7 @@ export const videos: VideoThumbnail[] = [
     place: "Germany",
     cover: "/fotos/no_service-3.webp",
     ytLink: "https://youtu.be/xNAVrHXtoSs",
-    alt: "Our first Song - No Service",
+    alt: "Unser erster Song",
     dateTaken: "March 2025",
     type: "video",
   },

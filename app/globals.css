@@ -157,7 +157,9 @@ body {
   color: var(--paper); opacity: 0.85; transition: opacity 0.3s, color 0.3s; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
 }
 .nav a.l:hover, .nav a.l.cur { opacity: 1; color: var(--sun); }
-@media (max-width: 520px) { .nav .ig { display: none; } .nav ul { gap: 16px; } }
+.nav .ig-ico { display: none; width: 16px; height: 16px; }
+/* phones: Instagram as an icon so it still fits */
+@media (max-width: 520px) { .nav .ig-txt { display: none; } .nav .ig-ico { display: block; } .nav ul { gap: 16px; align-items: center; } }
 
 /* big split headlines: letters rise in (pure CSS, see SplitTitle.tsx) */
 .big { margin: 0; font-family: var(--display); font-weight: 900; text-transform: uppercase; line-height: 0.8; letter-spacing: -0.01em; }
@@ -173,10 +175,6 @@ body {
   position: relative; height: 100svh; min-height: 480px; overflow: hidden; isolation: isolate; touch-action: none;
 }
 .lens { position: absolute; inset: 0; transition: filter 0.15s linear; }
-.slides { position: absolute; inset: -3%; transition: transform 0.8s var(--ease); }
-.slides .slide { position: absolute; inset: 0; opacity: 0; transform: scale(1.14); transition: opacity 1.8s ease, transform 8s linear; }
-.slides .slide img { object-fit: cover; filter: saturate(0.85) contrast(1.05); }
-.slides .slide.on { opacity: 1; transform: scale(1); }
 .hero::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(14, 12, 10, 0.4), transparent 28%, transparent 55%, rgba(14, 12, 10, 0.85)); pointer-events: none; }
 /* viewfinder frame ends above the name: two lines at .8 line-height + bottom padding + room for the focus scale */
 .vf { position: absolute; inset: clamp(76px, 10vw, 100px) var(--gutr) calc(var(--name) * 1.7 + clamp(18px, 3vw, 36px) + 64px) var(--gut); z-index: 2; pointer-events: none; }
@@ -185,18 +183,12 @@ body {
 .vf i:nth-child(2) { top: 0; right: 0; border-width: 1px 1px 0 0; }
 .vf i:nth-child(3) { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
 .vf i:nth-child(4) { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
-.vf.locked i:nth-child(1) { transform: translate(10px, 10px); }
-.vf.locked i:nth-child(2) { transform: translate(-10px, 10px); }
-.vf.locked i:nth-child(3) { transform: translate(10px, -10px); }
-.vf.locked i:nth-child(4) { transform: translate(-10px, -10px); }
 .vf .rec { position: absolute; top: 12px; left: 16px; display: flex; align-items: center; gap: 8px; }
 .vf .rec b { width: 8px; height: 8px; border-radius: 50%; background: var(--grease); animation: blink 1s steps(2) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 .vf .place { position: absolute; top: 34px; left: 16px; color: var(--sun); transition: opacity 0.5s; }
 .vf .exp { position: absolute; top: 12px; right: 16px; text-align: right; }
 .vf .exp b { font-weight: 500; color: var(--sun); }
-.vf .lock { position: absolute; left: 50%; top: calc(50% + clamp(56px, 6vw, 74px)); transform: translateX(-50%); color: var(--sun); opacity: 0; transition: opacity 0.3s; white-space: nowrap; }
-.vf.locked .lock { opacity: 1; }
 .scale {
   position: absolute; left: 50%; bottom: 0; transform: translate(-50%, 50%); width: min(320px, 60%); height: 28px; overflow: hidden;
   -webkit-mask: linear-gradient(90deg, transparent, #000 25%, #000 75%, transparent); mask: linear-gradient(90deg, transparent, #000 25%, #000 75%, transparent);
@@ -204,9 +196,22 @@ body {
 .scale .tape { position: absolute; left: 50%; top: 0; display: flex; gap: 26px; white-space: nowrap; will-change: transform; }
 .scale .tape span { font-size: 10px; letter-spacing: 0.06em; color: var(--paper); opacity: 0.8; }
 .scale::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 1px; height: 9px; background: var(--sun); }
+/* one photo per visit (Hero.tsx), no zoom: it just fades in */
+.hero { cursor: pointer; }
+.hero .slide { position: absolute; inset: 0; animation: slide-in 0.8s ease both; }
+.hero .slide img { object-fit: cover; filter: saturate(0.85) contrast(1.05); }
+@keyframes slide-in { from { opacity: 0; } }
 .hint { position: absolute; left: 50%; bottom: -38px; transform: translateX(-50%); color: var(--dust); white-space: nowrap; transition: opacity 0.6s; }
 .hero-copy { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; padding: 0 var(--gutr) clamp(18px, 3vw, 36px) var(--gut); pointer-events: none; }
 .hero h1 { font-size: var(--name); }
+/* desktop: the frame runs almost to the bottom and the name sits small inside its bottom-left corner */
+@media (min-width: 861px) {
+  .hero { --name: clamp(56px, 6.5vw, 120px); }
+  .vf { bottom: clamp(28px, 3.5vw, 48px); }
+  .scale { bottom: 16px; transform: translateX(-50%); }
+  .hint { bottom: 50px; }
+  .hero-copy { left: var(--gut); right: auto; bottom: clamp(28px, 3.5vw, 48px); padding: 0 0 clamp(18px, 2vw, 28px) clamp(18px, 2vw, 28px); }
+}
 
 /* CTA = viewfinder corner brackets around the label; on hover they close into a full frame */
 @property --k { syntax: "<length-percentage>"; inherits: false; initial-value: 12px; }
@@ -237,6 +242,13 @@ body {
 }
 .cta.play svg { width: 24%; margin-left: 6%; fill: currentColor; transition: transform 0.5s var(--ease); }
 .cta.play:hover svg, .cta.play:focus-visible svg { transform: scale(1.15); }
+/* home: the play button is the way in, so it reads clearly over any photo */
+.hero .cta.play {
+  --k: 14px; --c: var(--paper); width: clamp(78px, 6.5vw, 96px); color: var(--paper);
+  background-color: color-mix(in srgb, var(--ink) 30%, transparent); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+}
+.hero .cta.play svg { width: 28%; filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.4)); }
+.hero .cta.play:hover, .hero .cta.play:focus-visible { --k: 51%; --c: var(--sun); color: var(--sun); }
 
 /* ---------- pages ---------- */
 .page { padding-top: clamp(110px, 12vw, 170px); }
@@ -364,8 +376,7 @@ body {
 .me { position: relative; margin: 0; overflow: hidden; aspect-ratio: 3 / 2; background: var(--base); }
 .me img { object-fit: cover; }
 .bio p { margin: 0 0 1.1em; font: 400 clamp(16px, 1.25vw, 18px)/1.65 var(--sans); max-width: 44ch; }
-.bio p:first-child { font-weight: 300; font-size: clamp(22px, 2.2vw, 32px); line-height: 1.25; letter-spacing: -0.01em; }
-.bio em { font-style: normal; color: var(--sun); }
+.bio em { font-style: normal; font-weight: 500; font-size: 1.7em; line-height: 1; letter-spacing: -0.01em; }
 .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: clamp(56px, 8vw, 110px) 0 0; padding-top: 24px; border-top: 1px solid var(--line); }
 .facts dt { color: var(--dust); margin-bottom: 8px; }
 .facts dd { margin: 0; font: 400 16px/1.4 var(--sans); }
@@ -373,7 +384,7 @@ body {
 .contact { display: flex; flex-wrap: wrap; gap: 16px 40px; align-items: end; justify-content: space-between; margin-top: clamp(56px, 8vw, 110px); padding-block: 28px clamp(56px, 8vw, 110px); border-top: 1px solid var(--line); }
 .contact > .mono { color: var(--dust); width: 100%; }
 .mail {
-  font-family: var(--display); font-weight: 700; font-size: clamp(34px, 7vw, 110px); line-height: 0.9; text-transform: uppercase;
+  display: inline-block; font-family: var(--display); font-weight: 700; font-size: clamp(34px, 7vw, 110px); line-height: 0.9; text-transform: uppercase;
   background: none; border: 0; color: var(--paper); padding: 0; cursor: pointer; text-align: left; overflow-wrap: anywhere;
   background-image: linear-gradient(var(--sun), var(--sun)); background-size: 0 3px; background-repeat: no-repeat; background-position: 0 100%;
   transition: background-size 0.6s var(--ease), color 0.3s;
@@ -381,11 +392,6 @@ body {
 .mail:hover, .mail:focus-visible { background-size: 100% 3px; color: var(--sun); }
 .links { display: flex; flex-wrap: wrap; gap: 24px; color: var(--dust); }
 .links a:hover, .links button:hover { color: var(--paper); }
-.toast {
-  position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, calc(100% + 60px));
-  background: var(--sun); color: #fff; padding: 10px 16px; z-index: 80; transition: transform 0.5s var(--ease); max-width: calc(100% - 32px); text-align: center;
-}
-.toast.show { transform: translate(-50%, 0); }
 
 /* reveal on enter (only items that start below the fold get .pend, see Reveal.tsx) */
 .rv { transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }

@@ -55,3 +55,8 @@ test("Echoes of the Ocean: the overview tile leads with the second still", () =>
   const f = videos.find((v) => v.link === "echoes_of_the_ocean")!;
   assert.equal(f.cover, "/fotos/echoes_of_the_ocean_1.webp");
 });
+
+test("the No Service film is titled just 'Unser erster Song' (URL unchanged)", () => {
+  const f = videos.find((v) => v.link === "no_service")!;
+  assert.equal(f.alt, "Unser erster Song");
+});
