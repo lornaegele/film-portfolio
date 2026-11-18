@@ -10,7 +10,6 @@ export interface FilmReelProps {
   href: string;
   title: string;
   genre: string;
-  date: string;
   /** the film's still first, then behind-the-scenes stills */
   frames: string[];
   /** pixel size of the first frame: on phones the tile takes its aspect ratio, so it is never cropped */
@@ -24,7 +23,7 @@ export interface FilmReelProps {
  * Film card linking to the film's page. Mouse x scrubs through the film's frames;
  * on touch screens the card in the middle of the viewport flips through them by itself.
  */
-export default function FilmReel({ href, title, genre, date, frames, size, index, priority }: FilmReelProps) {
+export default function FilmReel({ href, title, genre, frames, size, index, priority }: FilmReelProps) {
   const [p, setP] = useState(0);
   const ref = useRef<HTMLAnchorElement>(null);
   const k = Math.min(frames.length - 1, Math.floor(p * frames.length));
@@ -79,10 +78,7 @@ export default function FilmReel({ href, title, genre, date, frames, size, index
       </span>
       {/* the title is on the thumbnail; keep it for search engines and screen readers */}
       <h2 className="vh">{title}</h2>
-      <span className="info">
-        <span>{genre}</span>
-        <span>{date}</span>
-      </span>
+      <span className="info">{genre}</span>
     </Link>
   );
 }

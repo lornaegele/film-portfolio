@@ -5,7 +5,7 @@ import { IMG_QUALITY } from "@/app/lib/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import SplitTitle from "./SplitTitle";
-import { pickSlide, scrollFocus } from "../lib/focus";
+import { driftFocus, pickSlide, scrollFocus } from "../lib/focus";
 
 export interface HeroSlide {
   src: string;
@@ -38,7 +38,7 @@ export default function Hero({ slides }: { slides: HeroSlide[] }) {
 
   useEffect(() => {
     const hero = heroRef.current!;
-    let k = 0, lastFeed = 0, raf = 0, ty: number | null = null;
+    let k = 0, lastFeed = 0, raf = 0, ty: number | null = null, holding = false;
     const t0 = performance.now();
     const pad = (v: number) => String(v).padStart(2, "0");
 
@@ -52,7 +52,7 @@ export default function Hero({ slides }: { slides: HeroSlide[] }) {
       // 25 fps timecode
       const f = Math.floor((now - t0) / 40);
       if (tcRef.current) tcRef.current.textContent = `${pad(Math.floor(f / 90000))}:${pad(Math.floor(f / 1500) % 60)}:${pad(Math.floor(f / 25) % 60)}:${pad(f % 25)}`;
-      if (now - lastFeed > 220) k = k < 0.002 ? 0 : k * 0.9; // let go and focus drifts back to sharp
+      k = driftFocus(k, now - lastFeed, holding); // let go and focus drifts back to sharp
       if (lensRef.current) lensRef.current.style.filter = k > 0.002 ? `blur(${(k * 10).toFixed(2)}px)` : "";
       if (tapeRef.current) tapeRef.current.style.transform = `translateX(-${(k * 92).toFixed(2)}%)`;
       if (distRef.current) {
@@ -64,7 +64,8 @@ export default function Hero({ slides }: { slides: HeroSlide[] }) {
     raf = requestAnimationFrame(frame);
 
     const onWheel = (e: WheelEvent) => { e.preventDefault(); feed(e.deltaY * (e.deltaMode ? 30 : 1)); };
-    const onTouchStart = (e: TouchEvent) => { ty = e.touches[0].clientY; };
+    const onTouchStart = (e: TouchEvent) => { ty = e.touches[0].clientY; holding = true; };
+    const onTouchEnd = () => { ty = null; holding = false; lastFeed = performance.now(); };
     const onTouchMove = (e: TouchEvent) => {
       if (ty == null) return;
       const y = e.touches[0].clientY;
@@ -87,6 +88,8 @@ export default function Hero({ slides }: { slides: HeroSlide[] }) {
     hero.addEventListener("wheel", onWheel, { passive: false });
     hero.addEventListener("touchstart", onTouchStart, { passive: true });
     hero.addEventListener("touchmove", onTouchMove, { passive: true });
+    hero.addEventListener("touchend", onTouchEnd);
+    hero.addEventListener("touchcancel", onTouchEnd);
     hero.addEventListener("click", onClick);
     addEventListener("keydown", onKey);
     return () => {
@@ -94,6 +97,8 @@ export default function Hero({ slides }: { slides: HeroSlide[] }) {
       hero.removeEventListener("wheel", onWheel);
       hero.removeEventListener("touchstart", onTouchStart);
       hero.removeEventListener("touchmove", onTouchMove);
+      hero.removeEventListener("touchend", onTouchEnd);
+      hero.removeEventListener("touchcancel", onTouchEnd);
       hero.removeEventListener("click", onClick);
       removeEventListener("keydown", onKey);
     };
