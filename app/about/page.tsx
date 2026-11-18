@@ -33,12 +33,12 @@ export default function AboutPage() {
             </figure>
             <div className="bio rv">
               <p>
-                I&apos;m a German filmmaker and photographer, currently based in Spain. Most of my films are about{" "}
+                I&apos;m a German filmmaker and photographer, currently based in Spain. My focus lies on{" "}
                 <em>climbing and surfing</em>.
               </p>
               <p>
-                I follow climbers on the hardest route of their lives and surfers chasing a perfect wave, and try to
-                keep what makes each person and place their own.
+                What interests me most are the people: why someone keeps climbing, why they paddle out again and again,
+                and what they find when they push their own limits.
               </p>
               <p>
                 I care about the small details that reveal the heart of a story. Through film and photography I want
