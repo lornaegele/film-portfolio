@@ -46,11 +46,6 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-          <dl className="facts rv">
-            <div><dt className="mono">From</dt><dd>Germany</dd></div>
-            <div><dt className="mono">Based in</dt><dd>Spain</dd></div>
-            <div><dt className="mono">Focus</dt><dd>Climbing &amp; surf films, outdoor photography</dd></div>
-          </dl>
           <div className="contact rv">
             <span className="mono">Let&apos;s make something · click to write</span>
             <EmailLink />
