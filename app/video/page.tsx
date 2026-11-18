@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { videos } from "@/app/lib/constants/videos";
 import FilmReel from "@/app/components/FilmReel";
+import { imageSize } from "@/app/lib/imageSize";
 import SplitTitle from "@/app/components/SplitTitle";
 import Footer from "@/app/components/Footer";
 
@@ -35,7 +36,9 @@ export default function FilmsPage() {
               title={v.alt}
               genre={v.genre}
               date={v.dateTaken}
-              frames={[v.thumbnail.path!, ...v.images.map((img) => img.path!)]}
+              // the film's still leads (the YouTube thumbnail is on the film page), in its own aspect ratio
+              frames={[v.cover, ...v.images.map((img) => img.path!).filter((p) => p !== v.cover)]}
+              size={imageSize(v.cover)}
               index={i}
               priority={i < 2}
             />

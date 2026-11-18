@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { IMG_QUALITY } from "@/app/lib/image";
 import type { Metadata } from "next";
 import { portraitImage } from "../lib/constants/imagePaths";
 import SplitTitle from "../components/SplitTitle";
@@ -22,7 +23,7 @@ export default function AboutPage() {
           <SplitTitle lines={["Hello, I'm", "Lorenz"]} label="About Lorenz Naegele" />
           <div className="a-grid">
             <figure className="me">
-              <Image
+              <Image quality={IMG_QUALITY}
                 src={portraitImage.path}
                 alt="Double-exposure portrait of Lorenz Naegele, filmmaker and photographer"
                 fill

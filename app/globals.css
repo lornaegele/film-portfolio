@@ -23,7 +23,7 @@
   color-scheme: light;
 }
 /* surfaces on photos, the countdown and the clapperboard stay dark */
-.hero, .f-hero, .reel .scr, .clap, .leader, .nav.dk {
+.hero, .reel .scr, .clap, .leader, .nav.dk {
   --ink: #0e0c0a;
   --base: #1a1612;
   --paper: #efe8db;
@@ -78,8 +78,15 @@ body {
 .num { font-family: var(--display); font-weight: 900; font-size: min(36vmin, 220px); line-height: 1; position: relative; }
 .skip { position: absolute; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); color: var(--dust); }
 
-/* page transition: a curtain lifts on in-site navigation (app/template.tsx); not on a fresh page load */
-.curtain { position: fixed; inset: 0; z-index: 95; background: var(--base); pointer-events: none; transform-origin: top; animation: curtain 0.7s var(--ease) both; }
+/* page transition: a curtain lifts on in-site navigation (Curtain.tsx); not on a fresh page load */
+.curtain { position: fixed; inset: 0; z-index: 95; background: var(--base); pointer-events: none; transform-origin: top; transform: scaleY(0); }
+.curtain.play { animation: curtain 0.7s var(--ease) both; }
+/* link navigations (Clapperboard.tsx): the curtain rises over the page showing where you go, then lifts off the new one */
+.cut { position: fixed; inset: 0; z-index: 95; display: grid; place-items: center; pointer-events: none; background: var(--base); transform: scaleY(0); transform-origin: bottom; }
+.cut.in { transform: scaleY(1); transition: transform 0.6s var(--ease); }
+.cut.out { transform: scaleY(0); transform-origin: top; transition: transform 0.8s var(--ease); }
+.cut span { max-width: 14ch; padding: 0 var(--gut); text-align: center; font: 900 clamp(44px, 9vw, 130px)/0.85 var(--display); text-transform: uppercase; opacity: 0; transform: translateY(20px); transition: opacity 0.25s, transform 0.25s; }
+.cut.in span { opacity: 1; transform: none; transition: opacity 0.45s 0.25s, transform 0.6s 0.25s var(--ease); }
 @keyframes curtain { from { transform: scaleY(1); } to { transform: scaleY(0); } }
 
 /* clapperboard over an aperture iris (Clapperboard.tsx): blades close while the board drops in,
@@ -87,7 +94,24 @@ body {
    Photos only get the aperture (.snap). */
 .clap { position: fixed; inset: 0; z-index: 96; display: grid; place-items: center; pointer-events: none; visibility: hidden; }
 .clap.on, .clap.out, .clap.snap { visibility: visible; }
-.iris { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* aperture: 7 huge blades, each a black half-plane whose inner edge sits 75vmax from the centre (past the corners);
+   closing turns them 70deg and slides the edges to the centre. The blade edges are separate lines on top
+   (stacked blades would hide each other's edges unevenly): each starts at its corner of the opening
+   (r·tan(180°/7) = r·0.4816 along the edge) and runs outward. Only `transform` animates, so it stays on the GPU. */
+.iris { position: absolute; inset: 0; overflow: hidden; }
+.iris i, .iris b {
+  position: absolute; left: 50%; top: 50%; will-change: transform;
+  transition: transform var(--iris-ms, 500ms) cubic-bezier(0.65, 0, 0.35, 1);
+}
+.iris i {
+  width: 200vmax; height: 300vmax; margin-top: -150vmax; transform-origin: 0 50%; background: #0e0c0a;
+  transform: rotate(var(--a)) translate(75vmax, 0);
+}
+.iris b {
+  width: 1px; height: 300vmax; transform-origin: 0 0; background: rgba(239, 232, 219, 0.22);
+  transform: rotate(var(--a)) translate(75vmax, calc(75vmax * 0.4816));
+}
+.clap.closed .iris i, .clap.closed .iris b { transform: rotate(calc(var(--a) + 70deg)) translate(-2px, 0); }
 .clap-in { position: relative; width: min(300px, 72vw); opacity: 0; transform: translateY(-6%) scale(0.92); transition: none; }
 .clap.on .clap-in { opacity: 1; transform: none; transition: opacity 0.3s, transform 0.5s var(--ease); }
 .clap.out .clap-in { opacity: 0; transform: scale(0.6); transition: opacity 0.28s cubic-bezier(0.4, 0, 1, 1), transform 0.34s cubic-bezier(0.5, 0, 0.75, 0); }
@@ -221,14 +245,15 @@ body {
 .page-head p { margin: 0; color: var(--dust); }
 
 /* films: two-column grid, tiles open one after another like a shutter; mouse x scrubs through each film's frames */
-.reels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(56px, 7vw, 110px) clamp(28px, 4vw, 64px); padding-bottom: clamp(70px, 10vw, 140px); }
+.reels { display: grid; align-items: start; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(56px, 7vw, 110px) clamp(28px, 4vw, 64px); padding-bottom: clamp(70px, 10vw, 140px); }
 .reel {
   display: block; min-width: 0; clip-path: inset(0 0 100% 0); transform: translateY(24px);
   animation: shutter 1s var(--ease) forwards; animation-delay: calc(200ms + var(--i, 0) * 110ms);
 }
 @keyframes shutter { to { clip-path: inset(0 0 -60px 0); transform: none; } }
-.reel .scr { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; background: var(--base); }
+.reel .scr { position: relative; display: block; overflow: hidden; background: var(--base); } /* aspect-ratio set inline from the still */
 .reel .scr .fr { position: absolute; inset: 0; opacity: 0; transition: opacity 0.35s; }
+/* the tile has the first still's exact ratio (never cut); the hover frames fill that same frame */
 .reel .scr .fr img { object-fit: cover; }
 .reel .scr .fr.on { opacity: 1; }
 .reel .n { position: absolute; z-index: 2; left: 12px; top: 10px; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6); }
@@ -255,6 +280,26 @@ body {
   .grid .frame:first-child { grid-column: span 2; }
   .grid .frame:first-child .pic { aspect-ratio: 4 / 3; }
 }
+/* photo lightbox (PhotoGrid.tsx): the photo grows out of its thumbnail over a light backdrop, nothing else */
+.lb { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; cursor: zoom-out;
+  background: color-mix(in srgb, var(--ink) 92%, transparent); color: var(--paper); transition: background-color 0.4s; }
+.lb::backdrop { background: transparent; }
+.lb[open] { animation: lb-in 0.4s ease; }
+.lb.closing { background-color: transparent; }
+.lb.closing .lb-btn { opacity: 0; }
+@keyframes lb-in { from { background-color: transparent; } }
+.lb-frame { position: fixed; transform-origin: center; will-change: transform; }
+.lb-frame img { object-fit: cover; }
+.lb-btn {
+  position: absolute; z-index: 1; width: 46px; height: 46px; border-radius: 50%; cursor: pointer; font: 500 16px var(--mono); color: inherit;
+  background: color-mix(in srgb, var(--ink) 70%, transparent); border: 1px solid color-mix(in srgb, var(--paper) 30%, transparent);
+  transition: background 0.3s, color 0.3s, opacity 0.3s;
+}
+.lb-btn:hover { background: var(--paper); color: var(--ink); }
+.lb-prev { left: var(--gut); top: 50%; translate: 0 -50%; }
+.lb-next { right: var(--gutr); top: 50%; translate: 0 -50%; }
+.lb-close { right: var(--gutr); top: calc(16px + env(safe-area-inset-top, 0px)); }
+@media (max-width: 640px) { .lb-prev, .lb-next { top: auto; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); translate: none; } }
 .photo-detail { display: grid; gap: 24px; padding-bottom: clamp(70px, 10vw, 140px); }
 .photo-detail .shot img { width: 100%; height: auto; max-height: 82svh; object-fit: contain; object-position: left; }
 .photo-detail h1 { font-size: clamp(48px, 8vw, 130px); }
@@ -263,15 +308,23 @@ body {
 .back:hover { color: var(--sun); }
 
 /* film page */
-.f-hero { position: relative; height: min(92svh, 940px); min-height: 520px; overflow: hidden; display: flex; align-items: end; }
-@media (max-width: 700px) { .f-hero { height: 64svh; min-height: 420px; } }
-.f-hero .bg { position: absolute; inset: 0; animation: settle 2.4s var(--ease) both; }
-.f-hero .bg img { object-fit: cover; }
 @keyframes settle { from { transform: scale(1.12); } }
-.f-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14, 12, 10, 0.35), transparent 35%, rgba(14, 12, 10, 0.9)); }
-.f-hero .wrap { position: relative; z-index: 2; width: 100%; padding-bottom: clamp(20px, 3vw, 40px); }
-.f-hero h1 { font-size: clamp(56px, 11vw, 190px); max-width: 14ch; }
-.f-laurel { display: block; width: clamp(110px, 11vw, 160px); height: auto; margin-bottom: 18px; filter: drop-shadow(0 1px 8px rgba(0, 0, 0, 0.5)); }
+/* film page header: text left, the YouTube thumbnail uncropped in a viewfinder frame right (image first on phones) */
+.f-hero { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(28px, 4vw, 72px); align-items: end; }
+.f-shot { position: relative; order: 2; margin: 0; padding: 10px; }
+.f-pic { position: relative; display: block; overflow: hidden; background: var(--base); } /* aspect-ratio set inline from the image */
+.f-pic > img { object-fit: cover; animation: settle 2.4s var(--ease) both; }
+.f-shot > i { position: absolute; width: 22px; height: 22px; border: 0 solid var(--paper); }
+.f-shot > i:nth-of-type(1) { top: 0; left: 0; border-width: 1px 0 0 1px; }
+.f-shot > i:nth-of-type(2) { top: 0; right: 0; border-width: 1px 1px 0 0; }
+.f-shot > i:nth-of-type(3) { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+.f-shot > i:nth-of-type(4) { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+.f-txt { min-width: 0; padding-bottom: 10px; }
+.f-hero h1 { font-size: clamp(52px, 7.4vw, 136px); margin-top: 10px; }
+@media (max-width: 860px) {
+  .f-hero { grid-template-columns: 1fr; padding-top: calc(64px + env(safe-area-inset-top, 0px)); }
+  .f-shot { order: 0; margin: 0 -10px; }
+}
 .f-meta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px 32px; margin-top: 22px; }
 .f-meta dl { display: flex; flex-wrap: wrap; gap: 8px 32px; margin: 0; }
 .f-meta dt { color: var(--dust); }
@@ -344,6 +397,6 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .leader, .curtain, .clap { display: none !important; }
+  .leader, .curtain, .clap, .cut { display: none !important; }
   .reel { clip-path: none; transform: none; }
 }
