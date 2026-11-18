@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { IMG_QUALITY } from "@/app/lib/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import SplitTitle from "./SplitTitle";
@@ -134,7 +135,7 @@ export default function Hero({ slides }: { slides: HeroSlide[] }) {
         <div ref={slidesRef} className="slides">
           {slides.map((s, i) => (
             <div key={s.src} className={`slide${i === index ? " on" : ""}`}>
-              <Image src={s.src} alt={s.alt} fill sizes="100vw" priority={i === 0} />
+              <Image quality={IMG_QUALITY} src={s.src} alt={s.alt} fill sizes="100vw" priority={i === 0} />
             </div>
           ))}
         </div>

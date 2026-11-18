@@ -38,3 +38,20 @@ test("Echoes of the Ocean links to the new YouTube upload", () => {
   const echoes = videos.find((v) => v.link === "echoes_of_the_ocean");
   assert.equal(echoes?.ytLink, "https://youtu.be/7S_wxLpNH7A");
 });
+
+test("Shape the Future: chapter 01 still is the hero, chapters 01 and 03 swap pictures", () => {
+  const f = videos.find((v) => v.link === "shape_the_future")!;
+  assert.equal(f.cover, "/fotos/shape_the_future_2.webp");
+  assert.deepEqual(
+    f.images.map((i) => i.path),
+    ["/fotos/shape_the_future_4.webp", "/fotos/shape_the_future_1.webp", "/fotos/shape_the_future_2.webp", "/fotos/shape_the_future_3.webp"],
+  );
+  // texts stay in their places
+  assert.match(f.images[0].description!, /^Surfing has always been/);
+  assert.match(f.images[2].description!, /^I spent a week in Kiel/);
+});
+
+test("Echoes of the Ocean: the overview tile leads with the second still", () => {
+  const f = videos.find((v) => v.link === "echoes_of_the_ocean")!;
+  assert.equal(f.cover, "/fotos/echoes_of_the_ocean_1.webp");
+});

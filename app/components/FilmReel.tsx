@@ -1,16 +1,20 @@
 "use client";
 
 import Image from "next/image";
+import { IMG_QUALITY } from "@/app/lib/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import type { Size } from "../lib/imageSize";
 
 export interface FilmReelProps {
   href: string;
   title: string;
   genre: string;
   date: string;
-  /** thumbnail first, then behind-the-scenes stills */
+  /** the film's still first, then behind-the-scenes stills */
   frames: string[];
+  /** pixel size of the first frame: the tile takes its aspect ratio, so it is never cropped */
+  size: Size;
   /** position in the grid: shown as 01, 02… and staggers the entrance */
   index: number;
   priority?: boolean;
@@ -20,7 +24,7 @@ export interface FilmReelProps {
  * Film card linking to the film's page. Mouse x scrubs through the film's frames;
  * on touch screens the card in the middle of the viewport flips through them by itself.
  */
-export default function FilmReel({ href, title, genre, date, frames, index, priority }: FilmReelProps) {
+export default function FilmReel({ href, title, genre, date, frames, size, index, priority }: FilmReelProps) {
   const [p, setP] = useState(0);
   const ref = useRef<HTMLAnchorElement>(null);
   const k = Math.min(frames.length - 1, Math.floor(p * frames.length));
@@ -44,9 +48,10 @@ export default function FilmReel({ href, title, genre, date, frames, index, prio
   }, [frames.length]);
 
   return (
-    <Link ref={ref} className="reel" href={href} data-cursor="Open" style={{ "--i": index } as React.CSSProperties}>
+    <Link ref={ref} className="reel" href={href} data-cursor="Open" data-label={title} style={{ "--i": index } as React.CSSProperties}>
       <span
         className="scr"
+        style={{ aspectRatio: `${size.width} / ${size.height}` }}
         onPointerMove={(e) => {
           if (e.pointerType !== "mouse") return;
           const b = e.currentTarget.getBoundingClientRect();
@@ -56,9 +61,9 @@ export default function FilmReel({ href, title, genre, date, frames, index, prio
       >
         {frames.map((src, i) => (
           <span key={src} className={`fr${i === k ? " on" : ""}`}>
-            <Image
+            <Image quality={IMG_QUALITY}
               src={src}
-              alt={i === 0 ? `${title}, film thumbnail` : ""}
+              alt={i === 0 ? `Still from ${title}` : ""}
               fill
               sizes="(max-width: 700px) 100vw, 50vw"
               priority={priority && i === 0}

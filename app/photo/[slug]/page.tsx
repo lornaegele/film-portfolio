@@ -1,6 +1,7 @@
 import { images } from "@/app/lib/constants/images";
 import { Metadata } from "next";
 import Image from "next/image";
+import { IMG_QUALITY } from "@/app/lib/image";
 import Link from "next/link";
 import SplitTitle, { toLines } from "@/app/components/SplitTitle";
 import Footer from "@/app/components/Footer";
@@ -67,7 +68,7 @@ export default function PhotoDetailPage({
           ← All photos
         </Link>
         <div className="shot">
-          <Image
+          <Image quality={IMG_QUALITY}
             src={image.path}
             alt={image.alt}
             width={1600}

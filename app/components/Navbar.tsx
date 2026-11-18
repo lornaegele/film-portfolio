@@ -7,17 +7,11 @@ import { navItems } from "../lib/constants/navlinks";
 
 export default function Navbar() {
   const pathname = usePathname();
-  // `dk`: light text while the header sits on a photo; `bar`: light backdrop once page content scrolls under it
-  const [mode, setMode] = useState<"" | "dk" | "bar">(
-    pathname === "/" || /^\/video\/./.test(pathname) ? "dk" : "",
-  );
+  // `dk`: light text on the full-screen home photo; `bar`: light backdrop once page content scrolls under it
+  const [mode, setMode] = useState<"" | "dk" | "bar">(pathname === "/" ? "dk" : "");
 
   useEffect(() => {
-    const update = () => {
-      const hero = document.querySelector(".f-hero") as HTMLElement | null;
-      const overPhoto = pathname === "/" || (hero !== null && scrollY < hero.offsetHeight - 70);
-      setMode(overPhoto ? "dk" : scrollY > 10 ? "bar" : "");
-    };
+    const update = () => setMode(pathname === "/" ? "dk" : scrollY > 10 ? "bar" : "");
     update();
     addEventListener("scroll", update, { passive: true });
     return () => removeEventListener("scroll", update);
@@ -25,7 +19,7 @@ export default function Navbar() {
 
   return (
     <header className={`nav${mode ? ` ${mode}` : ""}`}>
-      <Link className="mark" href="/" aria-label="Lorenz Naegele, home">
+      <Link className="mark" href="/" aria-label="Lorenz Naegele, home" data-label="Lorenz Naegele">
         LN
       </Link>
       <nav aria-label="Main">

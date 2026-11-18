@@ -1,9 +1,8 @@
-import Image from "next/image";
-import Link from "next/link";
 import { Metadata } from "next";
 import { images } from "@/app/lib/constants/images";
 import SplitTitle from "@/app/components/SplitTitle";
 import Footer from "@/app/components/Footer";
+import PhotoGrid from "@/app/components/PhotoGrid";
 
 export const metadata: Metadata = {
   title: "Photography | Lorenz Naegele",
@@ -29,22 +28,9 @@ export default function PhotoPage() {
           <SplitTitle lines={["Photos"]} id="photos-h" />
           <p className="mono">Peru · Bolivia · Chile · Argentina</p>
         </div>
-        <div className="grid">
-          {images.map((image, i) => (
-            <Link key={image.link} className="frame rv" href={`/photo/${image.link}`} data-cursor="View">
-              <span className="pic">
-                <Image
-                  src={image.path}
-                  alt={image.alt}
-                  fill
-                  sizes="(max-width: 640px) 50vw, 33vw"
-                  priority={i < 3}
-                />
-              </span>
-              <span className="t mono">{image.title}</span>
-            </Link>
-          ))}
-        </div>
+        <PhotoGrid
+          photos={images.map((image) => ({ path: image.path, title: image.title, alt: image.alt, href: `/photo/${image.link}` }))}
+        />
       </section>
       <Footer />
     </>

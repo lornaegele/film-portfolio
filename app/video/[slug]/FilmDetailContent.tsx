@@ -1,8 +1,10 @@
 import Image from "next/image";
+import { IMG_QUALITY } from "@/app/lib/image";
 import Link from "next/link";
 import type { VideoThumbnail } from "@/app/lib/interfaces";
 import SplitTitle, { toLines } from "@/app/components/SplitTitle";
 import Footer from "@/app/components/Footer";
+import { imageSize } from "@/app/lib/imageSize";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -14,24 +16,28 @@ export default function FilmDetailContent({
   nextFilm: VideoThumbnail;
 }) {
   const chapters = video.images.filter((img) => img.path);
+  const thumb = video.thumbnail.path!;
+  const thumbSize = imageSize(thumb);
 
   return (
     <>
       <article>
-        <header className="f-hero">
-          <div className="bg">
-            <Image src={video.cover} alt={`Still from ${video.alt}`} fill sizes="100vw" priority />
-          </div>
-          <div className="wrap">
-            {video.laurel && (
+        {/* the film's YouTube thumbnail (title + laurels baked in), whole and uncropped, in a viewfinder frame next to the text */}
+        <header className="f-hero page wrap">
+          <figure className="f-shot">
+            <span className="f-pic" style={{ aspectRatio: `${thumbSize.width} / ${thumbSize.height}` }}>
               <Image
-                className="f-laurel"
-                src={video.laurel}
-                alt={video.festivals?.find((f) => f.award === "Winner")?.name ?? "Festival laurel"}
-                width={1122}
-                height={508}
+                quality={IMG_QUALITY}
+                src={thumb}
+                alt={`${video.alt}, film poster`}
+                fill
+                sizes="(max-width: 860px) 100vw, 55vw"
+                priority
               />
-            )}
+            </span>
+            <i /><i /><i /><i />
+          </figure>
+          <div className="f-txt">
             <span className="mono" style={{ color: "var(--sun)" }}>{video.genre}</span>
             <SplitTitle lines={toLines(video.alt)} />
             <div className="f-meta">
@@ -83,7 +89,7 @@ export default function FilmDetailContent({
             {chapters.map((img, k) => (
               <div className="ch" key={img.path}>
                 <figure className="rv">
-                  <Image
+                  <Image quality={IMG_QUALITY}
                     src={img.path!}
                     alt={`Behind the scenes of ${video.alt}, part ${k + 1}`}
                     width={1600}
@@ -102,7 +108,7 @@ export default function FilmDetailContent({
           </section>
         )}
 
-        <Link className="next" href={`/video/${nextFilm.link}`} data-cursor="Next">
+        <Link className="next" href={`/video/${nextFilm.link}`} data-cursor="Next" data-label={nextFilm.alt}>
           <div className="wrap">
             <span className="mono">Next film</span>
             <h2>{nextFilm.alt} →</h2>

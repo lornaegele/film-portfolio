@@ -10,12 +10,6 @@ import { usePathname } from "next/navigation";
 export default function Reveal() {
   const pathname = usePathname();
 
-  // after the first page has rendered, later navigations get the curtain transition
-  useEffect(() => {
-    const t = setTimeout(() => document.documentElement.classList.add("nav-ready"), 100);
-    return () => clearTimeout(t);
-  }, []);
-
   useEffect(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
     const io = new IntersectionObserver(

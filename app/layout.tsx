@@ -5,6 +5,7 @@ import Cursor from "./components/Cursor";
 import Leader, { leaderScript } from "./components/Leader";
 import Reveal from "./components/Reveal";
 import Clapperboard from "./components/Clapperboard";
+import Curtain from "./components/Curtain";
 import { displayFont, monoFont, sansFont } from "./lib/font";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -42,6 +43,7 @@ export default function RootLayout({
         <Navbar />
         <main>{children}</main>
         <Reveal />
+        <Curtain />
         <Clapperboard />
         <Analytics />
       </body>

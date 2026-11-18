@@ -4,7 +4,7 @@ export const videos: VideoThumbnail[] = [
   {
     images: [
       {
-        path: "/fotos/shape_the_future_2.webp",
+        path: "/fotos/shape_the_future_4.webp",
         description:
           "Surfing has always been more than just a sport for me; it’s a way to connect with the ocean, to feel its power and beauty firsthand. Over time, my love for surfing merged with my growing interest in sustainability, and I began to wonder: are there people out there creating surfboards in a more environmentally conscious way? That curiosity led me to Martin, a craftsman making wooden surfboards. After discovering him online, I reached out, and he welcomed me into his world, allowing me to capture not just his work, but the story behind it.",
       },
@@ -14,7 +14,7 @@ export const videos: VideoThumbnail[] = [
           "Martin’s journey is fascinating. Originally a climate scientist, he spent years studying environmental challenges and feeling the weight of the problems humanity faces. Eventually, he realized that he wanted to take action in a more tangible way, transforming his understanding of climate issues into a practical, creative solution. That solution is crafting surfboards from sustainably sourced wood, each one shaped with incredible care and attention to detail. His story is one of passion, innovation, and a dedication to protecting the planet, showing how one person’s choices can ripple outwards.",
       },
       {
-        path: "/fotos/shape_the_future_4.webp",
+        path: "/fotos/shape_the_future_2.webp",
         description:
           "I spent a week in Kiel, filming Martin in his workshop, witnessing firsthand the artistry and precision involved in shaping a single board. Every cut, every curve, and every sanding step demands patience and skill, and it became clear just how much time and effort go into crafting something that many of us take for granted. The process is a reminder that sustainability isn’t just about materials; it’s about thoughtfulness, intention, and a commitment to doing things differently, even when it is harder.",
       },
@@ -32,7 +32,7 @@ export const videos: VideoThumbnail[] = [
     link: "shape_the_future",
     genre: "Surf & ocean documentary",
     place: "Kiel, Germany",
-    cover: "/fotos/shape_the_future_4.webp",
+    cover: "/fotos/shape_the_future_2.webp",
     ytLink: "https://youtu.be/9M3NdP7OgFI?si=RGyxkMyekaiRBm3D",
     alt: "Shape the future",
     dateTaken: "September 2025",
@@ -202,7 +202,7 @@ export const videos: VideoThumbnail[] = [
     link: "echoes_of_the_ocean",
     genre: "Surf documentary",
     place: "Lobitos, Peru",
-    cover: "/fotos/echoes_of_the_ocean_2.webp",
+    cover: "/fotos/echoes_of_the_ocean_1.webp",
     ytLink: "https://youtu.be/7S_wxLpNH7A",
     alt: "Echoes of the ocean",
     dateTaken: "August 2024",
