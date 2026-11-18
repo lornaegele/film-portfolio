@@ -4,13 +4,14 @@
 
 /* Layout: one screen per idea. Home = a single full-screen "movie" (scroll turns the focus ring;
    a full turn pulls focus onto the next photo). Films / photos / about / film pages scroll normally.
-   Single dark "projection room" look by choice. */
+   Light paper look; everything that sits on a photo (or is the "camera") keeps the dark palette. */
 :root {
-  --ink: #0e0c0a;
-  --base: #1a1612;
-  --paper: #efe8db;
-  --dust: #958c7e;
-  --sun: #e8a24a;
+  /* --ink = background, --paper = text (names kept from the dark version) */
+  --ink: #fefdfb;
+  --base: #f4f1ec;
+  --paper: #1a1612;
+  --dust: #7b7266;
+  --sun: #c06d14;
   --grease: #e4472f;
   --line: color-mix(in srgb, var(--paper) 14%, transparent);
   --display: var(--font-display), "Arial Narrow", Impact, sans-serif;
@@ -19,7 +20,18 @@
   --gut: max(16px, env(safe-area-inset-left, 0px));
   --gutr: max(16px, env(safe-area-inset-right, 0px));
   --ease: cubic-bezier(0.2, 0.8, 0.1, 1);
+  color-scheme: light;
+}
+/* surfaces on photos, the countdown and the clapperboard stay dark */
+.hero, .f-hero, .reel .scr, .clap, .leader, .nav.dk {
+  --ink: #0e0c0a;
+  --base: #1a1612;
+  --paper: #efe8db;
+  --dust: #958c7e;
+  --sun: #e8a24a;
+  --line: color-mix(in srgb, var(--paper) 14%, transparent);
   color-scheme: dark;
+  color: var(--paper);
 }
 html { background: var(--ink); }
 body {
@@ -39,7 +51,7 @@ body {
 
 /* film grain */
 .grain {
-  position: fixed; inset: -50%; width: 200%; height: 200%; pointer-events: none; z-index: 60; opacity: 0.08;
+  position: fixed; inset: -50%; width: 200%; height: 200%; pointer-events: none; z-index: 60; opacity: 0.06;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation: grain 0.6s steps(4) infinite;
 }
@@ -70,6 +82,27 @@ body {
 .curtain { position: fixed; inset: 0; z-index: 95; background: var(--base); pointer-events: none; transform-origin: top; animation: curtain 0.7s var(--ease) both; }
 @keyframes curtain { from { transform: scaleY(1); } to { transform: scaleY(0); } }
 
+/* clapperboard over an aperture iris (Clapperboard.tsx): blades close while the board drops in,
+   the stick claps in the dark (CUT), blades open on the new page while the board shrinks into the opening.
+   Photos only get the aperture (.snap). */
+.clap { position: fixed; inset: 0; z-index: 96; display: grid; place-items: center; pointer-events: none; visibility: hidden; }
+.clap.on, .clap.out, .clap.snap { visibility: visible; }
+.iris { position: absolute; inset: 0; width: 100%; height: 100%; }
+.clap-in { position: relative; width: min(300px, 72vw); opacity: 0; transform: translateY(-6%) scale(0.92); transition: none; }
+.clap.on .clap-in { opacity: 1; transform: none; transition: opacity 0.3s, transform 0.5s var(--ease); }
+.clap.out .clap-in { opacity: 0; transform: scale(0.6); transition: opacity 0.28s cubic-bezier(0.4, 0, 1, 1), transform 0.34s cubic-bezier(0.5, 0, 0.75, 0); }
+.clap.shut .clap-top { animation: snap 0.22s cubic-bezier(0.6, 0, 1, 1) forwards; }
+@keyframes snap { 0% { transform: rotate(-26deg); } 40% { transform: rotate(-34deg); } 100% { transform: rotate(0); } }
+.clap.shut .clap-board { animation: clack 0.24s 0.18s ease-out both; }
+@keyframes clack { 30% { transform: translateY(6px) rotate(0.8deg); } }
+.clap-stripes { height: 30px; border: 2px solid var(--paper); background: repeating-linear-gradient(-55deg, var(--paper) 0 14px, var(--ink) 14px 28px); }
+.clap-top { position: relative; transform-origin: 0 100%; transform: rotate(-26deg); }
+.clap-body { display: grid; grid-template-columns: 1fr 1fr; border: 2px solid var(--paper); border-top: 0; background: var(--ink); }
+.clap-body span { padding: 8px 10px; border-top: 1px solid color-mix(in srgb, var(--paper) 40%, transparent); font-size: 10px; }
+.clap-body span:nth-child(odd) { border-right: 1px solid color-mix(in srgb, var(--paper) 40%, transparent); }
+.clap-body b { display: block; font: 900 clamp(22px, 6vw, 30px)/1 var(--display); letter-spacing: 0; margin-top: 4px; }
+.clap-body .wide { grid-column: 1 / -1; border-right: 0 !important; color: var(--sun); }
+
 /* cursor follower */
 .cursor {
   position: fixed; left: 0; top: 0; z-index: 90; pointer-events: none; width: 14px; height: 14px; margin: -7px 0 0 -7px;
@@ -87,6 +120,12 @@ body {
   padding: calc(20px + env(safe-area-inset-top, 0px)) var(--gutr) 20px var(--gut); pointer-events: none;
 }
 .nav > * { pointer-events: auto; }
+.nav { transition: background-color 0.3s, padding 0.3s; }
+.nav.bar {
+  background: color-mix(in srgb, var(--ink) 88%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  padding-top: calc(14px + env(safe-area-inset-top, 0px)); padding-bottom: 14px;
+}
+.nav:not(.dk) a.l { text-shadow: none; }
 .mark { font-family: var(--display); font-weight: 900; font-size: 26px; line-height: 1; color: var(--paper); }
 .nav ul { display: flex; gap: clamp(16px, 2.6vw, 34px); list-style: none; margin: 0; padding: 0; }
 .nav a.l {
@@ -132,7 +171,7 @@ body {
 .vf .place { position: absolute; top: 34px; left: 16px; color: var(--sun); transition: opacity 0.5s; }
 .vf .exp { position: absolute; top: 12px; right: 16px; text-align: right; }
 .vf .exp b { font-weight: 500; color: var(--sun); }
-.vf .lock { position: absolute; left: 50%; top: calc(50% + 44px); transform: translateX(-50%); color: var(--sun); opacity: 0; transition: opacity 0.3s; white-space: nowrap; }
+.vf .lock { position: absolute; left: 50%; top: calc(50% + clamp(56px, 6vw, 74px)); transform: translateX(-50%); color: var(--sun); opacity: 0; transition: opacity 0.3s; white-space: nowrap; }
 .vf.locked .lock { opacity: 1; }
 .scale {
   position: absolute; left: 50%; bottom: 0; transform: translate(-50%, 50%); width: min(320px, 60%); height: 28px; overflow: hidden;
@@ -165,6 +204,15 @@ body {
 .cta:hover .arr, .cta:focus-visible .arr { transform: translateX(5px); }
 .cta .rec { width: 7px; height: 7px; border-radius: 50%; background: var(--grease); animation: blink 1.2s steps(2) infinite; }
 .vf .aim { position: absolute; left: 50%; top: 50%; translate: -50% -50%; pointer-events: auto; }
+/* play button: same bracket frame, square, thin and transparent */
+.cta.play {
+  --k: 9px; --c: color-mix(in srgb, var(--paper) 55%, transparent);
+  width: clamp(60px, 5vw, 72px); aspect-ratio: 1; padding: 0; gap: 0; justify-content: center;
+  color: color-mix(in srgb, var(--paper) 85%, transparent);
+  background-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+.cta.play svg { width: 24%; margin-left: 6%; fill: currentColor; transition: transform 0.5s var(--ease); }
+.cta.play:hover svg, .cta.play:focus-visible svg { transform: scale(1.15); }
 
 /* ---------- pages ---------- */
 .page { padding-top: clamp(110px, 12vw, 170px); }
@@ -172,22 +220,27 @@ body {
 .page-head h1 { font-size: clamp(64px, 12vw, 200px); }
 .page-head p { margin: 0; color: var(--dust); }
 
-/* films: thumbnail grid, mouse x scrubs through each film's frames */
-.reels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(40px, 5vw, 72px) clamp(16px, 2.4vw, 36px); padding-bottom: clamp(70px, 10vw, 140px); }
-.reel { display: block; min-width: 0; }
-.reel:first-child { grid-column: 1 / -1; }
+/* films: two-column grid, tiles open one after another like a shutter; mouse x scrubs through each film's frames */
+.reels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(56px, 7vw, 110px) clamp(28px, 4vw, 64px); padding-bottom: clamp(70px, 10vw, 140px); }
+.reel {
+  display: block; min-width: 0; clip-path: inset(0 0 100% 0); transform: translateY(24px);
+  animation: shutter 1s var(--ease) forwards; animation-delay: calc(200ms + var(--i, 0) * 110ms);
+}
+@keyframes shutter { to { clip-path: inset(0 0 -60px 0); transform: none; } }
 .reel .scr { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; background: var(--base); }
-.reel .scr .fr { position: absolute; inset: 0; opacity: 0; transition: opacity 0.25s; }
+.reel .scr .fr { position: absolute; inset: 0; opacity: 0; transition: opacity 0.35s; }
 .reel .scr .fr img { object-fit: cover; }
 .reel .scr .fr.on { opacity: 1; }
-.reel .scr::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 0 1px var(--line); pointer-events: none; }
-.reel .tl { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: color-mix(in srgb, var(--ink) 50%, transparent); opacity: 0; transition: opacity 0.3s; }
+.reel .n { position: absolute; z-index: 2; left: 12px; top: 10px; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6); }
+.reel .play { position: absolute; z-index: 2; left: 50%; top: 50%; translate: -50% -50%; opacity: 0.75; transition: --k 0.6s var(--ease), color 0.3s, opacity 0.4s; }
+.reel:hover .play, .reel:focus-visible .play { --k: 51%; --c: var(--sun); color: var(--sun); opacity: 1; }
+.reel .tl { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; height: 2px; background: color-mix(in srgb, var(--ink) 50%, transparent); opacity: 0; transition: opacity 0.3s; }
 .reel .tl i { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--sun); }
 .reel:hover .tl, .reel:focus-visible .tl { opacity: 1; }
 /* same look as the photo captions */
-.reel .info { display: flex; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; margin-top: 10px; font: 400 11px/1.5 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--dust); transition: color 0.3s; }
+.reel .info { display: flex; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; margin-top: 12px; font: 400 11px/1.5 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--dust); transition: color 0.3s; }
 .reel:hover .info { color: var(--paper); }
-@media (max-width: 700px) { .reels { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { .reels { grid-template-columns: 1fr; gap: 56px; } .reel .play { opacity: 1; } }
 
 /* photos */
 .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 2vw, 28px); padding-bottom: clamp(70px, 10vw, 140px); }
@@ -211,6 +264,7 @@ body {
 
 /* film page */
 .f-hero { position: relative; height: min(92svh, 940px); min-height: 520px; overflow: hidden; display: flex; align-items: end; }
+@media (max-width: 700px) { .f-hero { height: 64svh; min-height: 420px; } }
 .f-hero .bg { position: absolute; inset: 0; animation: settle 2.4s var(--ease) both; }
 .f-hero .bg img { object-fit: cover; }
 @keyframes settle { from { transform: scale(1.12); } }
@@ -276,7 +330,7 @@ body {
 .links a:hover, .links button:hover { color: var(--paper); }
 .toast {
   position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, calc(100% + 60px));
-  background: var(--sun); color: var(--ink); padding: 10px 16px; z-index: 80; transition: transform 0.5s var(--ease); max-width: calc(100% - 32px); text-align: center;
+  background: var(--sun); color: #fff; padding: 10px 16px; z-index: 80; transition: transform 0.5s var(--ease); max-width: calc(100% - 32px); text-align: center;
 }
 .toast.show { transform: translate(-50%, 0); }
 
@@ -290,5 +344,6 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .leader, .curtain { display: none !important; }
+  .leader, .curtain, .clap { display: none !important; }
+  .reel { clip-path: none; transform: none; }
 }

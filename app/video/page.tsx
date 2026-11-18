@@ -36,7 +36,8 @@ export default function FilmsPage() {
               genre={v.genre}
               date={v.dateTaken}
               frames={[v.thumbnail.path!, ...v.images.map((img) => img.path!)]}
-              priority={i === 0}
+              index={i}
+              priority={i < 2}
             />
           ))}
         </div>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export interface FilmReelProps {
   href: string;
@@ -11,23 +11,48 @@ export interface FilmReelProps {
   date: string;
   /** thumbnail first, then behind-the-scenes stills */
   frames: string[];
+  /** position in the grid: shown as 01, 02… and staggers the entrance */
+  index: number;
   priority?: boolean;
 }
 
-/** Film card: moving the mouse across the picture scrubs through the film's frames. */
-export default function FilmReel({ href, title, genre, date, frames, priority }: FilmReelProps) {
+/**
+ * Film card linking to the film's page. Mouse x scrubs through the film's frames;
+ * on touch screens the card in the middle of the viewport flips through them by itself.
+ */
+export default function FilmReel({ href, title, genre, date, frames, index, priority }: FilmReelProps) {
   const [p, setP] = useState(0);
+  const ref = useRef<HTMLAnchorElement>(null);
   const k = Math.min(frames.length - 1, Math.floor(p * frames.length));
 
+  useEffect(() => {
+    if (!matchMedia("(hover: none)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let timer: ReturnType<typeof setInterval> | undefined;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        clearInterval(timer);
+        if (!e.isIntersecting) return setP(0);
+        timer = setInterval(() => setP((q) => (Math.floor(q * frames.length + 1) % frames.length) / frames.length + 0.001), 1400);
+      },
+      { rootMargin: "-40% 0px -40% 0px" },
+    );
+    io.observe(ref.current!);
+    return () => {
+      io.disconnect();
+      clearInterval(timer);
+    };
+  }, [frames.length]);
+
   return (
-    <Link className="reel rv" href={href} data-cursor="Open">
+    <Link ref={ref} className="reel" href={href} data-cursor="Open" style={{ "--i": index } as React.CSSProperties}>
       <span
         className="scr"
         onPointerMove={(e) => {
+          if (e.pointerType !== "mouse") return;
           const b = e.currentTarget.getBoundingClientRect();
           setP(Math.min(0.999, Math.max(0, (e.clientX - b.left) / b.width)));
         }}
-        onPointerLeave={() => setP(0)}
+        onPointerLeave={(e) => e.pointerType === "mouse" && setP(0)}
       >
         {frames.map((src, i) => (
           <span key={src} className={`fr${i === k ? " on" : ""}`}>
@@ -41,6 +66,10 @@ export default function FilmReel({ href, title, genre, date, frames, priority }:
             />
           </span>
         ))}
+        <span className="n mono">{String(index + 1).padStart(2, "0")}</span>
+        <span className="cta play" aria-hidden="true">
+          <svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z" /></svg>
+        </span>
         <span className="tl"><i style={{ width: `${p * 100}%` }} /></span>
       </span>
       {/* the title is on the thumbnail; keep it for search engines and screen readers */}

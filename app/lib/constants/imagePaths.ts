@@ -1,4 +1,4 @@
-import { ImagesWithDesc } from "../interfaces";
+import type { ImagesWithDesc } from "../interfaces";
 
 export const portraitImage: ImagesWithDesc = {
   path: "/fotos/portrait_double.webp",
@@ -8,6 +8,12 @@ export const portraitImage: ImagesWithDesc = {
 
 // Updated images array
 export const imagesWithDesc: ImagesWithDesc[] = [
+  {
+    path: "/fotos/uyuni-guide.WEBP",
+    description:
+      "This photo features our tour guide walking barefoot in Bolivia’s Uyuni Salt Desert. I appreciate its simple composition.",
+    title: "Wander unshod",
+  },
   {
     path: "/fotos/cerro-torre.WEBP",
     description: "The magnificent Cerro Torre mountain.",
@@ -110,12 +116,6 @@ export const imagesWithDesc: ImagesWithDesc[] = [
     description:
       "I took this picture on a beautiful evening in Lobitos, Peru. I fell in love with this place and its incredible surfing. Watching all the pros surf here is simply amazing!",
     title: "Surfer Lobitos",
-  },
-  {
-    path: "/fotos/uyuni-guide.WEBP",
-    description:
-      "This photo features our tour guide walking barefoot in Bolivia’s Uyuni Salt Desert. I appreciate its simple composition.",
-    title: "Wander unshod",
   },
   {
     path: "/fotos/vulcano-purple-sky.WEBP",
