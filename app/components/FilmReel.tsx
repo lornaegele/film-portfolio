@@ -13,7 +13,7 @@ export interface FilmReelProps {
   date: string;
   /** the film's still first, then behind-the-scenes stills */
   frames: string[];
-  /** pixel size of the first frame: the tile takes its aspect ratio, so it is never cropped */
+  /** pixel size of the first frame: on phones the tile takes its aspect ratio, so it is never cropped */
   size: Size;
   /** position in the grid: shown as 01, 02… and staggers the entrance */
   index: number;
@@ -51,7 +51,7 @@ export default function FilmReel({ href, title, genre, date, frames, size, index
     <Link ref={ref} className="reel" href={href} data-cursor="Open" data-label={title} style={{ "--i": index } as React.CSSProperties}>
       <span
         className="scr"
-        style={{ aspectRatio: `${size.width} / ${size.height}` }}
+        style={{ "--ar": `${size.width} / ${size.height}` } as React.CSSProperties}
         onPointerMove={(e) => {
           if (e.pointerType !== "mouse") return;
           const b = e.currentTarget.getBoundingClientRect();

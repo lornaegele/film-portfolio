@@ -263,9 +263,11 @@ body {
   animation: shutter 1s var(--ease) forwards; animation-delay: calc(200ms + var(--i, 0) * 110ms);
 }
 @keyframes shutter { to { clip-path: inset(0 0 -60px 0); transform: none; } }
-.reel .scr { position: relative; display: block; overflow: hidden; background: var(--base); } /* aspect-ratio set inline from the still */
+/* phones (one column): each still in its own ratio, uncropped; desktop (two columns): all tiles 16:9 so rows line up */
+.reel .scr { position: relative; display: block; overflow: hidden; background: var(--base); aspect-ratio: var(--ar, 16 / 9); }
+@media (min-width: 701px) { .reel .scr { aspect-ratio: 16 / 9; } }
 .reel .scr .fr { position: absolute; inset: 0; opacity: 0; transition: opacity 0.35s; }
-/* the tile has the first still's exact ratio (never cut); the hover frames fill that same frame */
+/* every frame fills the tile */
 .reel .scr .fr img { object-fit: cover; }
 .reel .scr .fr.on { opacity: 1; }
 .reel .n { position: absolute; z-index: 2; left: 12px; top: 10px; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6); }
