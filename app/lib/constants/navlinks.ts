@@ -1,24 +1,11 @@
 import { NavItem } from "../interfaces";
 
 export const navItems: NavItem[] = [
+  { name: "Films", link: "/video" },
+  { name: "Photos", link: "/photo" },
+  { name: "About", link: "/about" },
   {
-    name: "films",
-    link: "/video",
-  },
-  {
-    name: "photo",
-    link: "/photo",
-  },
-  {
-    name: "about",
-    link: "/about",
-  },
-  {
-    name: "contact",
-    link: "/contact",
-  },
-  {
-    name: "instagram",
+    name: "Instagram ↗",
     link: "https://www.instagram.com/lorenznaegele",
     external: true,
   },

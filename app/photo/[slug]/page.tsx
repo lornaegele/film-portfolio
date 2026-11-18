@@ -1,9 +1,9 @@
 import { images } from "@/app/lib/constants/images";
 import { Metadata } from "next";
 import Image from "next/image";
-import AnimatedSection from "@/app/components/AnimatedSection";
-import TextLink from "@/app/components/TextLink";
-import { headingFont, uiFont } from "@/app/lib/font";
+import Link from "next/link";
+import SplitTitle, { toLines } from "@/app/components/SplitTitle";
+import Footer from "@/app/components/Footer";
 
 export async function generateMetadata({
   params,
@@ -57,50 +57,29 @@ export default function PhotoDetailPage({
   const image = images.find((img) => img.link === params.slug);
 
   if (!image) {
-    return (
-      <div className="min-h-[50vh] flex items-center justify-center text-cinema-smoke">
-        Photo not found.
-      </div>
-    );
+    return <p className="page wrap mono">Photo not found.</p>;
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-6 md:px-10 py-8 md:py-12">
-      <AnimatedSection>
-        <div className="mb-6">
-          <TextLink href="/photo" tone="smoke">
-            ← All Photography
-          </TextLink>
+    <>
+      <article className="page wrap photo-detail">
+        <Link className="back mono" href="/photo">
+          ← All photos
+        </Link>
+        <div className="shot">
+          <Image
+            src={image.path}
+            alt={image.alt}
+            width={1600}
+            height={1200}
+            sizes="(max-width: 1600px) 100vw, 1600px"
+            priority
+          />
         </div>
-      </AnimatedSection>
-
-      <AnimatedSection delay={0.05}>
-        <Image
-          src={image.path}
-          alt={image.alt}
-          width={1200}
-          height={800}
-          sizes="(max-width: 768px) 100vw, 900px"
-          className="w-full h-auto rounded-sm"
-          priority
-        />
-      </AnimatedSection>
-
-      <AnimatedSection delay={0.15} className="mt-8">
-        <span
-          className={`${uiFont.className} text-cinema-gold text-caption uppercase block mb-3`}
-        >
-          Still
-        </span>
-        <h1
-          className={`${headingFont.className} text-display-sm text-cinema-cream mb-4`}
-        >
-          {image.title}
-        </h1>
-        <p className="text-cinema-silver text-body-lg leading-relaxed">
-          {image.description}
-        </p>
-      </AnimatedSection>
-    </div>
+        <SplitTitle lines={toLines(image.title, 16)} />
+        <p className="rv">{image.description}</p>
+      </article>
+      <Footer />
+    </>
   );
 }

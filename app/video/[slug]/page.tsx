@@ -59,16 +59,12 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   if (!video) {
     return (
-      <div className="min-h-[50vh] flex items-center justify-center text-cinema-smoke">
-        Film not found.
-      </div>
+      <p className="page wrap mono">Film not found.</p>
     );
   }
 
   const currentIndex = videos.findIndex((v) => v.link === params.slug);
-  const prevFilm = currentIndex > 0 ? videos[currentIndex - 1] : null;
-  const nextFilm =
-    currentIndex < videos.length - 1 ? videos[currentIndex + 1] : null;
+  const nextFilm = videos[(currentIndex + 1) % videos.length];
 
   // JSON-LD VideoObject structured data
   const jsonLd = {
@@ -102,7 +98,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <FilmDetailContent video={video} prevFilm={prevFilm} nextFilm={nextFilm} />
+      <FilmDetailContent video={video} nextFilm={nextFilm} />
     </>
   );
 }

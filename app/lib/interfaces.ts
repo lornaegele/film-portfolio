@@ -52,5 +52,12 @@ export interface VideoThumbnail {
     url: string;
     label: string;
   };
+  /** overview caption, e.g. "Surf documentary" */
+  genre: string;
+  place: string;
+  /** clean still for the film page hero (the thumbnail has title art baked in) */
+  cover: string;
+  /** festival laurel image shown on the film page (DOK.fest win) */
+  laurel?: string;
 }
 

@@ -1,20 +1,20 @@
-import { videos } from "@/app/lib/constants/videos";
-import FilmPosterCard from "@/app/components/FilmPosterCard";
-import AnimatedSection from "@/app/components/AnimatedSection";
-import { headingFont } from "@/app/lib/font";
 import type { Metadata } from "next";
+import { videos } from "@/app/lib/constants/videos";
+import FilmReel from "@/app/components/FilmReel";
+import SplitTitle from "@/app/components/SplitTitle";
+import Footer from "@/app/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Films | Lorenz Naegele Documentary Filmmaker",
+  title: "Climbing, Surfing & Outdoor Documentary Films | Lorenz Naegele",
   description:
-    "A collection of climbing, surfing and outdoor documentary films exploring movement, nature, and personal stories.",
+    "Climbing and surf documentaries by Lorenz Naegele: Finding Flow in the Fight (DOK.fest München 2026 winner), Shape the Future, Waves of Wisdom and more.",
   alternates: {
     canonical: "https://lorenzvisuals.com/video",
   },
   openGraph: {
-    title: "Films | Lorenz Naegele",
+    title: "Climbing & Surf Films | Lorenz Naegele",
     description:
-      "Documentary films focused on surfing, climbing, music, and authentic human stories.",
+      "Short climbing and surf documentaries about people, nature and adventure.",
     url: "https://lorenzvisuals.com/video",
     type: "website",
   },
@@ -22,24 +22,26 @@ export const metadata: Metadata = {
 
 export default function FilmsPage() {
   return (
-    <div className="px-6 md:px-10 pb-16">
-      <div className="max-w-6xl mx-auto">
-        {/* Page Header */}
-        <AnimatedSection className="pt-8 md:pt-12 mb-12 md:mb-16">
-          <h1
-            className={`${headingFont.className} text-display text-cinema-cream`}
-          >
-            Films
-          </h1>
-        </AnimatedSection>
-
-        {/* Film Grid 2 columns on desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-          {videos.map((video, index) => (
-            <FilmPosterCard key={video.link} film={video} index={index} />
+    <>
+      <section className="page wrap" aria-labelledby="films-h">
+        <div className="page-head">
+          <SplitTitle lines={["Films"]} id="films-h" />
+        </div>
+        <div className="reels">
+          {videos.map((v, i) => (
+            <FilmReel
+              key={v.link}
+              href={`/video/${v.link}`}
+              title={v.alt}
+              genre={v.genre}
+              date={v.dateTaken}
+              frames={[v.thumbnail.path!, ...v.images.map((img) => img.path!)]}
+              priority={i === 0}
+            />
           ))}
         </div>
-      </div>
-    </div>
+      </section>
+      <Footer />
+    </>
   );
 }
