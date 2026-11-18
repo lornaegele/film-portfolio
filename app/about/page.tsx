@@ -3,7 +3,7 @@ import { IMG_QUALITY } from "@/app/lib/image";
 import type { Metadata } from "next";
 import { portraitImage } from "../lib/constants/imagePaths";
 import SplitTitle from "../components/SplitTitle";
-import CopyEmail from "../components/CopyEmail";
+import EmailLink from "../components/EmailLink";
 import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
@@ -52,8 +52,8 @@ export default function AboutPage() {
             <div><dt className="mono">Focus</dt><dd>Climbing &amp; surf films, outdoor photography</dd></div>
           </dl>
           <div className="contact rv">
-            <span className="mono">Let&apos;s make something · click to copy</span>
-            <CopyEmail />
+            <span className="mono">Let&apos;s make something · click to write</span>
+            <EmailLink />
             <div className="links mono">
               <a href="https://www.instagram.com/lorenznaegele" target="_blank" rel="noopener noreferrer">
                 Instagram ↗
