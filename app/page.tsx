@@ -1,95 +1,33 @@
-import HeroSection from "./components/HeroSection";
-import FilmCard from "./components/FilmCard";
-import ArtistStatement from "./components/ArtistStatement";
-import AboutPreview from "./components/AboutPreview";
-import ContactCTA from "./components/ContactCTA";
-import AnimatedSection from "./components/AnimatedSection";
-import TextLink from "./components/TextLink";
-import PressStrip from "./components/PressStrip";
-import AwardHighlight from "./components/AwardHighlight";
-import Testimonial from "./components/Testimonial";
-import ProcessSection from "./components/ProcessSection";
-import { videos } from "./lib/constants/videos";
-import { headingFont } from "./lib/font";
 import type { Metadata } from "next";
+import Hero, { type HeroSlide } from "./components/Hero";
 
 export const metadata: Metadata = {
   title: "Lorenz Naegele | Documentary Filmmaker",
   description:
-    "Documentary filmmaker crafting authentic stories about people, nature, and adventure. Evoking emotions through cinematic storytelling.",
+    "Climbing and surf documentaries by Lorenz Naegele, German filmmaker and photographer based in Spain. Winner at DOK.fest München 2026.",
   alternates: {
     canonical: "https://lorenzvisuals.com/",
   },
   openGraph: {
     title: "Lorenz Naegele | Documentary Filmmaker",
     description:
-      "Evoking emotions through film. Authentic outdoor documentaries about people, nature, and adventure.",
+      "Climbing and surf documentaries and outdoor photography by Lorenz Naegele.",
     url: "https://lorenzvisuals.com/",
     siteName: "Lorenz Visuals",
     type: "website",
   },
 };
 
+// Only photos from the Photos page (film stills are too low-res for full screen).
+const slides: HeroSlide[] = [
+  { src: "/fotos/cerro-torre.WEBP", alt: "Cerro Torre rising above the Patagonian ice", place: "Cerro Torre, Argentina" },
+  { src: "/fotos/lobitos-surfer.WEBP", alt: "Surfer in Lobitos, Peru", place: "Lobitos, Peru" },
+  { src: "/fotos/uyuni-guide.WEBP", alt: "A barefoot guide walking across the Uyuni salt flat", place: "Salar de Uyuni, Bolivia" },
+  { src: "/fotos/pitumarca-man.WEBP", alt: "Peruvian shepherd in Pitumarca", place: "Pitumarca, Peru" },
+  { src: "/fotos/huacachina-desert.WEBP", alt: "Dunes of the Huacachina desert", place: "Huacachina, Peru" },
+  { src: "/fotos/red-llamas.WEBP", alt: "Llamas on red earth in the Andes", place: "Andes, Peru" },
+];
+
 export default function Home() {
-  const featuredFilms = videos.slice(0, 3);
-
-  return (
-    <div>
-      {/* Hero Section */}
-      <HeroSection />
-
-      {/* Press / festivals strip */}
-      <PressStrip />
-
-      {/* Subtle highlight: DOK.fest München win */}
-      <AwardHighlight />
-
-      {/* Featured Films */}
-      <section className="py-24 md:py-32 px-6 md:px-10">
-        <div className="max-w-6xl mx-auto">
-          <AnimatedSection>
-            <div className="flex items-end justify-between mb-12 md:mb-16">
-              <h2
-                className={`${headingFont.className} text-display text-cinema-cream`}
-              >
-                Selected Work
-              </h2>
-              <div className="hidden md:block">
-                <TextLink href="/video" tone="smoke">
-                  View All Films
-                </TextLink>
-              </div>
-            </div>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-            {featuredFilms.map((film, index) => (
-              <FilmCard key={film.link} film={film} index={index} />
-            ))}
-          </div>
-
-          <AnimatedSection className="mt-10 text-center md:hidden">
-            <TextLink href="/video" tone="smoke">
-              View All Films
-            </TextLink>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Artist Statement */}
-      <ArtistStatement />
-
-      {/* Process / Behind the Lens */}
-      <ProcessSection />
-
-      {/* Testimonial pull-quote */}
-      <Testimonial />
-
-      {/* About Preview */}
-      <AboutPreview />
-
-      {/* Contact CTA */}
-      <ContactCTA />
-    </div>
-  );
+  return <Hero slides={slides} />;
 }

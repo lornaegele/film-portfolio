@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Navbar } from "./components";
-import Footer from "./components/Footer";
-import PageTransition from "./components/PageTransition";
-import ScrollProgress from "./components/ScrollProgress";
-import CursorEffects from "./components/CursorEffects";
-import { bodyFont } from "./lib/font";
+import Navbar from "./components/Navbar";
+import Cursor from "./components/Cursor";
+import Leader, { leaderScript } from "./components/Leader";
+import Reveal from "./components/Reveal";
+import { displayFont, monoFont, sansFont } from "./lib/font";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://lorenzvisuals.com"),
   title: "Lorenz Naegele | Documentary Filmmaker",
   description:
-    "Documentary filmmaker crafting authentic stories about people, nature, and adventure. Evoking emotions through cinematic storytelling.",
+    "Lorenz Naegele, German documentary filmmaker and photographer based in Spain. Climbing and surf films, plus outdoor photography from the Andes and Patagonia.",
   icons: {
     icon: ["/favicon.svg"],
     apple: ["/favicon.svg"],
@@ -26,15 +25,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${bodyFont.className} bg-cinema-black text-cinema-cream`}>
-        <ScrollProgress />
-        <CursorEffects />
+    // the inline script may add leader classes before hydration
+    <html
+      lang="en"
+      className={`${displayFont.variable} ${monoFont.variable} ${sansFont.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: leaderScript }} />
+      </head>
+      <body>
+        <Leader />
+        <div className="grain" aria-hidden="true" />
+        <Cursor />
         <Navbar />
-        <main>
-          <PageTransition>{children}</PageTransition>
-        </main>
-        <Footer />
+        <main>{children}</main>
+        <Reveal />
         <Analytics />
       </body>
     </html>

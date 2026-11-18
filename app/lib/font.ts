@@ -1,24 +1,23 @@
-import {
-  DynaPuff,
-  Playfair_Display,
-  DM_Sans,
-  Space_Grotesk,
-} from "next/font/google";
+import { Big_Shoulders_Display, IBM_Plex_Mono, Inter } from "next/font/google";
 
-export const logoFont = DynaPuff({ weight: "400", subsets: ["latin"] });
-
-export const headingFont = Playfair_Display({
+// Exposed as CSS variables and used through the tokens in globals.css.
+export const displayFont = Big_Shoulders_Display({
+  weight: ["700", "900"],
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-display",
 });
 
-export const bodyFont = DM_Sans({
+export const monoFont = IBM_Plex_Mono({
+  weight: ["400", "500"],
   subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
+});
+
+export const sansFont = Inter({
   weight: ["300", "400", "500"],
-});
-
-export const uiFont = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-sans",
 });
