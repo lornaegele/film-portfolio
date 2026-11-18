@@ -150,10 +150,8 @@ export default function Hero({ slides }: { slides: HeroSlide[] }) {
           ƒ/8 · 1/250<br />Focus <b ref={distRef}>∞</b>
         </span>
         <span className="lock mono" aria-hidden="true">● In focus</span>
-        <Link ref={aimRef} className="cta aim" href="/video">
-          <span className="rec" aria-hidden="true" />
-          Watch films
-          <span className="arr" aria-hidden="true">→</span>
+        <Link ref={aimRef} className="cta play aim" href="/video" aria-label="Watch films">
+          <svg viewBox="0 0 10 12" aria-hidden="true"><path d="M0 0l10 6-10 6z" /></svg>
         </Link>
         <div className="scale" aria-hidden="true">
           <div ref={tapeRef} className="tape mono">
